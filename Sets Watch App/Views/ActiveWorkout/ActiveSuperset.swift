@@ -11,6 +11,7 @@ struct ActiveSuperset: View {
     
     @ObservedObject var current_superset: Superset
     @State private var is_showing_settings_sheet: Bool = false
+    @State private var current_remaining_time: TimeInterval = TimeInterval()
 
     var body: some View {
         ZStack {
@@ -37,6 +38,13 @@ struct ActiveSuperset: View {
                 {
                     Text(current_superset.name)
                     Text("\(current_superset.exercises_complete)/\(current_superset.exercise_list.count)")
+                    Text(timeString(current_remaining_time))
+                }
+                .onAppear(perform: {
+                    current_remaining_time = current_superset.rest_timer.time_remaining
+                })
+                .onReceive(current_superset.rest_timer.$time_remaining) { remaining in
+                        current_remaining_time = remaining
                 }
                 
                 if (current_superset.is_ss_complete)
@@ -65,11 +73,18 @@ struct ActiveSuperset: View {
                 .foregroundStyle(.blue)
         }
     }
+    
+    private func timeString(_ time: TimeInterval) -> String {
+        let minutes = Int(time) / 60
+        let seconds = Int(time) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
 }
 
 #Preview {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetSupersetWorkout()
-    
-    return ActiveSuperset(current_superset: example_workout.supersets.first!)
+    @State var ss = example_workout.supersets.first!
+    @State var rt = ss.rest_timer
+    return ActiveSuperset(current_superset: ss)
 }

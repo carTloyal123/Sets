@@ -16,6 +16,8 @@
 		330362062BD9389E0014CD3C /* CentralStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362052BD9389E0014CD3C /* CentralStorage.swift */; };
 		330362092BD93B070014CD3C /* PublishedExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362082BD93B070014CD3C /* PublishedExt.swift */; };
 		3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303620A2BD93D0C0014CD3C /* CodableColor.swift */; };
+		332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82702BD9439D008FE9B4 /* TimerView.swift */; };
+		332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */; };
 		333502EC2BD425170068076C /* Sets Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 333502EB2BD425170068076C /* Sets Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		333502F12BD425170068076C /* SetsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333502F02BD425170068076C /* SetsApp.swift */; };
 		333502F52BD425180068076C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 333502F42BD425180068076C /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 		333503372BD441310068076C /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333503362BD441310068076C /* ExerciseView.swift */; };
 		3335033B2BD456C90068076C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033A2BD456C90068076C /* WorkoutView.swift */; };
 		3335033F2BD583B40068076C /* SupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033E2BD583B40068076C /* SupersetView.swift */; };
+		3357F2562BD94CFA0037D35C /* Timer+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2552BD94CFA0037D35C /* Timer+Codable.swift */; };
+		3357F2582BD9656E0037D35C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2572BD9656E0037D35C /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +88,8 @@
 		330362052BD9389E0014CD3C /* CentralStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralStorage.swift; sourceTree = "<group>"; };
 		330362082BD93B070014CD3C /* PublishedExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedExt.swift; sourceTree = "<group>"; };
 		3303620A2BD93D0C0014CD3C /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
+		332E82702BD9439D008FE9B4 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimer.swift; sourceTree = "<group>"; };
 		333502E52BD425170068076C /* Sets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		333502EB2BD425170068076C /* Sets Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sets Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		333502F02BD425170068076C /* SetsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsApp.swift; sourceTree = "<group>"; };
@@ -105,6 +111,8 @@
 		333503362BD441310068076C /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		3335033A2BD456C90068076C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		3335033E2BD583B40068076C /* SupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetView.swift; sourceTree = "<group>"; };
+		3357F2552BD94CFA0037D35C /* Timer+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Codable.swift"; sourceTree = "<group>"; };
+		3357F2572BD9656E0037D35C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +146,7 @@
 				330361F82BD893F90014CD3C /* ActiveWorkoutView.swift */,
 				330361FA2BD895C70014CD3C /* ActiveSuperset.swift */,
 				330361FC2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift */,
+				332E82702BD9439D008FE9B4 /* TimerView.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -155,6 +164,7 @@
 			children = (
 				330362082BD93B070014CD3C /* PublishedExt.swift */,
 				3303620A2BD93D0C0014CD3C /* CodableColor.swift */,
+				3357F2552BD94CFA0037D35C /* Timer+Codable.swift */,
 			);
 			path = Exts;
 			sourceTree = "<group>";
@@ -223,6 +233,7 @@
 		3335031E2BD4258E0068076C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3335033A2BD456C90068076C /* WorkoutView.swift */,
 				330361FE2BD935AB0014CD3C /* Settings */,
 				330361F72BD893E50014CD3C /* ActiveWorkout */,
 				333503392BD456BC0068076C /* Workouts */,
@@ -255,6 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				3335032E2BD42D090068076C /* ExampleData.swift */,
+				332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */,
+				3357F2572BD9656E0037D35C /* Utils.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -272,7 +285,6 @@
 		333503392BD456BC0068076C /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
-				3335033A2BD456C90068076C /* WorkoutView.swift */,
 				3335033E2BD583B40068076C /* SupersetView.swift */,
 				330362012BD9363A0014CD3C /* WorkoutOverview.swift */,
 				330362032BD9386B0014CD3C /* WorkoutListView.swift */,
@@ -443,7 +455,9 @@
 				330362092BD93B070014CD3C /* PublishedExt.swift in Sources */,
 				3335032A2BD428F10068076C /* WorkoutModel.swift in Sources */,
 				3335032F2BD42D090068076C /* ExampleData.swift in Sources */,
+				3357F2582BD9656E0037D35C /* Utils.swift in Sources */,
 				333503252BD4270D0068076C /* HelperModels.swift in Sources */,
+				332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */,
 				333503352BD434C20068076C /* ExerciseSetCheckButtonView.swift in Sources */,
 				333503222BD426400068076C /* SetModel.swift in Sources */,
 				3335033F2BD583B40068076C /* SupersetView.swift in Sources */,
@@ -457,8 +471,10 @@
 				330362042BD9386B0014CD3C /* WorkoutListView.swift in Sources */,
 				3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */,
 				3335032C2BD42A240068076C /* SupersetModel.swift in Sources */,
+				3357F2562BD94CFA0037D35C /* Timer+Codable.swift in Sources */,
 				3335033B2BD456C90068076C /* WorkoutView.swift in Sources */,
 				333503272BD427770068076C /* ExerciseModel.swift in Sources */,
+				332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

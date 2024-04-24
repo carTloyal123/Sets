@@ -32,8 +32,8 @@ class ExampleData {
         let five_exercise = GetExampleExercise(name: "Lateral Iso Row Demo")
         let six_exercise = GetExampleExercise(name: "Tricep Cable Pulldown Demo")
 
-        let superset_one = Superset(name: "Test Super")
-        let superset_two = Superset(name: "Test 2 Super")
+        let superset_one = Superset(name: "Test Super", rest_time_seconds: 10)
+        let superset_two = Superset(name: "Test 2 Super", rest_time_seconds: 11)
         let superset_three = Superset(name: "Really Long Name SS")
         
         superset_one.AddExercise(exercise: one_exercise)

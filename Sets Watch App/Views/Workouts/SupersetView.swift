@@ -20,7 +20,7 @@ struct SupersetView: View {
                     .fontWeight(.semibold)
                     .background {
                         Capsule()
-                            .foregroundStyle(current_superset.color.swiftUIColor)
+                            .foregroundStyle(current_superset.color)
                     }
             }
             .padding(EdgeInsets(top: 10.0, leading: 1.0, bottom: 1.0, trailing: 1.0))

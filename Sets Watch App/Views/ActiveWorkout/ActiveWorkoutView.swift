@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ActiveWorkoutView: View {
     
-    @ObservedObject var current_workout: Workout    
+    @ObservedObject var current_workout: Workout
+    @State private var is_showing_timer: Bool = false
     
     var body: some View {
         ScrollView
@@ -20,24 +21,41 @@ struct ActiveWorkoutView: View {
                 Spacer()
             }
             
-            // iterate over super sets, have a button to complete all exercises in each one
-            // go to timer in between supersets
-            
             if let active_superset_info = current_workout.active_superset
             {
                 ActiveSuperset(current_superset: active_superset_info)
-                Button(action: {
-                    current_workout.UpdateSuperset()
-                }, label: {
-                    Label(
-                        title: { Text("Finish Set") },
-                        icon: { Image(systemName: "figure.strengthtraining.traditional") }
-                    )
-                })
+                HStack
+                {
+                    Button(action: {
+                        is_showing_timer = true
+                    }, label: {
+                        Label(
+                            title: { Text("") },
+                            icon: { Image(systemName: "clock") }
+                        )
+                    })
+                    Button(action: {
+                        current_workout.UpdateSuperset()
+                        is_showing_timer = true
+                    }, label: {
+                        Label(
+                            title: { Text("") },
+                            icon: { Image(systemName: "dumbbell") }
+                        )
+                    })
+                }
+
             } else {
                 Text("No supersets :(")
             }
-        }
+        }.sheet(isPresented: $is_showing_timer, onDismiss: {
+            is_showing_timer = false
+        }, content: {
+            if let active_superset_info = current_workout.active_superset
+            {
+                TimerView(rest_timer: active_superset_info.rest_timer)
+            }
+        })
     }
 }
 

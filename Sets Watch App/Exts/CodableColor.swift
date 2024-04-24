@@ -8,27 +8,33 @@
 import Foundation
 import SwiftUI
 
-struct CodableColor: Codable {
-    let red: Double
-    let green: Double
-    let blue: Double
-    let alpha: Double
-
-    init(_ color: Color) {
-        let uiColor = UIColor(color)
-        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        self.red = Double(red)
-        self.green = Double(green)
-        self.blue = Double(blue)
-        self.alpha = Double(alpha)
+extension Color: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case red, green, blue, opacity
     }
 
-    func uiColor() -> UIColor {
-        return UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: CGFloat(alpha))
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        let uiColor = UIColor(self)
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, opacity: CGFloat = 0
+        uiColor.getRed(&red, green: &green, blue: &blue, alpha: &opacity)
+        try container.encode(Double(red), forKey: .red)
+        try container.encode(Double(green), forKey: .green)
+        try container.encode(Double(blue), forKey: .blue)
+        try container.encode(Double(opacity), forKey: .opacity)
     }
 
-    var swiftUIColor: Color {
-        return Color(uiColor())
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let red = try values.decode(Double.self, forKey: .red)
+        let green = try values.decode(Double.self, forKey: .green)
+        let blue = try values.decode(Double.self, forKey: .blue)
+        let opacity = try values.decode(Double.self, forKey: .opacity)
+        self.init(
+            red: red,
+            green: green,
+            blue: blue,
+            opacity: opacity
+        )
     }
 }

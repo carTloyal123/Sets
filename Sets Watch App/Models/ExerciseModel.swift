@@ -8,20 +8,19 @@
 import Foundation
 
 class Exercise: ObservableObject, Identifiable, Equatable, Hashable, Codable {
-    static func == (lhs: Exercise, rhs: Exercise) -> Bool {
-        return lhs.id == rhs.id
-    }
 
     @Published var name: String = "Defaule Exercise"
     @Published var sets: [ExerciseSet] = []
     @Published var super_set_tag: Superset?
     @Published var exercise_type: ExerciseTargetArea = .full_body
-    
     @Published var total_complete_sets: Int = 0
     
     var is_complete: Bool { return total_complete_sets == sets.count }
-    
     var id = UUID()
+    
+    static func == (lhs: Exercise, rhs: Exercise) -> Bool {
+        return lhs.id == rhs.id
+    }
     
     init() { }
     init(name: String, sets: [ExerciseSet], super_set_tag: Superset? = nil, exercise_type: ExerciseTargetArea) {

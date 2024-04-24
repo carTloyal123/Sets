@@ -7,34 +7,42 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
-class Superset: ObservableObject, Identifiable, Codable {
+class Superset: ObservableObject, Identifiable, Codable {    
     var name: String = "ss1"
     // these are array indices that correspond to the Workout.exercises array
     @Published var exercise_list: [Exercise] = []
     @Published var complete_exercise_list: [Exercise] = []
     @Published var exercises_complete: Int = 0
-    var is_ss_complete: Bool { return CheckCompleteExercises() == exercise_list.count }
-        
-    var color: CodableColor
+    @Published var rest_timer: WorkoutTimer
     
+    private var cancellables = Set<AnyCancellable>()
+    var is_ss_complete: Bool { return CheckCompleteExercises() == exercise_list.count }
+    var color: Color
     var id = UUID()
     
-    init(name: String, color: Color) {
-        self.name = name
-        self.color = CodableColor(color)
+    private enum CodingKeys: String, CodingKey {
+        case name, exercise_list, complete_exercise_list, exercises_complete, rest_timer, color, id
     }
     
-    init(name: String)
-    {
+    init(name: String ) {
         self.name = name
-        var rng = SystemRandomNumberGenerator()
-        let r: CGFloat = CGFloat(rng.next(upperBound: UInt32(255.0))) / 255.0
-        let g: CGFloat = CGFloat(rng.next(upperBound: UInt32(255.0))) / 255.0
-        let b: CGFloat = CGFloat(rng.next(upperBound: UInt32(255.0))) / 255.0
+        self.color = Utils.GetRandomColor()
+        self.rest_timer = WorkoutTimer()
+        
+        $rest_timer.sink { [weak self] _ in
+                            self?.objectWillChange.send()
 
-        let rng_color = Color(cgColor: CGColor(red: r, green: g, blue: b, alpha: 1.0))
-        self.color = CodableColor(rng_color)
+        }
+            .store(in: &cancellables)
+    
+    }
+    
+    init(name: String, rest_time_seconds: Int) {
+        self.name = name
+        self.color = Utils.GetRandomColor()
+        self.rest_timer = WorkoutTimer(total_rest_time_seconds: rest_time_seconds)
     }
     
     func AddExercise(exercise: Exercise)
