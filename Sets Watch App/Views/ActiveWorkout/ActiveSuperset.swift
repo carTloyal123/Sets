@@ -16,13 +16,12 @@ struct ActiveSuperset: View {
     var body: some View {
         ZStack {
             VStack (alignment: .leading, spacing: 8) {
-                HStack(alignment: .top) {
-                    // The workout symbol
-                    Image(systemName: "dumbbell")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 96, height: 40, alignment: .leading)
-                        .foregroundColor(.secondary)
+                // The name of the workout
+                HStack
+                {
+                    Text(current_superset.name)
+                    Spacer()
+                    Text(Utils.timeString(current_remaining_time))
                     Spacer()
                     Image(systemName: "ellipsis.circle.fill")
                         .resizable()
@@ -33,18 +32,18 @@ struct ActiveSuperset: View {
                             self.is_showing_settings_sheet.toggle()
                         }
                 }
-                // The name of the workout
-                HStack
-                {
-                    Text(current_superset.name)
-                    Text("\(current_superset.exercises_complete)/\(current_superset.exercise_list.count)")
-                    Text(timeString(current_remaining_time))
-                }
                 .onAppear(perform: {
                     current_remaining_time = current_superset.rest_timer.time_remaining
                 })
                 .onReceive(current_superset.rest_timer.$time_remaining) { remaining in
                         current_remaining_time = remaining
+                }
+                
+                HStack
+                {
+                    Text("Exercises:")
+                    Spacer()
+                    Text("\(current_superset.exercises_complete)/\(current_superset.exercise_list.count)")
                 }
                 
                 if (current_superset.is_ss_complete)
@@ -57,6 +56,7 @@ struct ActiveSuperset: View {
                         {
                             HStack {
                                 Text(single_exercise.name)
+                                Spacer()
                                 Text("\(single_exercise.total_complete_sets)/\(single_exercise.sets.count)")
                             }
                         }
@@ -72,12 +72,6 @@ struct ActiveSuperset: View {
             RoundedRectangle(cornerSize: CGSize(width: 20, height: 10))
                 .foregroundStyle(current_superset.color)
         }
-    }
-    
-    private func timeString(_ time: TimeInterval) -> String {
-        let minutes = Int(time) / 60
-        let seconds = Int(time) % 60
-        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 

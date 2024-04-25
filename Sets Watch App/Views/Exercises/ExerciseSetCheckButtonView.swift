@@ -29,6 +29,6 @@ struct ExerciseSetCheckButtonView: View {
 
 #Preview {
     let example_data = ExampleData()
-    let preview_set = example_data.GetExampleExerciseSet(set_number: 1, type: .reps)
+    let preview_set = example_data.GetExampleExerciseSet(set_number: 1, type: .reps(10))
     return ExerciseSetCheckButtonView(current_set: preview_set)
 }

@@ -24,6 +24,7 @@ class Workout: ObservableObject, Codable {
     @Published var supersets: [Superset] = []
     
     @Published var create_at: Date = Date.now
+    @Published var started_at: Date? = nil
     @Published var completed_at: Date = Date()
     
     @Published var active_superset: Superset?
@@ -60,29 +61,52 @@ class Workout: ObservableObject, Codable {
         self.supersets.append(superset)
     }
     
+    func Reset()
+    {
+        for single_exercise in exercises
+        {
+            single_exercise.Reset()
+        }
+        
+        for single_ss in supersets
+        {
+            single_ss.Reset()
+        }
+        self.active_superset = nil
+        _ = UpdateSuperset()
+    }
+    
     func UpdateSuperset() -> Bool
     {
         if let current_ss = self.active_superset
         {
             current_ss.MarkNextSetComplete()
-            current_ss.rest_timer.reset()
-            if (!current_ss.is_ss_complete)
+            if (current_ss.is_ss_complete)
             {
-                // keep iterating single super set until complete
+                // get new super set
+                print("SS Complete, getting from store!")
+                if let new_ss = self.supersets[safe: self.active_superset_idx + 1]
+                {
+                    self.active_superset = new_ss
+                    self.active_superset_idx = self.active_superset_idx + 1
+                } else {
+                    self.active_superset = self.supersets.first
+                    self.active_superset_idx = 0
+                }
+                if let new_active_ss = self.active_superset
+                {
+                    new_active_ss.rest_timer.reset()
+                }
+                return true
+            } else {
+                current_ss.rest_timer.reset()
                 return false
             }
         } else {
-            print("No active superset, getting from store!")
-        }
-        
-        if let new_ss = self.supersets[safe: self.active_superset_idx + 1]
-        {
-            self.active_superset = new_ss
-            self.active_superset_idx = self.active_superset_idx + 1
-        } else {
+            print("SS not active, getting from store!")
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
+            return false
         }
-        return true
     }
 }

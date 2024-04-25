@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SupersetSettingsSheetView: View {
+    @EnvironmentObject var current_workout: Workout
+    
     @Binding var isPresented: Bool
     @ObservedObject var current_superset: Superset
     
@@ -29,6 +31,11 @@ struct SupersetSettingsSheetView: View {
                 isPresented = false // Dismiss the modal sheet
             }
             
+            if let workout_time = current_workout.started_at
+            {
+                Text(Utils.timeString(Date.now.timeIntervalSince(workout_time)))
+            }
+            
             Button("Cancel") {
                 isPresented = false // Dismiss the modal sheet without performing any action
             }
@@ -43,4 +50,5 @@ struct SupersetSettingsSheetView: View {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetSupersetWorkout()
     return SupersetSettingsSheetView(isPresented: $is_showing, current_superset: example_workout.supersets.first!)
+        .environmentObject(example_workout)
 }

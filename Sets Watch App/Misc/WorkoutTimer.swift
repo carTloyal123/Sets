@@ -59,7 +59,7 @@ class WorkoutTimer: ObservableObject, Codable {
                     print("Timer could not capture self!")
                     return
                 }
-                print("Timer tick!")
+                print("Timer tick! \(self.time_remaining)")
                 if self.time_remaining > 0 {
                     self.time_remaining -= 1
                 } else {

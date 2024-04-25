@@ -36,7 +36,6 @@
 		333503372BD441310068076C /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333503362BD441310068076C /* ExerciseView.swift */; };
 		3335033B2BD456C90068076C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033A2BD456C90068076C /* WorkoutView.swift */; };
 		3335033F2BD583B40068076C /* SupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033E2BD583B40068076C /* SupersetView.swift */; };
-		3357F2562BD94CFA0037D35C /* Timer+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2552BD94CFA0037D35C /* Timer+Codable.swift */; };
 		3357F2582BD9656E0037D35C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2572BD9656E0037D35C /* Utils.swift */; };
 		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
 /* End PBXBuildFile section */
@@ -112,7 +111,6 @@
 		333503362BD441310068076C /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		3335033A2BD456C90068076C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		3335033E2BD583B40068076C /* SupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetView.swift; sourceTree = "<group>"; };
-		3357F2552BD94CFA0037D35C /* Timer+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Codable.swift"; sourceTree = "<group>"; };
 		3357F2572BD9656E0037D35C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		33A5E28B2BD976EB009EC780 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Sets-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -167,7 +165,6 @@
 			children = (
 				330362082BD93B070014CD3C /* PublishedExt.swift */,
 				3303620A2BD93D0C0014CD3C /* CodableColor.swift */,
-				3357F2552BD94CFA0037D35C /* Timer+Codable.swift */,
 			);
 			path = Exts;
 			sourceTree = "<group>";
@@ -477,7 +474,6 @@
 				330362042BD9386B0014CD3C /* WorkoutListView.swift in Sources */,
 				3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */,
 				3335032C2BD42A240068076C /* SupersetModel.swift in Sources */,
-				3357F2562BD94CFA0037D35C /* Timer+Codable.swift in Sources */,
 				3335033B2BD456C90068076C /* WorkoutView.swift in Sources */,
 				333503272BD427770068076C /* ExerciseModel.swift in Sources */,
 				332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */,

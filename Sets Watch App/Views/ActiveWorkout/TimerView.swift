@@ -14,7 +14,7 @@ struct TimerView: View {
     
     var body: some View {
         ScrollView {
-            Text(timeString(rest_timer.time_remaining))
+            Text(Utils.timeString(rest_timer.time_remaining))
                 .font(.largeTitle)
                 .onChange(of: rest_timer.time_remaining) { oldValue, newValue in
                     print("new value: \(newValue)")
@@ -55,12 +55,6 @@ struct TimerView: View {
             })
         }
     }
-
-    private func timeString(_ time: TimeInterval) -> String {
-        let minutes = Int(time) / 60
-        let seconds = Int(time) % 60
-        return String(format: "%02d:%02d", minutes, seconds)
-    }
 }
 
 #Preview {
@@ -69,4 +63,8 @@ struct TimerView: View {
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var remaining_time: TimeInterval = TimeInterval()
     return TimerView(rest_timer: example_workout.supersets.first!.rest_timer)
+        .onAppear(perform: {
+            example_workout.supersets.first!.rest_timer.reset()
+        })
+        .environmentObject(SettingsController())
 }

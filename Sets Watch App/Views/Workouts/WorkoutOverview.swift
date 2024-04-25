@@ -35,10 +35,16 @@ struct WorkoutOverview: View {
                 
                 Button(action: {
                     withAnimation {
+                        current_workout.started_at = Date.now
                         self.tab_selection = .workout
                     }
                 }, label: {
                     Text("Start workout!")
+                })
+                Button(action: {
+                    current_workout.Reset()
+                }, label: {
+                    Text("Reset Workout")
                 })
             }.navigationTitle(current_workout.name)
         }

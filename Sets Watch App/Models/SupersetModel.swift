@@ -16,9 +16,9 @@ class Superset: ObservableObject, Identifiable, Codable {
     @Published var complete_exercise_list: [Exercise] = []
     @Published var exercises_complete: Int = 0
     @Published var rest_timer: WorkoutTimer
+    @Published var is_ss_complete: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
-    var is_ss_complete: Bool { return CheckCompleteExercises() == exercise_list.count }
     var color: Color
     var id = UUID()
     
@@ -60,11 +60,14 @@ class Superset: ObservableObject, Identifiable, Codable {
     
     func CheckCompleteExercises() -> Int
     {
-        return exercise_list.filter { $0.is_complete }.count
+        let complete_exercise_count = exercise_list.filter { $0.is_complete }.count
+        self.is_ss_complete = complete_exercise_count == exercise_list.count
+        return complete_exercise_count
     }
     
     func Reset()
     {
+        self.is_ss_complete = true
         self.complete_exercise_list.removeAll()
         self.exercises_complete = 0
         for exercise in exercise_list {
@@ -74,6 +77,7 @@ class Superset: ObservableObject, Identifiable, Codable {
     
     func Complete()
     {
+        self.is_ss_complete = true
         self.complete_exercise_list = self.exercise_list
         self.exercises_complete = self.exercise_list.count
         for exercise in exercise_list {

@@ -57,10 +57,10 @@ class ExampleData {
     }
     
     func GetExampleExercise(name: String) -> Exercise {
-        let one_set = GetExampleExerciseSet(set_number: 0, type: .reps)
-        let two_set = GetExampleExerciseSet(set_number: 1, type: .weight)
-        let three_set = GetExampleExerciseSet(set_number: 2, type: .reps)
-        let four_set = GetExampleExerciseSet(set_number: 3, type: .duration)
+        let one_set = GetExampleExerciseSet(set_number: 0, type: .reps(3))
+        let two_set = GetExampleExerciseSet(set_number: 1, type: .weight(10))
+        let three_set = GetExampleExerciseSet(set_number: 2, type: .reps(4))
+        let four_set = GetExampleExerciseSet(set_number: 3, type: .duration(TimeInterval(12.0)))
 
         let one_exercise = Exercise(name: name)
         one_exercise.AddSet(for: one_set)
@@ -72,9 +72,9 @@ class ExampleData {
     }
     
     func GetExampleExerciseAlt(name: String) -> Exercise {
-        let one_set = GetExampleExerciseSet(set_number: 0, type: .reps)
-        let two_set = GetExampleExerciseSet(set_number: 1, type: .weight)
-        let three_set = GetExampleExerciseSet(set_number: 2, type: .reps)
+        let one_set = GetExampleExerciseSet(set_number: 0, type: .reps(4))
+        let two_set = GetExampleExerciseSet(set_number: 1, type: .weight(100))
+        let three_set = GetExampleExerciseSet(set_number: 2, type: .reps(30))
 
         let one_exercise = Exercise(name: name)
         one_exercise.AddSet(for: one_set)
@@ -86,5 +86,68 @@ class ExampleData {
     
     func GetExampleExerciseSet(set_number: Int, type: ExerciseSetType) -> ExerciseSet {
         return ExerciseSet(set_number: set_number, exercise_type: type)
+    }
+    
+    func GetExampleStrengthExercise(name: String, set_count: Int, weight: Int) -> Exercise
+    {
+        var strength_exercise = Exercise(name: name, sets: [], exercise_type: .upper_body)
+        for i in 0..<set_count
+        {
+            let new_set = ExerciseSet(set_number: i, is_complete: false, exercise_type: .weight(55))
+            strength_exercise.sets.append(new_set)
+        }
+        
+        return strength_exercise
+    }
+    
+    func GetExampleStrengthWorkout() -> Workout
+    {
+        let warmup_set_one = GetExampleExerciseSet(set_number: 0, type: .duration(TimeInterval(60*10)))
+        let warmup_one = Exercise(name: "Cycling", sets: [warmup_set_one], exercise_type: .full_body)
+        
+        let one_set_one = GetExampleExerciseSet(set_number: 1, type: .weight(135))
+        let one_set_two = GetExampleExerciseSet(set_number: 2, type: .weight(155))
+        let one_set_three = GetExampleExerciseSet(set_number: 3, type: .weight(185))
+        let one_set_four = GetExampleExerciseSet(set_number: 4, type: .weight(215))
+        let one_set_five = GetExampleExerciseSet(set_number: 5, type: .weight(225))
+        let one_exercise = Exercise(name: "Bench Press", sets: [one_set_one, one_set_two, one_set_three, one_set_four, one_set_five], exercise_type: .upper_body)
+        
+        let two_set_one = GetExampleExerciseSet(set_number: 1, type: .weight(405))
+        let two_set_two = GetExampleExerciseSet(set_number: 2, type: .weight(495))
+        let two_set_three = GetExampleExerciseSet(set_number: 3, type: .weight(545))
+        let two_set_four = GetExampleExerciseSet(set_number: 4, type: .weight(545))
+        let two_set_five = GetExampleExerciseSet(set_number: 5, type: .weight(545))
+        let two_exercise = Exercise(name: "Leg Press", sets: [two_set_one, two_set_two, two_set_three, two_set_four, two_set_five], exercise_type: .lower_body)
+        
+        let three_set_one = GetExampleExerciseSet(set_number: 1, type: .duration(TimeInterval(3 * 60)))
+        let three_set_two = GetExampleExerciseSet(set_number: 2, type: .duration(TimeInterval(3 * 60)))
+        let three_set_three = GetExampleExerciseSet(set_number: 3, type: .duration(TimeInterval(3 * 60)))
+        let three_exercise = Exercise(name: "Ab Tobata", sets: [three_set_one, three_set_two, three_set_three], exercise_type: .abdomen)
+        
+        let five_set_one = GetExampleExerciseSet(set_number: 1, type: .duration(TimeInterval(3 * 60)))
+        let five_set_two = GetExampleExerciseSet(set_number: 2, type: .duration(TimeInterval(3 * 60)))
+        let five_set_three = GetExampleExerciseSet(set_number: 3, type: .duration(TimeInterval(3 * 60)))
+        let five_exercise = Exercise(name: "Ab Tobata", sets: [five_set_one, five_set_two, five_set_three], exercise_type: .abdomen)
+        
+        let four_set_one = GetExampleExerciseSet(set_number: 1, type: .duration(TimeInterval(10 * 60)))
+        let four_exercise = Exercise(name: "Sauna", sets: [four_set_one], exercise_type: .full_body)
+
+        let superset_warmup = Superset(name: "Warmup", rest_time_seconds: 60*10)
+        superset_warmup.AddExercise(exercise: warmup_one)
+        
+        let superset_one = Superset(name: "Leg Set", rest_time_seconds: 3*60)
+        superset_one.AddExercise(exercise: two_exercise)
+        superset_one.AddExercise(exercise: three_exercise)
+        
+        let superset_two = Superset(name: "Aux Set", rest_time_seconds: 5*60)
+        superset_two.AddExercise(exercise: four_exercise)
+
+        let superset_three = Superset(name: "Chest Set", rest_time_seconds: 3*60)
+        superset_three.AddExercise(exercise: one_exercise)
+        superset_three.AddExercise(exercise: five_exercise)
+        
+        let workout = Workout(name: "Strength Workout", exercises: [warmup_one, one_exercise, two_exercise, three_exercise, four_exercise], supersets: [superset_warmup, superset_one, superset_three, superset_two], create_at: Date.now, completed_at: Date())
+        
+        return workout
     }
 }

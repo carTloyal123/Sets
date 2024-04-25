@@ -17,7 +17,7 @@ struct ExerciseSetView: View {
             {
                 Text(String(current_set.set_number))
                     .padding()
-                Text(String(current_set.exercise_type.rawValue))
+                Text(String(current_set.exercise_type.toStringLabel ?? ""))
                 Spacer()
                 ExerciseSetCheckButtonView(current_set: current_set)
                     .padding()
@@ -32,6 +32,13 @@ struct ExerciseSetView: View {
 
 #Preview {
     let example_data = ExampleData()
-    @State var preview_set = example_data.GetExampleExerciseSet(set_number: 1, type: .reps)
-    return ExerciseSetView(current_set: preview_set)
+    @State var preview_set1 = example_data.GetExampleExerciseSet(set_number: 1, type: .duration(TimeInterval(23)))
+    @State var preview_set2 = example_data.GetExampleExerciseSet(set_number: 1, type: .reps(40))
+    @State var preview_set3 = example_data.GetExampleExerciseSet(set_number: 1, type: .weight(600))
+
+    return VStack {
+        ExerciseSetView(current_set: preview_set1)
+        ExerciseSetView(current_set: preview_set2)
+        ExerciseSetView(current_set: preview_set3)
+    }
 }

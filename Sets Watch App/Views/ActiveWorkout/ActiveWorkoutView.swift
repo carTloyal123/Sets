@@ -23,6 +23,17 @@ struct ActiveWorkoutView: View {
                     HStack
                     {
                         Button(action: {
+                            if (settings.auto_reset_timer)
+                            {
+                                if let active_superset_info = current_workout.active_superset
+                                {
+                                    if (active_superset_info.rest_timer.time_remaining < 0.000001)
+                                    {
+                                        active_superset_info.rest_timer.stop()
+                                        active_superset_info.rest_timer.ResetRemainingTime()
+                                    }
+                                }
+                            }
                             is_showing_timer = true
                         }, label: {
                             Label(

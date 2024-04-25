@@ -17,6 +17,7 @@ struct Sets_Watch_AppApp: App {
         WindowGroup {
             WorkoutView(current_workout: current_workout)
                 .environmentObject(settings_controller)
+                .environmentObject(current_workout)
         }
     }
 }

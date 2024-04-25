@@ -15,8 +15,8 @@ enum ExerciseSetCodingKeys: CodingKey
 class ExerciseSet: ObservableObject, Identifiable, Codable {
     @Published var set_number: Int = 0
     @Published var is_complete: Bool = false
-    // need to keep track of what kind of exercise we have, weight, duration, reps
-    @Published var exercise_type: ExerciseSetType = .reps
+    @Published var exercise_type: ExerciseSetType = .reps(10)
+    
     var id = UUID()
     
     init() { }

@@ -34,7 +34,9 @@ struct WorkoutView: View {
 
 #Preview {
     let example_data = ExampleData()
-    @State var example_workout = example_data.GetSupersetWorkout()
+    @State var example_workout = example_data.GetExampleStrengthWorkout()
     
-    return WorkoutView(current_workout: example_workout).environmentObject(SettingsController())
+    return WorkoutView(current_workout: example_workout)
+        .environmentObject(SettingsController())
+        .environmentObject(example_workout)
 }
