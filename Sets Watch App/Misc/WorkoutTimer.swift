@@ -52,8 +52,14 @@ class WorkoutTimer: ObservableObject, Codable {
         if self.timer == nil
         {
             self.is_running = true
+            print("Creating new timer!")
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-                guard let self = self else { return }
+                print("Inside new timer!")
+                guard let self = self else {
+                    print("Timer could not capture self!")
+                    return
+                }
+                print("Timer tick!")
                 if self.time_remaining > 0 {
                     self.time_remaining -= 1
                 } else {
@@ -61,7 +67,10 @@ class WorkoutTimer: ObservableObject, Codable {
                     self.is_complete = true
                 }
             }
+        } else {
+            print("Timer should already exist!")
         }
+        print("THIS IS GOOD")
     }
 
     func stop() {
@@ -83,7 +92,6 @@ class WorkoutTimer: ObservableObject, Codable {
     
     func ResetRemainingTime()
     {
-        stop()
         self.time_remaining = self.default_time_in_seconds
     }
 }

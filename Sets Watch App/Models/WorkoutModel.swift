@@ -62,16 +62,17 @@ class Workout: ObservableObject, Codable {
     
     func UpdateSuperset() -> Bool
     {
-        
         if let current_ss = self.active_superset
         {
             current_ss.MarkNextSetComplete()
-            current_ss.rest_timer.ResetRemainingTime()
+            current_ss.rest_timer.reset()
             if (!current_ss.is_ss_complete)
             {
                 // keep iterating single super set until complete
                 return false
             }
+        } else {
+            print("No active superset, getting from store!")
         }
         
         if let new_ss = self.supersets[safe: self.active_superset_idx + 1]

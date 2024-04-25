@@ -16,12 +16,6 @@ struct TimerView: View {
         ScrollView {
             Text(timeString(rest_timer.time_remaining))
                 .font(.largeTitle)
-                .onAppear(perform: {
-                    if (rest_timer.is_complete)
-                    {
-                        rest_timer.reset()
-                    }
-                })
                 .onChange(of: rest_timer.time_remaining) { oldValue, newValue in
                     print("new value: \(newValue)")
                     if (settings.auto_hide_rest_timer)
@@ -34,7 +28,10 @@ struct TimerView: View {
                 }
             HStack
             {
-                Button(action: {rest_timer.ResetRemainingTime()}, label: {
+                Button(action: {
+                    rest_timer.ResetRemainingTime()
+                    rest_timer.stop()
+                }, label: {
                     Text("Reset")
                 })
                 
@@ -51,6 +48,7 @@ struct TimerView: View {
             }
             Button(action: {
                 rest_timer.ResetRemainingTime()
+                rest_timer.stop()
                 dismiss()
             }, label: {
                 Text("Skip Rest Time")
