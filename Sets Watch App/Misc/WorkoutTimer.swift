@@ -51,11 +51,11 @@ class WorkoutTimer: ObservableObject, Codable {
         // if timer exists, we have already started :)
         if self.timer == nil
         {
+            self.is_running = true
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
                 if self.time_remaining > 0 {
                     self.time_remaining -= 1
-                    self.is_running = true
                 } else {
                     self.stopTimer()
                     self.is_complete = true

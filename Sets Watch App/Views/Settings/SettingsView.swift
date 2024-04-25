@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var settings: SettingsController
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List {
+                Toggle(isOn: $settings.auto_hide_rest_timer, label: {
+                    Text("Auto Hide\nTimer")
+                })
+                
+                Toggle(isOn: $settings.rest_between_supersets, label: {
+                    Text("Rest Between\nSupersets")
+                })
+                
+                Toggle(isOn: $settings.rest_between_sets, label: {
+                    Text("Rest Between\nSets")
+                })
+            }.navigationTitle("Settings")
+        }
     }
 }
 
 #Preview {
     SettingsView()
+        .environmentObject(SettingsController())
 }

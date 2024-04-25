@@ -38,6 +38,7 @@
 		3335033F2BD583B40068076C /* SupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033E2BD583B40068076C /* SupersetView.swift */; };
 		3357F2562BD94CFA0037D35C /* Timer+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2552BD94CFA0037D35C /* Timer+Codable.swift */; };
 		3357F2582BD9656E0037D35C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2572BD9656E0037D35C /* Utils.swift */; };
+		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		3335033E2BD583B40068076C /* SupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetView.swift; sourceTree = "<group>"; };
 		3357F2552BD94CFA0037D35C /* Timer+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Codable.swift"; sourceTree = "<group>"; };
 		3357F2572BD9656E0037D35C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		33A5E28B2BD976EB009EC780 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				330362052BD9389E0014CD3C /* CentralStorage.swift */,
+				33A5E28B2BD976EB009EC780 /* SettingsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				330361FB2BD895C70014CD3C /* ActiveSuperset.swift in Sources */,
 				333502F12BD425170068076C /* SetsApp.swift in Sources */,
 				333503372BD441310068076C /* ExerciseView.swift in Sources */,
+				33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */,
 				330362002BD935B60014CD3C /* SettingsView.swift in Sources */,
 				330361FD2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift in Sources */,
 				330361F92BD893F90014CD3C /* ActiveWorkoutView.swift in Sources */,

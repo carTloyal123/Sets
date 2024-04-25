@@ -12,6 +12,7 @@ public enum Tab: Hashable {
     case workout
     case settings
 }
+
 struct WorkoutView: View {
     
     @ObservedObject var current_workout: Workout
@@ -35,5 +36,5 @@ struct WorkoutView: View {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetSupersetWorkout()
     
-    return WorkoutView(current_workout: example_workout)
+    return WorkoutView(current_workout: example_workout).environmentObject(SettingsController())
 }

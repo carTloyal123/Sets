@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimerView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var settings: SettingsController
     @ObservedObject var rest_timer: WorkoutTimer
     
     var body: some View {
@@ -23,9 +24,12 @@ struct TimerView: View {
                 })
                 .onChange(of: rest_timer.time_remaining) { oldValue, newValue in
                     print("new value: \(newValue)")
-                    if (newValue < 0.0001)
+                    if (settings.auto_hide_rest_timer)
                     {
-                        dismiss()
+                        if (newValue < 0.0001)
+                        {
+                            dismiss()
+                        }
                     }
                 }
             HStack
@@ -45,6 +49,12 @@ struct TimerView: View {
                     })
                 }
             }
+            Button(action: {
+                rest_timer.ResetRemainingTime()
+                dismiss()
+            }, label: {
+                Text("Skip Rest Time")
+            })
         }
     }
 

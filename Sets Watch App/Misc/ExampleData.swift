@@ -34,7 +34,7 @@ class ExampleData {
 
         let superset_one = Superset(name: "Test Super", rest_time_seconds: 10)
         let superset_two = Superset(name: "Test 2 Super", rest_time_seconds: 11)
-        let superset_three = Superset(name: "Really Long Name SS")
+        let superset_three = Superset(name: "Really Long Name SS", rest_time_seconds: 0)
         
         superset_one.AddExercise(exercise: one_exercise)
         superset_one.AddExercise(exercise: three_exercise)

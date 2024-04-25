@@ -22,7 +22,7 @@ struct ActiveSuperset: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 96, height: 40, alignment: .leading)
-                        .foregroundColor(.green)
+                        .foregroundColor(.secondary)
                     Spacer()
                     Image(systemName: "ellipsis.circle.fill")
                         .resizable()
@@ -70,7 +70,7 @@ struct ActiveSuperset: View {
         })
         .background {
             RoundedRectangle(cornerSize: CGSize(width: 20, height: 10))
-                .foregroundStyle(.blue)
+                .foregroundStyle(current_superset.color)
         }
     }
     
