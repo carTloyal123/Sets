@@ -54,18 +54,21 @@ class WorkoutTimer: ObservableObject, Codable {
             self.is_running = true
             print("Creating new timer!")
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
-                print("Inside new timer!")
                 guard let self = self else {
                     print("Timer could not capture self!")
                     return
                 }
-                print("Timer tick! \(self.time_remaining)")
                 if self.time_remaining > 0 {
                     self.time_remaining -= 1
                 } else {
                     self.stopTimer()
                     self.is_complete = true
                 }
+            }
+            
+            if let current_timer = self.timer
+            {
+                RunLoop.main.add(current_timer, forMode: .common)
             }
         } else {
             print("Timer should already exist!")

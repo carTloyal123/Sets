@@ -16,6 +16,7 @@
 		330362062BD9389E0014CD3C /* CentralStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362052BD9389E0014CD3C /* CentralStorage.swift */; };
 		330362092BD93B070014CD3C /* PublishedExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362082BD93B070014CD3C /* PublishedExt.swift */; };
 		3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303620A2BD93D0C0014CD3C /* CodableColor.swift */; };
+		33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33254A2D2BDC118B004001DE /* SingleSupersetView.swift */; };
 		332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82702BD9439D008FE9B4 /* TimerView.swift */; };
 		332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */; };
 		333502EC2BD425170068076C /* Sets Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 333502EB2BD425170068076C /* Sets Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -38,6 +39,8 @@
 		3335033F2BD583B40068076C /* SupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033E2BD583B40068076C /* SupersetView.swift */; };
 		3357F2582BD9656E0037D35C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2572BD9656E0037D35C /* Utils.swift */; };
 		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
+		33A5E2982BDC0040009EC780 /* TapControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */; };
+		33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,7 @@
 		330362052BD9389E0014CD3C /* CentralStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralStorage.swift; sourceTree = "<group>"; };
 		330362082BD93B070014CD3C /* PublishedExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedExt.swift; sourceTree = "<group>"; };
 		3303620A2BD93D0C0014CD3C /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
+		33254A2D2BDC118B004001DE /* SingleSupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSupersetView.swift; sourceTree = "<group>"; };
 		332E82702BD9439D008FE9B4 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimer.swift; sourceTree = "<group>"; };
 		333502E52BD425170068076C /* Sets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +118,8 @@
 		3357F2572BD9656E0037D35C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		33A5E28B2BD976EB009EC780 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Sets-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapControlsOverlay.swift; sourceTree = "<group>"; };
+		33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSupersetScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,9 @@
 				330361FA2BD895C70014CD3C /* ActiveSuperset.swift */,
 				330361FC2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift */,
 				332E82702BD9439D008FE9B4 /* TimerView.swift */,
+				33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */,
+				33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */,
+				33254A2D2BDC118B004001DE /* SingleSupersetView.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -194,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */,
+				330362032BD9386B0014CD3C /* WorkoutListView.swift */,
 				333502F02BD425170068076C /* SetsApp.swift */,
 				333503282BD428AD0068076C /* Controllers */,
 				333503202BD426040068076C /* Models */,
@@ -289,7 +299,6 @@
 			children = (
 				3335033E2BD583B40068076C /* SupersetView.swift */,
 				330362012BD9363A0014CD3C /* WorkoutOverview.swift */,
-				330362032BD9386B0014CD3C /* WorkoutListView.swift */,
 			);
 			path = Workouts;
 			sourceTree = "<group>";
@@ -470,12 +479,15 @@
 				330362002BD935B60014CD3C /* SettingsView.swift in Sources */,
 				330361FD2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift in Sources */,
 				330361F92BD893F90014CD3C /* ActiveWorkoutView.swift in Sources */,
+				33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */,
 				333503332BD4326A0068076C /* ExerciseSetView.swift in Sources */,
 				330362042BD9386B0014CD3C /* WorkoutListView.swift in Sources */,
 				3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */,
 				3335032C2BD42A240068076C /* SupersetModel.swift in Sources */,
+				33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */,
 				3335033B2BD456C90068076C /* WorkoutView.swift in Sources */,
 				333503272BD427770068076C /* ExerciseModel.swift in Sources */,
+				33A5E2982BDC0040009EC780 /* TapControlsOverlay.swift in Sources */,
 				332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

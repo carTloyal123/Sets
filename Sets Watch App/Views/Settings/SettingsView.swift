@@ -24,7 +24,7 @@ struct SettingsView: View {
                 Toggle(isOn: $settings.rest_between_sets, label: {
                     Text("Rest Between\nSets")
                 })
-            }.navigationTitle("Settings")
+            }
         }
     }
 }

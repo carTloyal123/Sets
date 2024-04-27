@@ -9,46 +9,56 @@ import SwiftUI
 
 struct SupersetSettingsSheetView: View {
     @EnvironmentObject var current_workout: Workout
-    
     @Binding var isPresented: Bool
-    @ObservedObject var current_superset: Superset
     
     var body: some View {
-        VStack {
-            Text("Settings")
-                .font(.headline)
-                .padding()
-            
+        ScrollView {
             Button("Complete Superset") {
                 // Perform action for Option 1
-                current_superset.Complete()
+                current_workout.active_superset?.Complete()
                 isPresented = false // Dismiss the modal sheet
             }
             
             Button("Reset Superset") {
                 // Perform action for Option 2
-                current_superset.Reset()
+                current_workout.active_superset?.Reset()
                 isPresented = false // Dismiss the modal sheet
             }
             
-            if let workout_time = current_workout.started_at
+            HStack
             {
-                Text(Utils.timeString(Date.now.timeIntervalSince(workout_time)))
-            }
-            
-            Button("Cancel") {
-                isPresented = false // Dismiss the modal sheet without performing any action
+                Button(action: {
+                    print("Back")
+                    current_workout.PreviousSuperset()
+                    isPresented = false
+                }, label: {
+                    Text("Back")
+                })
+                
+                Spacer()
+                Button {
+                    print("Next")
+                    current_workout.NextSuperset()
+                    isPresented = false
+                } label: {
+                    Text("Next")
+                }
+
             }
             .padding()
             .foregroundColor(.red)
-        }
+            
+            Text("Workout Time: " + Utils.timeString(current_workout.elapsed_time))
+
+        }.navigationTitle("Superset Options")
     }
 }
 
 #Preview {
     @State var is_showing: Bool = true
     let example_data = ExampleData()
-    @State var example_workout = example_data.GetSupersetWorkout()
-    return SupersetSettingsSheetView(isPresented: $is_showing, current_superset: example_workout.supersets.first!)
+    @State var example_workout = example_data.GetExampleStrengthWorkout()
+    example_workout.Start()
+    return SupersetSettingsSheetView(isPresented: $is_showing)
         .environmentObject(example_workout)
 }

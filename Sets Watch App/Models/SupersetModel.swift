@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 import Combine
 
-class Superset: ObservableObject, Identifiable, Codable {    
+class Superset: ObservableObject, Identifiable, Codable, Equatable {
+    static func == (lhs: Superset, rhs: Superset) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var name: String = "ss1"
     // these are array indices that correspond to the Workout.exercises array
     @Published var exercise_list: [Exercise] = []
@@ -32,11 +36,9 @@ class Superset: ObservableObject, Identifiable, Codable {
         self.rest_timer = WorkoutTimer()
         
         $rest_timer.sink { [weak self] _ in
-                            self?.objectWillChange.send()
-
+            self?.objectWillChange.send()
         }
-            .store(in: &cancellables)
-    
+        .store(in: &cancellables)
     }
     
     init(name: String, rest_time_seconds: Int) {
@@ -67,7 +69,7 @@ class Superset: ObservableObject, Identifiable, Codable {
     
     func Reset()
     {
-        self.is_ss_complete = true
+        self.is_ss_complete = false
         self.complete_exercise_list.removeAll()
         self.exercises_complete = 0
         for exercise in exercise_list {

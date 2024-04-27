@@ -8,6 +8,16 @@
 import Foundation
 
 class ExampleData {
+    
+    func GetExampleAppStorage() -> CentralStorage
+    {
+        let app_storage: CentralStorage = CentralStorage()
+        app_storage.workouts.append(GetExampleStrengthWorkout())
+        app_storage.workouts.append(GetExampleWorkout())
+        app_storage.workouts.append(GetSupersetWorkout())
+        return app_storage
+    }
+    
     func GetExampleWorkout() -> Workout {
         
         let one_exercise = GetExampleExercise(name: "Bicep Curl Demo")
@@ -44,7 +54,7 @@ class ExampleData {
         superset_three.AddExercise(exercise: five_exercise)
         superset_three.AddExercise(exercise: six_exercise)
     
-        let workout = Workout(name: "Demo Workout")
+        let workout = Workout(name: "Superset Workout")
         workout.AddExercise(exercise: one_exercise)
         workout.AddExercise(exercise: two_exercise)
         workout.AddExercise(exercise: three_exercise)
@@ -86,18 +96,6 @@ class ExampleData {
     
     func GetExampleExerciseSet(set_number: Int, type: ExerciseSetType) -> ExerciseSet {
         return ExerciseSet(set_number: set_number, exercise_type: type)
-    }
-    
-    func GetExampleStrengthExercise(name: String, set_count: Int, weight: Int) -> Exercise
-    {
-        var strength_exercise = Exercise(name: name, sets: [], exercise_type: .upper_body)
-        for i in 0..<set_count
-        {
-            let new_set = ExerciseSet(set_number: i, is_complete: false, exercise_type: .weight(55))
-            strength_exercise.sets.append(new_set)
-        }
-        
-        return strength_exercise
     }
     
     func GetExampleStrengthWorkout() -> Workout

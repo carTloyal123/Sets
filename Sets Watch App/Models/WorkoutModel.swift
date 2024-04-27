@@ -18,17 +18,22 @@ extension Array {
     }
 }
 
-class Workout: ObservableObject, Codable {
+class Workout: ObservableObject, Codable, Identifiable {
     @Published var name: String = "Default Workout"
     @Published var exercises: [Exercise] = []
     @Published var supersets: [Superset] = []
-    
     @Published var create_at: Date = Date.now
     @Published var started_at: Date? = nil
     @Published var completed_at: Date = Date()
-    
     @Published var active_superset: Superset?
-    @Published var active_superset_idx: Int = 1
+    @Published var active_superset_idx: Int = 0
+    @Published var elapsed_time: TimeInterval = TimeInterval()
+    private var workout_timer: Timer?
+    
+    private enum CodingKeys: String, CodingKey
+    {
+        case name, exercises, supersets, create_at, started_at, completed_at, active_superset, active_superset_idx
+    }
     
     init() { }
     init(name: String, exercises: [Exercise], supersets: [Superset], create_at: Date, completed_at: Date) {
@@ -43,6 +48,29 @@ class Workout: ObservableObject, Codable {
     init(name: String)
     {
         self.name = name
+    }
+    
+    deinit {
+        workout_timer?.invalidate()
+        print("workout destoryed!")
+    }
+    
+    func Start()
+    {
+        self.started_at = Date.now
+        print("Starting workout \(name) at \(self.started_at ?? Date.now)")
+        self.workout_timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
+            if let started_time = self?.started_at
+            {
+                DispatchQueue.main.async {
+                    self?.elapsed_time = Date().timeIntervalSince(started_time)
+                }
+            }
+        })
+        if let current_timer = self.workout_timer
+        {
+            RunLoop.main.add(current_timer, forMode: .common)
+        }
     }
     
     func AddExercise(exercise: Exercise)
@@ -63,6 +91,10 @@ class Workout: ObservableObject, Codable {
     
     func Reset()
     {
+        self.workout_timer?.invalidate()
+        self.started_at = nil
+        self.elapsed_time = TimeInterval(0)
+
         for single_exercise in exercises
         {
             single_exercise.Reset()
@@ -74,6 +106,74 @@ class Workout: ObservableObject, Codable {
         }
         self.active_superset = nil
         _ = UpdateSuperset()
+    }
+    
+    func PreviousSuperset()
+    {
+        print("Getting previous SS")
+        var new_idx = self.active_superset_idx - 1
+        if (new_idx < 0)
+        {
+            new_idx = 0
+        }
+        
+        if let new_ss = self.supersets[safe: new_idx]
+        {
+            print("Popped previous superset: \(new_ss.name)")
+            self.active_superset = new_ss
+            self.active_superset_idx = new_idx
+        } else {
+            print("Unable to get previous ss at idx: \(new_idx)")
+            self.active_superset = self.supersets.first
+            self.active_superset_idx = 0
+        }
+    }
+    
+    func NextSuperset()
+    {
+        print("Getting next SS")
+        var new_idx = self.active_superset_idx + 1
+        if (new_idx > (self.supersets.count - 1))
+        {
+            new_idx = self.supersets.count - 1
+        }
+        
+        if let new_ss = self.supersets[safe: new_idx]
+        {
+            print("Popped next superset: \(new_ss.name)")
+            self.active_superset = new_ss
+            self.active_superset_idx = new_idx
+        } else {
+            print("Unable to get next ss at idx: \(new_idx)")
+            self.active_superset = self.supersets.first
+            self.active_superset_idx = 0
+        }
+    }
+    
+    func UpdateSuperSetIndex(index: Int)
+    {
+        print("Getting next SS")
+        var new_idx = index
+        if (new_idx > (self.supersets.count - 1))
+        {
+            new_idx = self.supersets.count - 1
+        }
+        
+        if (new_idx < 0)
+        {
+            new_idx = 0
+        }
+        
+        if let new_ss = self.supersets[safe: new_idx]
+        {
+            print("Got superset: \(new_ss.name)")
+            self.active_superset = new_ss
+            self.active_superset_idx = new_idx
+        } else {
+            print("Unable to get next ss at idx: \(new_idx)")
+            self.active_superset = self.supersets.first
+            self.active_superset_idx = 0
+        }
     }
     
     func UpdateSuperset() -> Bool

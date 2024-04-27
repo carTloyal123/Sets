@@ -20,21 +20,29 @@ struct WorkoutView: View {
     
     var body: some View {
         TabView(selection: $tab_selection) {
-            WorkoutOverview(current_workout: current_workout, tab_selection: $tab_selection)
+            WorkoutOverview(tab_selection: $tab_selection)
+                .navigationBarTitle("Overview")
                 .tag(Tab.overview)
             
-            ActiveWorkoutView(current_workout: current_workout)
+            ActiveWorkoutView()
                 .tag(Tab.workout)
+                .navigationBarTitle(current_workout.name)
+                .navigationBarTitleDisplayMode(.large)
+                .navigationBarBackButtonHidden(true)
 
             SettingsView()
                 .tag(Tab.settings)
+                .navigationBarTitle("Settings")
+                .navigationBarTitleDisplayMode(.large)
+                .navigationBarBackButtonHidden(true)
         }
+        .environmentObject(current_workout)
     }
 }
 
 #Preview {
     let example_data = ExampleData()
-    @State var example_workout = example_data.GetExampleStrengthWorkout()
+    @State var example_workout = example_data.GetExampleWorkout()
     
     return WorkoutView(current_workout: example_workout)
         .environmentObject(SettingsController())

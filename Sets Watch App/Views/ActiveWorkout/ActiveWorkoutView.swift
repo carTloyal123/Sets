@@ -10,19 +10,16 @@ import SwiftUI
 struct ActiveWorkoutView: View {
     
     @EnvironmentObject var settings: SettingsController
-    @ObservedObject var current_workout: Workout
+    @EnvironmentObject var current_workout: Workout
     @State private var is_showing_timer: Bool = false
-    
+        
     var body: some View {
-        NavigationStack {
-            ScrollView
+        ScrollView(.vertical)
             {
-                if let active_superset_info = current_workout.active_superset
-                {
-                    ActiveSuperset(current_superset: active_superset_info)
-                    HStack
-                    {
-                        Button(action: {
+                ActiveSupersetScrollView()
+                Spacer()
+                HStack {
+                    Button(action: {
                             if (settings.auto_reset_timer)
                             {
                                 if let active_superset_info = current_workout.active_superset
@@ -40,33 +37,28 @@ struct ActiveWorkoutView: View {
                                 title: { Text("") },
                                 icon: { Image(systemName: "clock") }
                             )
-                        })
-                        Button(action: {
-                            if (current_workout.UpdateSuperset())
+                    })
+                    Button(action: {
+                        if (current_workout.UpdateSuperset())
+                        {
+                            if (settings.rest_between_supersets)
                             {
-                                if (settings.rest_between_supersets)
-                                {
-                                    is_showing_timer = true
-                                }
-                            } else {
-                                if (settings.rest_between_sets)
-                                {
-                                    is_showing_timer = true
-                                }
+                                is_showing_timer = true
                             }
-                        }, label: {
-                            Label(
-                                title: { Text("") },
-                                icon: { Image(systemName: "dumbbell") }
-                            )
-                        })
-                    }
-
-                } else {
-                    Text("No supersets :(")
+                        } else {
+                            if (settings.rest_between_sets)
+                            {
+                                is_showing_timer = true
+                            }
+                        }
+                    }, label: {
+                        Label(
+                            title: { Text("") },
+                            icon: { Image(systemName: "dumbbell") }
+                        )
+                    })
                 }
             }
-            .navigationTitle(current_workout.name)
             .sheet(isPresented: $is_showing_timer, onDismiss: {
                 is_showing_timer = false
             }, content: {
@@ -75,12 +67,13 @@ struct ActiveWorkoutView: View {
                     TimerView(rest_timer: active_superset_info.rest_timer)
                 }
             })
-        }
     }
 }
 
 #Preview {
     let example_data = ExampleData()
-    @State var example_workout = example_data.GetSupersetWorkout()
-    return ActiveWorkoutView(current_workout: example_workout).environmentObject(SettingsController())
+    @State var example_workout = example_data.GetExampleStrengthWorkout()
+    return ActiveWorkoutView()
+        .environmentObject(SettingsController())
+        .environmentObject(example_workout)
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WorkoutOverview: View {
     
-    @ObservedObject var current_workout: Workout
+    @EnvironmentObject var current_workout: Workout
     @Binding var tab_selection: Tab
     
     var body: some View {
@@ -17,6 +17,9 @@ struct WorkoutOverview: View {
         {
             ScrollView
             {
+                // some view to select your workout
+                Text(current_workout.name)
+                Divider()
                 // check if we have supersets, order based on supers if so
                 ForEach(current_workout.exercises) { each_exercise in
                     NavigationLink {
@@ -32,23 +35,30 @@ struct WorkoutOverview: View {
                 
                 // Start Button
                 Divider()
-                
                 Button(action: {
+                    if current_workout.started_at == nil {
+                        current_workout.Start()
+                    } else {
+                        current_workout.Reset()
+                    }
                     withAnimation {
-                        current_workout.started_at = Date.now
                         self.tab_selection = .workout
                     }
-                }, label: {
-                    Text("Start workout!")
-                })
+                }) {
+                    if current_workout.started_at == nil {
+                        Text("Start workout!")
+                    } else {
+                        Text("End workout!")
+                    }
+                }
+                
                 Button(action: {
                     current_workout.Reset()
                 }, label: {
                     Text("Reset Workout")
                 })
-            }.navigationTitle(current_workout.name)
+            }
         }
-
     }
 }
 
@@ -57,5 +67,5 @@ struct WorkoutOverview: View {
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var tab_selected: Tab = .overview
     
-    return WorkoutOverview(current_workout: example_workout, tab_selection: $tab_selected)
+    return WorkoutOverview(tab_selection: $tab_selected).environmentObject(example_workout)
 }

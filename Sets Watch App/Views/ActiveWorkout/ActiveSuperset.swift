@@ -7,70 +7,138 @@
 
 import SwiftUI
 
+
+extension AnyTransition {
+    static var moveAndFade: AnyTransition {
+        .asymmetric(
+            insertion: .move(edge: .trailing).combined(with: .opacity),
+            removal: .scale.combined(with: .opacity)
+        )
+    }
+}
+
 struct ActiveSuperset: View {
     
-    @ObservedObject var current_superset: Superset
+    @EnvironmentObject var current_workout: Workout
     @State private var is_showing_settings_sheet: Bool = false
     @State private var current_remaining_time: TimeInterval = TimeInterval()
-
+    
+    @State private var view_offset: Int = -200
+    @State private var is_transition: Bool = false
+    
     var body: some View {
-        ZStack {
-            VStack (alignment: .leading, spacing: 8) {
-                // The name of the workout
-                HStack
-                {
-                    Text(current_superset.name)
-                    Spacer()
-                    Text(Utils.timeString(current_remaining_time))
-                    Spacer()
-                    Image(systemName: "ellipsis.circle.fill")
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                        .foregroundColor(.gray)
-                        .onTapGesture {
-                            print("Settings Tapped!")
-                            self.is_showing_settings_sheet.toggle()
+        if let active_ss = current_workout.active_superset
+        {
+            ZStack {
+                VStack (alignment: .leading, spacing: 8) {
+                    // The name of the workout
+                    HStack
+                    {
+                        Group{
+                            Text(active_ss.name)
+                            Spacer()
+                            Text(Utils.timeString(current_remaining_time))
                         }
-                }
-                .onAppear(perform: {
-                    current_remaining_time = current_superset.rest_timer.time_remaining
-                })
-                .onReceive(current_superset.rest_timer.$time_remaining) { remaining in
-                        current_remaining_time = remaining
-                }
-                
-                HStack
-                {
-                    Text("Exercises:")
-                    Spacer()
-                    Text("\(current_superset.exercises_complete)/\(current_superset.exercise_list.count)")
-                }
-                
-                if (current_superset.is_ss_complete)
-                {
-                    Text("Superset Complete")
-                } else {
-                    // show each exercise and how many sets to go
-                    ForEach(current_superset.exercise_list) { single_exercise in
-                        if (single_exercise.total_complete_sets < single_exercise.sets.count)
+                        Spacer()
+                        Image(systemName: "ellipsis.circle.fill")
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                            .foregroundColor(.secondary)
+                            .onTapGesture {
+                                print("Settings Tapped!")
+                                self.is_showing_settings_sheet.toggle()
+                            }
+                    }
+                    
+                    ZStack
+                    {
+                        VStack
                         {
-                            HStack {
-                                Text(single_exercise.name)
+                            HStack
+                            {
+                                Text("Exercises:")
                                 Spacer()
-                                Text("\(single_exercise.total_complete_sets)/\(single_exercise.sets.count)")
+                                Text("\(active_ss.exercises_complete)/\(active_ss.exercise_list.count)")
+                            }
+                            if (active_ss.is_ss_complete)
+                            {
+                                Text("Superset Complete")
+                                Button(action: {
+                                    NextSuperset()
+                                }, label: {
+                                    Text("Next")
+                                })
+                            } else {
+                                // show each exercise and how many sets to go
+                                ForEach(active_ss.exercise_list) { single_exercise in
+                                    if (single_exercise.total_complete_sets < single_exercise.sets.count)
+                                    {
+                                        HStack {
+                                            Text(single_exercise.name)
+                                            Spacer()
+                                            Text("\(single_exercise.total_complete_sets)/\(single_exercise.sets.count)")
+                                        }
+                                    }
+                                }
                             }
                         }
+                        HStack
+                        {
+                            LeftOverlay()
+                                .onTapGesture {
+                                    print("Left tapped")
+                                    PreviousSuperset()
+                                }
+                            
+                            RightOverlay()
+                                .onTapGesture {
+                                    print("Right Tapped")
+                                    NextSuperset()
+                                }
+                        }
+                        
+
                     }
                 }
+                .padding(4)
+                .background {
+                    RoundedRectangle(cornerRadius: 7.0)
+                        .foregroundStyle(active_ss.color)
+                }
             }
-            .padding(8)
+            .offset(x: CGFloat(is_transition ? view_offset : 0))
+            .onAppear(perform: {
+                current_remaining_time = active_ss.rest_timer.time_remaining
+            })
+            .onReceive(active_ss.rest_timer.$time_remaining) { remaining in
+                current_remaining_time = remaining
+            }
+            .sheet(isPresented: $is_showing_settings_sheet, content: {
+                SupersetSettingsSheetView(isPresented: $is_showing_settings_sheet)
+            })
         }
-        .sheet(isPresented: $is_showing_settings_sheet, content: {
-            SupersetSettingsSheetView(isPresented: $is_showing_settings_sheet, current_superset: current_superset)
-        })
-        .background {
-            RoundedRectangle(cornerSize: CGSize(width: 20, height: 10))
-                .foregroundStyle(current_superset.color)
+        
+    }
+    
+    func NextSuperset()
+    {
+       
+        withAnimation {
+            is_transition = true
+            current_workout.NextSuperset()
+        } completion: {
+            is_transition = false
+        }
+
+    }
+    
+    func PreviousSuperset()
+    {
+        withAnimation {
+            is_transition = true
+            current_workout.PreviousSuperset()
+        } completion: {
+            is_transition = false
         }
     }
 }
@@ -80,5 +148,6 @@ struct ActiveSuperset: View {
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var ss = example_workout.supersets.first!
     @State var rt = ss.rest_timer
-    return ActiveSuperset(current_superset: ss)
+    return ActiveSuperset()
+        .environmentObject(example_workout)
 }
