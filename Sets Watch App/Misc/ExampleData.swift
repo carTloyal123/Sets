@@ -95,7 +95,7 @@ class ExampleData {
     }
     
     func GetExampleExerciseSet(set_number: Int, type: ExerciseSetType) -> ExerciseSet {
-        return ExerciseSet(set_number: set_number, exercise_type: type)
+        return ExerciseSet(set_number: set_number, is_complete: false, exercise_type: type)
     }
     
     func GetExampleStrengthWorkout() -> Workout
@@ -144,7 +144,7 @@ class ExampleData {
         superset_three.AddExercise(exercise: one_exercise)
         superset_three.AddExercise(exercise: five_exercise)
         
-        let workout = Workout(name: "Strength Workout", exercises: [warmup_one, one_exercise, two_exercise, three_exercise, four_exercise], supersets: [superset_warmup, superset_one, superset_three, superset_two], create_at: Date.now, completed_at: Date())
+        let workout = Workout(name: "Strength Workout", exercises: [warmup_one, one_exercise, two_exercise, three_exercise, four_exercise], supersets: [superset_warmup, superset_one, superset_three, superset_two], created_at: Date.now, completed_at: Date())
         
         return workout
     }

@@ -41,6 +41,7 @@
 		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
 		33A5E2982BDC0040009EC780 /* TapControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */; };
 		33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */; };
+		33CB45762BDE01D8000390CB /* ExerciseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Sets-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapControlsOverlay.swift; sourceTree = "<group>"; };
 		33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSupersetScrollView.swift; sourceTree = "<group>"; };
+		33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +292,7 @@
 				333503322BD4326A0068076C /* ExerciseSetView.swift */,
 				333503342BD434C20068076C /* ExerciseSetCheckButtonView.swift */,
 				333503362BD441310068076C /* ExerciseView.swift */,
+				33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */,
 			);
 			path = Exercises;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				330362062BD9389E0014CD3C /* CentralStorage.swift in Sources */,
+				33CB45762BDE01D8000390CB /* ExerciseHeaderView.swift in Sources */,
 				330362022BD9363A0014CD3C /* WorkoutOverview.swift in Sources */,
 				330362092BD93B070014CD3C /* PublishedExt.swift in Sources */,
 				3335032A2BD428F10068076C /* WorkoutModel.swift in Sources */,

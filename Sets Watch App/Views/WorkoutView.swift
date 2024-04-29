@@ -15,7 +15,7 @@ public enum Tab: Hashable {
 
 struct WorkoutView: View {
     
-    @ObservedObject var current_workout: Workout
+    var current_workout: Workout
     @State private var tab_selection: Tab = .overview
     
     var body: some View {
@@ -36,7 +36,7 @@ struct WorkoutView: View {
                 .navigationBarTitleDisplayMode(.large)
                 .navigationBarBackButtonHidden(true)
         }
-        .environmentObject(current_workout)
+        .environment(current_workout)
     }
 }
 
@@ -46,5 +46,5 @@ struct WorkoutView: View {
     
     return WorkoutView(current_workout: example_workout)
         .environmentObject(SettingsController())
-        .environmentObject(example_workout)
+        .environment(example_workout)
 }

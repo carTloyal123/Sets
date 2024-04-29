@@ -6,20 +6,36 @@
 //
 
 import Foundation
+import Combine
 
-class Exercise: ObservableObject, Identifiable, Equatable, Hashable, Codable {
+@Observable class Exercise: Identifiable, Equatable, Hashable, Codable {
+    private var cancellables = Set<AnyCancellable>()
 
-    @Published var name: String = "Defaule Exercise"
-    @Published var sets: [ExerciseSet] = []
-    @Published var super_set_tag: Superset?
-    @Published var exercise_type: ExerciseTargetArea = .full_body
-    @Published var total_complete_sets: Int = 0
-    
-    var is_complete: Bool { return total_complete_sets == sets.count }
+    var name: String = "Defaule Exercise"
+    var sets: [ExerciseSet] = []
+    var super_set_tag: Superset?
+    var exercise_type: ExerciseTargetArea = .full_body
+    var total_complete_sets: Int = 0
+    var is_complete_check: Bool = false
     var id = UUID()
+
+    @ObservationIgnored var is_complete: Bool {
+        get { return IsComplete() }
+    }
     
     static func == (lhs: Exercise, rhs: Exercise) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    private enum CodingKeys: String, CodingKey
+    {
+        case _name = "name"
+        case _sets = "sets"
+        case _super_set_tag = "super_set_tag"
+        case _exercise_type = "exercise_type"
+        case _total_complete_sets = "total_complete_sets"
+        case _is_complete_check = "is_complete_check"
+        case _id = "id"
     }
     
     init() { }
@@ -35,6 +51,15 @@ class Exercise: ObservableObject, Identifiable, Equatable, Hashable, Codable {
         self.name = name
     }
     
+    func IsComplete() -> Bool
+    {
+        let check = self.sets.filter { s in
+            return s.set_data.is_complete
+        }.count == self.sets.count
+        self.is_complete_check = check
+        return check
+    }
+    
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
@@ -46,12 +71,12 @@ class Exercise: ObservableObject, Identifiable, Equatable, Hashable, Codable {
     
     func MarkNextSetComplete(is complete: Bool)
     {
-        for set_to_mark in self.sets
+        for i in 0..<self.sets.count
         {
-            if set_to_mark.is_complete != complete
+            if self.sets[i].set_data.is_complete != complete
             {
-                set_to_mark.is_complete = complete
-                self.total_complete_sets = sets.filter { $0.is_complete }.count
+                self.sets[i].set_data.is_complete = complete
+                self.total_complete_sets = sets.filter { $0.set_data.is_complete }.count
                 print("\(self.total_complete_sets) complete for \(name)")
                 return
             }
@@ -60,27 +85,24 @@ class Exercise: ObservableObject, Identifiable, Equatable, Hashable, Codable {
     
     func Complete()
     {
-        for set_to_mark in self.sets
+        for i in 0..<self.sets.count
         {
-            set_to_mark.is_complete = true
+            self.sets[i].set_data.is_complete = true
         }
-        self.total_complete_sets = sets.filter { $0.is_complete }.count
+        self.total_complete_sets = sets.filter { $0.set_data.is_complete }.count
     }
     
     func MarkSet(is complete: Bool, for set_num: Int)
     {
-        if let set_to_mark = self.sets[safe: set_num]
-        {
-            set_to_mark.is_complete = complete
-        }
-        self.total_complete_sets = sets.filter { $0.is_complete }.count
+        self.sets[set_num].set_data.is_complete = complete
+        self.total_complete_sets = sets.filter { $0.set_data.is_complete }.count
     }
     
     func Reset()
     {
-        for set_to_mark in self.sets
+        for i in 0..<self.sets.count
         {
-            set_to_mark.is_complete = false
+            self.sets[i].set_data.is_complete = false
         }
         self.total_complete_sets = 0
     }

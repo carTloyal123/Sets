@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SupersetSettingsSheetView: View {
-    @EnvironmentObject var current_workout: Workout
+    @Environment(Workout.self) var current_workout: Workout
     @Binding var isPresented: Bool
     
     var body: some View {
@@ -60,5 +60,5 @@ struct SupersetSettingsSheetView: View {
     @State var example_workout = example_data.GetExampleStrengthWorkout()
     example_workout.Start()
     return SupersetSettingsSheetView(isPresented: $is_showing)
-        .environmentObject(example_workout)
+        .environment(example_workout)
 }

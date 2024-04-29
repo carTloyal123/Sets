@@ -8,22 +8,23 @@
 import SwiftUI
 
 struct ExerciseSetCheckButtonView: View {
-    @ObservedObject var current_set: ExerciseSet
+    var current_set: ExerciseSet
     var body: some View {
-        Button(action: setChecked, label: {
-            Group
-            {
-                current_set.is_complete ? Image(systemName: "checkmark.circle.fill") : Image(systemName: "checkmark.circle")
-            }
-            .foregroundStyle(current_set.is_complete ? .green : .red)
-        })
-        .frame(width: 70)
+        Group
+        {
+            current_set.set_data.is_complete ? Image(systemName: "checkmark.circle.fill") : Image(systemName: "checkmark.circle")
+        }
+        .foregroundStyle(current_set.set_data.is_complete ? .green : .red)
+        .onTapGesture {
+            current_set.set_data.is_complete.toggle()
+        }
+            
     }
     
-    func setChecked()
+    mutating func setChecked()
     {
-        current_set.is_complete.toggle()
-        print("Set is complete: \(current_set.is_complete)")
+        current_set.set_data.is_complete.toggle()
+        print("Set is complete: \(current_set.set_data.is_complete)")
     }
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WorkoutOverview: View {
     
-    @EnvironmentObject var current_workout: Workout
+    @Environment(Workout.self) var current_workout: Workout
     @Binding var tab_selection: Tab
     
     var body: some View {
@@ -67,5 +67,5 @@ struct WorkoutOverview: View {
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var tab_selected: Tab = .overview
     
-    return WorkoutOverview(tab_selection: $tab_selected).environmentObject(example_workout)
+    return WorkoutOverview(tab_selection: $tab_selected).environment(example_workout)
 }

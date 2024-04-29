@@ -13,7 +13,7 @@ enum ExerciseSetType: Codable {
     case weight(Int) // Int represents weight in this case
     case reps(Int)
     case duration(TimeInterval) // TimeInterval represents duration in this case
-    
+    case none
     // Helper computed properties to access the values
     var weightValue: Int? {
         if case .weight(let value) = self {

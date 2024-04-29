@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ExerciseView: View {
-    
-    @ObservedObject var current_exercise: Exercise
+    var current_exercise: Exercise
     
     var body: some View {
-        ScrollView
+        List
         {
+            ExerciseHeaderView()
             ForEach(current_exercise.sets) { exercise_set in
                 ExerciseSetView(current_set: exercise_set)
+                    .onTapGesture {
+                        exercise_set.set_data.is_complete.toggle()
+                    }
             }
         }.navigationTitle(current_exercise.name)
     }

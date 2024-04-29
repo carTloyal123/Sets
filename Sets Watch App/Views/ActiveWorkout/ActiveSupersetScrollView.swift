@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ActiveSupersetScrollView: View {
-    @EnvironmentObject var current_workout: Workout
+    @Environment(Workout.self) var current_workout: Workout
     @State private var scroll_id: Int?
     @State private var scroll_view_size: CGSize = .init(width: 10, height: 10)
     
@@ -74,6 +74,6 @@ struct ActiveSupersetScrollView: View {
     @State var rt = ss.rest_timer
     return ZStack(alignment: .top, content: {
         ActiveSupersetScrollView()
-            .environmentObject(example_workout)
+            .environment(example_workout)
     })
 }

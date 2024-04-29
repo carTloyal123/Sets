@@ -18,29 +18,36 @@ extension Array {
     }
 }
 
-class Workout: ObservableObject, Codable, Identifiable {
-    @Published var name: String = "Default Workout"
-    @Published var exercises: [Exercise] = []
-    @Published var supersets: [Superset] = []
-    @Published var create_at: Date = Date.now
-    @Published var started_at: Date? = nil
-    @Published var completed_at: Date = Date()
-    @Published var active_superset: Superset?
-    @Published var active_superset_idx: Int = 0
-    @Published var elapsed_time: TimeInterval = TimeInterval()
+@Observable class Workout: Codable, Identifiable {
+    var name: String = "Default Workout"
+    var exercises: [Exercise] = []
+    var supersets: [Superset] = []
+    var created_at: Date = Date.now
+    var started_at: Date? = nil
+    var completed_at: Date = Date()
+    var active_superset: Superset?
+    var active_superset_idx: Int = 0
+    var elapsed_time: TimeInterval = TimeInterval()
     private var workout_timer: Timer?
     
-    private enum CodingKeys: String, CodingKey
-    {
-        case name, exercises, supersets, create_at, started_at, completed_at, active_superset, active_superset_idx
+    private enum CodingKeys: String, CodingKey {
+        case _name = "name"
+        case _exercises = "exercises"
+        case _supersets = "supersets"
+        case _created_at = "created_at"
+        case _started_at = "started_at"
+        case _completed_at = "completed_at"
+        case _active_superset = "active_superset"
+        case _active_superset_idx = "active_superset_idx"
+        case _elapsed_time = "elapsed_time"
     }
     
     init() { }
-    init(name: String, exercises: [Exercise], supersets: [Superset], create_at: Date, completed_at: Date) {
+    init(name: String, exercises: [Exercise], supersets: [Superset], created_at: Date, completed_at: Date) {
         self.name = name
         self.exercises = exercises
         self.supersets = supersets
-        self.create_at = create_at
+        self.created_at = created_at
         self.completed_at = completed_at
         active_superset = supersets.first
     }

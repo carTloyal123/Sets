@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct WorkoutListView: View {
-    
-    @EnvironmentObject var app_storage: CentralStorage
-    
+    @Environment(CentralStorage.self) private var app_storage
     var body: some View {
         NavigationStack
         {
@@ -27,8 +25,8 @@ struct WorkoutListView: View {
 }
 
 #Preview {
-    @StateObject var settings_controller: SettingsController = SettingsController()
-    @StateObject var current_workout: Workout = ExampleData().GetExampleStrengthWorkout()
+    @State var settings_controller: SettingsController = SettingsController()
+    @State var current_workout: Workout = ExampleData().GetExampleStrengthWorkout()
     @State var app_storage: CentralStorage = CentralStorage()
     let example_data = ExampleData()
     app_storage.workouts.append(example_data.GetExampleStrengthWorkout())
@@ -36,7 +34,7 @@ struct WorkoutListView: View {
     app_storage.workouts.append(example_data.GetSupersetWorkout())
 
     return WorkoutListView()
-        .environmentObject(app_storage)
+        .environment(app_storage)
         .environmentObject(settings_controller)
-        .environmentObject(current_workout)
+        .environment(current_workout)
 }

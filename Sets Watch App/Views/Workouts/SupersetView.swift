@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SupersetView: View {
     
-    @ObservedObject var current_superset: Superset
+    var current_superset: Superset
     
     var body: some View {
         VStack(alignment: .leading, content: {

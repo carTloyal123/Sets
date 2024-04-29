@@ -10,7 +10,7 @@ import SwiftUI
 struct TimerView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var settings: SettingsController
-    @ObservedObject var rest_timer: WorkoutTimer
+    var rest_timer: WorkoutTimer
     
     var body: some View {
         ScrollView {

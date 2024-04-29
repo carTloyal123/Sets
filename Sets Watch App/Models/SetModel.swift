@@ -6,45 +6,37 @@
 //
 
 import Foundation
+import Combine
 
-
-enum ExerciseSetCodingKeys: CodingKey
+struct SingleSetData: Identifiable, Codable
 {
-    case set_number, is_complete, exercise_type, id
-}
-class ExerciseSet: ObservableObject, Identifiable, Codable {
-    @Published var set_number: Int = 0
-    @Published var is_complete: Bool = false
-    @Published var exercise_type: ExerciseSetType = .reps(10)
-    
     var id = UUID()
+    var set_number: Int = 0
+    var is_complete: Bool = false
+    var exercise_type: ExerciseSetType = .none
     
-    init() { }
-    init(set_number: Int, is_complete: Bool, exercise_type: ExerciseSetType) {
+    init() {}
+    init(id: UUID = UUID(), set_number: Int, is_complete: Bool, exercise_type: ExerciseSetType) {
+        self.id = id
         self.set_number = set_number
         self.is_complete = is_complete
         self.exercise_type = exercise_type
     }
-    
-    init(set_number: Int, exercise_type: ExerciseSetType)
-    {
-        self.set_number = set_number
-        self.exercise_type = exercise_type
-    }
-    
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: ExerciseSetCodingKeys.self)
-        
-        self.set_number = try container.decode(Int.self, forKey: .set_number)
-    }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: ExerciseSetCodingKeys.self)
-        
-        try container.encode(set_number, forKey: .set_number)
-        try container.encode(is_complete, forKey: .is_complete)
-        try container.encode(exercise_type, forKey: .exercise_type)
-        try container.encode(id, forKey: .id)
-    }
-    
 }
+
+@Observable class ExerciseSet: Identifiable, Codable {
+    var set_data: SingleSetData = SingleSetData()
+    var id = UUID()
+    
+    init(set_data: SingleSetData, id: UUID = UUID()) {
+        self.set_data = set_data
+        self.id = id
+    }
+    
+    init(id: UUID = UUID(), set_number: Int, is_complete: Bool, exercise_type: ExerciseSetType) {
+        self.id = id
+        self.set_data = SingleSetData(set_number: set_number, is_complete: is_complete, exercise_type: exercise_type)
+    }
+}
+
+

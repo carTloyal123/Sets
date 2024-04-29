@@ -10,7 +10,7 @@ import SwiftUI
 struct ActiveWorkoutView: View {
     
     @EnvironmentObject var settings: SettingsController
-    @EnvironmentObject var current_workout: Workout
+    @Environment(Workout.self) var current_workout
     @State private var is_showing_timer: Bool = false
         
     var body: some View {
@@ -75,5 +75,5 @@ struct ActiveWorkoutView: View {
     @State var example_workout = example_data.GetExampleStrengthWorkout()
     return ActiveWorkoutView()
         .environmentObject(SettingsController())
-        .environmentObject(example_workout)
+        .environment(example_workout)
 }

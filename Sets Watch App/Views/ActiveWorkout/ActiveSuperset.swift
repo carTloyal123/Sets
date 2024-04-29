@@ -19,9 +19,8 @@ extension AnyTransition {
 
 struct ActiveSuperset: View {
     
-    @EnvironmentObject var current_workout: Workout
+    @Environment(Workout.self) var current_workout: Workout
     @State private var is_showing_settings_sheet: Bool = false
-    @State private var current_remaining_time: TimeInterval = TimeInterval()
     
     @State private var view_offset: Int = -200
     @State private var is_transition: Bool = false
@@ -37,7 +36,7 @@ struct ActiveSuperset: View {
                         Group{
                             Text(active_ss.name)
                             Spacer()
-                            Text(Utils.timeString(current_remaining_time))
+                            Text(Utils.timeString(active_ss.rest_timer.time_remaining))
                         }
                         Spacer()
                         Image(systemName: "ellipsis.circle.fill")
@@ -82,22 +81,6 @@ struct ActiveSuperset: View {
                                 }
                             }
                         }
-                        HStack
-                        {
-                            LeftOverlay()
-                                .onTapGesture {
-                                    print("Left tapped")
-                                    PreviousSuperset()
-                                }
-                            
-                            RightOverlay()
-                                .onTapGesture {
-                                    print("Right Tapped")
-                                    NextSuperset()
-                                }
-                        }
-                        
-
                     }
                 }
                 .padding(4)
@@ -107,12 +90,6 @@ struct ActiveSuperset: View {
                 }
             }
             .offset(x: CGFloat(is_transition ? view_offset : 0))
-            .onAppear(perform: {
-                current_remaining_time = active_ss.rest_timer.time_remaining
-            })
-            .onReceive(active_ss.rest_timer.$time_remaining) { remaining in
-                current_remaining_time = remaining
-            }
             .sheet(isPresented: $is_showing_settings_sheet, content: {
                 SupersetSettingsSheetView(isPresented: $is_showing_settings_sheet)
             })
@@ -149,5 +126,5 @@ struct ActiveSuperset: View {
     @State var ss = example_workout.supersets.first!
     @State var rt = ss.rest_timer
     return ActiveSuperset()
-        .environmentObject(example_workout)
+        .environment(example_workout)
 }

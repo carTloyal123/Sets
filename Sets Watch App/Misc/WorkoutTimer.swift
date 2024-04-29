@@ -7,17 +7,18 @@
 
 import Foundation
 
-class WorkoutTimer: ObservableObject, Codable {
-    @Published var time_remaining: TimeInterval
-    @Published var default_time_in_seconds: TimeInterval
-    @Published var is_complete: Bool = false
-    @Published var is_running: Bool = false
-    
+@Observable class WorkoutTimer: Codable {
+    var time_remaining: TimeInterval
+    var default_time_in_seconds: TimeInterval
+    var is_complete: Bool = false
+    var is_running: Bool = false
     private var timer: Timer?
-
-    // Use this to ignore Timer object
+    
     private enum CodingKeys: String, CodingKey {
-        case time_remaining, default_time_in_seconds
+        case _time_remaining = "time_remaining"
+        case _default_time_in_seconds = "default_time_in_seconds"
+        case _is_complete = "is_complete"
+        case _is_running = "is_running"
     }
     
     init() {

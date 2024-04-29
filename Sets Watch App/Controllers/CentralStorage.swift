@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class CentralStorage: ObservableObject, Codable
+@Observable class CentralStorage: Codable
 {
-    @Published var workouts: [Workout] = []
+    var workouts: [Workout] = []
 }
