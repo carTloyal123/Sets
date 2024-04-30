@@ -59,14 +59,12 @@ struct ActiveWorkoutView: View {
                     })
                 }
             }
-            .sheet(isPresented: $is_showing_timer, onDismiss: {
-                is_showing_timer = false
-            }, content: {
+            .sheet(isPresented: $is_showing_timer) {
                 if let active_superset_info = current_workout.active_superset
                 {
                     TimerView(rest_timer: active_superset_info.rest_timer)
                 }
-            })
+            }
     }
 }
 

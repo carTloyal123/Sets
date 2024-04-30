@@ -11,7 +11,8 @@ struct ActiveSupersetScrollView: View {
     @Environment(Workout.self) var current_workout: Workout
     @State private var scroll_id: Int?
     @State private var scroll_view_size: CGSize = .init(width: 10, height: 10)
-    
+    @State private var is_showing_superset_details_sheet: Bool = false
+
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(spacing: 0) {
@@ -43,6 +44,27 @@ struct ActiveSupersetScrollView: View {
             }
             .scrollTargetLayout()
         }
+        .onTapGesture {
+            is_showing_superset_details_sheet.toggle()
+        }
+        .sheet(isPresented: $is_showing_superset_details_sheet, content: {
+            NavigationStack {
+                if let active_ss = current_workout.active_superset
+                {
+                    ForEach(active_ss.exercise_list) { each_exercise in
+                        NavigationLink {
+                            ExerciseView(current_exercise: each_exercise)
+                        } label: {
+                            Text("\(each_exercise.name.localizedCapitalized)")
+                        }
+                        .navigationTitle("Exercises")
+                    }
+                } else {
+                    Text("No exercises :(")
+                }
+
+            }
+        })
         .frame(idealHeight: scroll_view_size.height, maxHeight: scroll_view_size.height*1.5)
         .scrollTargetBehavior(.paging)
         .scrollPosition(id: $scroll_id)
