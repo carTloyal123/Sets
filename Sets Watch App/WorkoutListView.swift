@@ -12,15 +12,22 @@ struct WorkoutListView: View {
     var body: some View {
         NavigationStack
         {
-            List(app_storage.workouts) { workout in
-                NavigationLink {
-                    WorkoutView(current_workout: workout)
-                } label: {
-                    Text(workout.name)
+            List {
+                ForEach(app_storage.workouts) { workout in
+                    NavigationLink {
+                        WorkoutView(current_workout: workout)
+                    } label: {
+                        Text(workout.name)
+                    }
                 }
+                NavigationLink {
+                    SignInWithAppleView()
+                } label: {
+                    Text("Account")
+                }
+
             }.navigationTitle("Workouts")
         }
-
     }
 }
 

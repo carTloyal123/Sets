@@ -14,19 +14,16 @@ struct SupersetView: View {
     var body: some View {
         VStack(alignment: .leading, content: {
             
-            ScrollView {
-                Text("\(current_superset.name)")
-                    .padding(EdgeInsets(top: 5.0, leading: 10.0, bottom: 5.0, trailing: 10.0))
-                    .fontWeight(.semibold)
-                    .background {
-                        Capsule()
-                            .foregroundStyle(current_superset.color)
-                    }
-            }
-            .padding(EdgeInsets(top: 10.0, leading: 1.0, bottom: 1.0, trailing: 1.0))
-            .scaleEffect(x: 0.8, y: 0.8, anchor: .bottomLeading)
-            .scrollDisabled(true)
-
+            Text("\(current_superset.name)")
+                .lineLimit(nil)
+                .multilineTextAlignment(.leading)
+                .padding(EdgeInsets(top: 5.0, leading: 10.0, bottom: 5.0, trailing: 10.0))
+                .background {
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .foregroundStyle(current_superset.color)
+                }
+//                .fixedSize(horizontal: false, vertical: true)
+            
             ForEach(current_superset.exercise_list) { exercise in
                 NavigationLink {
                     ExerciseView(current_exercise: exercise)
@@ -37,8 +34,15 @@ struct SupersetView: View {
                             .multilineTextAlignment(.leading)
                         Spacer()
                     }
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 6.0)
+                            .foregroundStyle(.gray)
+                            .opacity(0.2)
+                    }
                 }
             }
+            .buttonStyle(PlainButtonStyle())
         })
     }
 }
