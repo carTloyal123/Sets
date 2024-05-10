@@ -50,8 +50,10 @@ struct WorkoutListView: View {
     app_storage.workouts.append(example_data.GetExampleWorkout())
     app_storage.workouts.append(example_data.GetSupersetWorkout())
 
-    return WorkoutListView()
-        .environment(app_storage)
-        .environmentObject(settings_controller)
-        .environment(current_workout)
+    return NavigationStack {
+        WorkoutListView()
+            .environment(app_storage)
+            .environmentObject(settings_controller)
+            .environment(current_workout)
+    }
 }
