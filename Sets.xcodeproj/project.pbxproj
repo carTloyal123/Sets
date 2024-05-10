@@ -715,7 +715,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
@@ -747,7 +747,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
@@ -783,7 +783,7 @@
 				"INFOPLIST_FILE[sdk=*]" = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 30;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -801,7 +801,7 @@
 				"INFOPLIST_FILE[sdk=*]" = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 30;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
