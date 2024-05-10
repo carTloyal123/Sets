@@ -14,6 +14,7 @@ class SettingsController: ObservableObject
     @AppStorage("rest_between_supersets") private var is_rest_between_supersets: Bool = true
     @AppStorage("rest_between_sets") private var is_rest_between_sets: Bool = true
     @AppStorage("auto_reset_timer") private var is_auto_reset_timer: Bool = true
+    @AppStorage("should_show_welcome") private var is_should_show_welcome: Bool = true
     
     var auto_hide_rest_timer: Bool {
         get { is_auto_hide_rest_timer }
@@ -33,5 +34,10 @@ class SettingsController: ObservableObject
     var auto_reset_timer: Bool {
         get { is_auto_reset_timer }
         set { is_auto_reset_timer = newValue }
+    }
+    
+    var should_show_welcome: Bool {
+        get { is_should_show_welcome }
+        set { is_should_show_welcome = newValue }
     }
 }

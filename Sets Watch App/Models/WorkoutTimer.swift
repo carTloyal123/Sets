@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UserNotifications
+
 
 @Observable class WorkoutTimer: Codable {
     var time_remaining: TimeInterval
@@ -62,6 +64,7 @@ import Foundation
                 guard let self = self else { return }
                 self.time_remaining = self.end_date.timeIntervalSinceNow.rounded(.up)
                 if self.time_remaining < 1 {
+                    self.time_remaining = TimeInterval(0)
                     self.stopTimer()
                     self.is_complete = true
                 }
@@ -70,6 +73,7 @@ import Foundation
             if let current_timer = self.timer
             {
                 RunLoop.main.add(current_timer, forMode: .common)
+                ScheduleTimeBasedNotification()
             }
         } else {
             print("Timer should already exist!")
@@ -78,6 +82,7 @@ import Foundation
     }
 
     func stop() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         stopTimer()
     }
 
@@ -97,5 +102,37 @@ import Foundation
     func ResetRemainingTime()
     {
         self.time_remaining = self.default_time_in_seconds
+    }
+    
+    func ScheduleTimeBasedNotification() {
+        // 1. Request permission to display alerts and play sounds.
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
+            if granted {
+                print("Permission granted")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+
+        // 2. Create the content for the notification
+        let content = UNMutableNotificationContent()
+        content.title = "Active Workout"
+        content.body = "Rest time is up! Get back to it!"
+        content.sound = UNNotificationSound.default
+
+        // 3. Set up a trigger for the notification
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: self.time_remaining, repeats: false)
+
+        // 4. Create the request
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+        // 5. Add the request to the notification center
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Notification scheduled")
+            }
+        }
     }
 }

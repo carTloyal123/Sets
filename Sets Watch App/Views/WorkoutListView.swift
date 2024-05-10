@@ -8,26 +8,36 @@
 import SwiftUI
 
 struct WorkoutListView: View {
-    @Environment(CentralStorage.self) private var app_storage: CentralStorage    
+    @Environment(CentralStorage.self) private var app_storage: CentralStorage
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
-        NavigationStack
-        {
-            List {
-                ForEach(app_storage.workouts) { workout in
-                    NavigationLink {
-                        WorkoutView(current_workout: workout)
-                    } label: {
-                        Text(workout.name)
-                    }
-                }
+        List {
+            ForEach(app_storage.workouts) { workout in
                 NavigationLink {
-                    SignInWithAppleView()
+                    WorkoutView(current_workout: workout)
                 } label: {
-                    Text("Account")
+                    Text(workout.name)
                 }
+            }
+            NavigationLink {
+                SignInWithAppleView()
+            } label: {
+                Text("Account")
+            }
+        
+            Button(role: .destructive) {
+                dismiss()
+            } label: {
+                HStack
+                {
+                    Spacer()
+                    Text("Back")
+                    Spacer()
+                }
+            }
 
-            }.navigationTitle("Workouts")
-        }
+        }.navigationTitle("Workouts")
     }
 }
 

@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import UserNotifications
+
+class SetsNotificationDelegate: NSObject, UNUserNotificationCenterDelegate
+{
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Got notification through delegate!")
+        completionHandler()
+    }
+}

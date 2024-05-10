@@ -24,6 +24,14 @@ struct SettingsView: View {
                 Toggle(isOn: $settings.rest_between_sets, label: {
                     Text("Rest Between\nSets")
                 })
+                
+                Toggle(isOn: $settings.auto_reset_timer, label: {
+                    Text("Auto Reset Timer")
+                })
+                Toggle(isOn: $settings.should_show_welcome, label: {
+                        Text("Show Welcome")
+                })
+
             }
         }
     }

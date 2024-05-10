@@ -10,4 +10,9 @@ import SwiftUI
 @Observable class CentralStorage: Codable
 {
     var workouts: [Workout] = []
+    
+    private enum CodingKeys: String, CodingKey
+    {
+        case _workouts = "workouts"
+    }
 }

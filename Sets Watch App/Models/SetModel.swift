@@ -28,6 +28,12 @@ struct SingleSetData: Identifiable, Codable
     var set_data: SingleSetData = SingleSetData()
     var id = UUID()
     
+    private enum CodingKeys: String, CodingKey
+    {
+        case _set_data = "set_data"
+        case _id = "id"
+    }
+    
     init(set_data: SingleSetData, id: UUID = UUID()) {
         self.set_data = set_data
         self.id = id

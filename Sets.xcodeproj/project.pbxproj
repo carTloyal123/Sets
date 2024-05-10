@@ -40,9 +40,13 @@
 		33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */; };
 		33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */; };
 		33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */; };
+		33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */; };
 		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
 		33A5E2982BDC0040009EC780 /* TapControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */; };
 		33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */; };
+		33B9C2B22BED8BF80056E45F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */; };
+		33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B32BED8C060056E45F /* WelcomeView.swift */; };
+		33B9C2B82BED92430056E45F /* EntryLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B72BED92430056E45F /* EntryLayerView.swift */; };
 		33CB45762BDE01D8000390CB /* ExerciseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,10 +126,14 @@
 		33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
 		33831C022BE3D70400C3D3A4 /* Sets Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sets Watch App.entitlements"; sourceTree = "<group>"; };
 		33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkButtonStyle.swift; sourceTree = "<group>"; };
+		33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsNotificationDelegate.swift; sourceTree = "<group>"; };
 		33A5E28B2BD976EB009EC780 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Sets-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapControlsOverlay.swift; sourceTree = "<group>"; };
 		33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSupersetScrollView.swift; sourceTree = "<group>"; };
+		33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		33B9C2B32BED8C060056E45F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		33B9C2B72BED92430056E45F /* EntryLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLayerView.swift; sourceTree = "<group>"; };
 		33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,7 +218,6 @@
 			children = (
 				33831C022BE3D70400C3D3A4 /* Sets Watch App.entitlements */,
 				33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */,
-				330362032BD9386B0014CD3C /* WorkoutListView.swift */,
 				333502F02BD425170068076C /* SetsApp.swift */,
 				333503282BD428AD0068076C /* Controllers */,
 				333503202BD426040068076C /* Models */,
@@ -251,13 +258,16 @@
 		3335031E2BD4258E0068076C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				33831C032BE40F1900C3D3A4 /* Styles */,
+				330362032BD9386B0014CD3C /* WorkoutListView.swift */,
 				3335033A2BD456C90068076C /* WorkoutView.swift */,
+				33B9C2B02BED8BDF0056E45F /* Introduction */,
+				33831C032BE40F1900C3D3A4 /* Styles */,
 				330361FE2BD935AB0014CD3C /* Settings */,
 				330361F72BD893E50014CD3C /* ActiveWorkout */,
 				333503392BD456BC0068076C /* Workouts */,
 				33831BFF2BE3D2E000C3D3A4 /* Auth */,
 				333503382BD456AD0068076C /* Exercises */,
+				33B9C2B72BED92430056E45F /* EntryLayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,6 +300,7 @@
 			children = (
 				3335032E2BD42D090068076C /* ExampleData.swift */,
 				3357F2572BD9656E0037D35C /* Utils.swift */,
+				33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -328,6 +339,15 @@
 				33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		33B9C2B02BED8BDF0056E45F /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */,
+				33B9C2B32BED8C060056E45F /* WelcomeView.swift */,
+			);
+			path = Introduction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,6 +513,7 @@
 				330362022BD9363A0014CD3C /* WorkoutOverview.swift in Sources */,
 				33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */,
 				330362092BD93B070014CD3C /* PublishedExt.swift in Sources */,
+				33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */,
 				3335032A2BD428F10068076C /* WorkoutModel.swift in Sources */,
 				33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */,
 				3335032F2BD42D090068076C /* ExampleData.swift in Sources */,
@@ -514,8 +535,11 @@
 				330362042BD9386B0014CD3C /* WorkoutListView.swift in Sources */,
 				3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */,
 				3335032C2BD42A240068076C /* SupersetModel.swift in Sources */,
+				33B9C2B22BED8BF80056E45F /* SplashScreenView.swift in Sources */,
+				33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */,
 				33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */,
 				3335033B2BD456C90068076C /* WorkoutView.swift in Sources */,
+				33B9C2B82BED92430056E45F /* EntryLayerView.swift in Sources */,
 				333503272BD427770068076C /* ExerciseModel.swift in Sources */,
 				33A5E2982BDC0040009EC780 /* TapControlsOverlay.swift in Sources */,
 				332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */,
@@ -594,7 +618,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -615,7 +639,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				NEW_SETTING = "";
@@ -660,7 +684,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -675,7 +699,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				NEW_SETTING = "";
@@ -691,7 +715,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
@@ -704,7 +728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -723,7 +747,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
@@ -736,7 +760,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -754,12 +778,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				"INFOPLIST_FILE[sdk=*]" = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 30;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -772,12 +796,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				"INFOPLIST_FILE[sdk=*]" = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 30;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -792,10 +816,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -813,10 +837,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

@@ -91,7 +91,7 @@ struct ActiveSupersetScrollView: View {
 
 #Preview {
     let example_data = ExampleData()
-    @State var example_workout = example_data.GetExampleStrengthWorkout()
+    @State var example_workout = example_data.GetSupersetWorkout()
     @State var ss = example_workout.supersets.first!
     @State var rt = ss.rest_timer
     return ZStack(alignment: .top, content: {

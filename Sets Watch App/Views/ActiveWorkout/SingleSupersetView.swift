@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct SingleSupersetView: View {
     @Environment(Workout.self) var current_workout: Workout
@@ -68,7 +69,6 @@ struct SingleSupersetView: View {
     
     func NextSuperset()
     {
-       
         withAnimation {
             current_workout.NextSuperset()
         }

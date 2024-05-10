@@ -29,12 +29,6 @@ struct WorkoutView: View {
                 .navigationBarTitle(current_workout.name)
                 .navigationBarTitleDisplayMode(.large)
                 .navigationBarBackButtonHidden(true)
-
-            SettingsView()
-                .tag(Tab.settings)
-                .navigationBarTitle("Settings")
-                .navigationBarTitleDisplayMode(.large)
-                .navigationBarBackButtonHidden(true)
         }
         .environment(current_workout)
     }
