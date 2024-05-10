@@ -42,7 +42,6 @@
 		33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */; };
 		33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */; };
 		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
-		33A5E2982BDC0040009EC780 /* TapControlsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */; };
 		33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */; };
 		33B9C2B22BED8BF80056E45F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */; };
 		33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B32BED8C060056E45F /* WelcomeView.swift */; };
@@ -129,7 +128,6 @@
 		33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsNotificationDelegate.swift; sourceTree = "<group>"; };
 		33A5E28B2BD976EB009EC780 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Sets-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
-		33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapControlsOverlay.swift; sourceTree = "<group>"; };
 		33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSupersetScrollView.swift; sourceTree = "<group>"; };
 		33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		33B9C2B32BED8C060056E45F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -166,11 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				330361F82BD893F90014CD3C /* ActiveWorkoutView.swift */,
-				330361FC2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift */,
-				332E82702BD9439D008FE9B4 /* TimerView.swift */,
-				33A5E2972BDC0040009EC780 /* TapControlsOverlay.swift */,
 				33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */,
-				33254A2D2BDC118B004001DE /* SingleSupersetView.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -258,6 +252,7 @@
 		3335031E2BD4258E0068076C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				33B9C2B72BED92430056E45F /* EntryLayerView.swift */,
 				330362032BD9386B0014CD3C /* WorkoutListView.swift */,
 				3335033A2BD456C90068076C /* WorkoutView.swift */,
 				33B9C2B02BED8BDF0056E45F /* Introduction */,
@@ -267,7 +262,6 @@
 				333503392BD456BC0068076C /* Workouts */,
 				33831BFF2BE3D2E000C3D3A4 /* Auth */,
 				333503382BD456AD0068076C /* Exercises */,
-				33B9C2B72BED92430056E45F /* EntryLayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -319,6 +313,9 @@
 		333503392BD456BC0068076C /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
+				33254A2D2BDC118B004001DE /* SingleSupersetView.swift */,
+				330361FC2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift */,
+				332E82702BD9439D008FE9B4 /* TimerView.swift */,
 				3335033E2BD583B40068076C /* SupersetView.swift */,
 				330362012BD9363A0014CD3C /* WorkoutOverview.swift */,
 			);
@@ -541,7 +538,6 @@
 				3335033B2BD456C90068076C /* WorkoutView.swift in Sources */,
 				33B9C2B82BED92430056E45F /* EntryLayerView.swift in Sources */,
 				333503272BD427770068076C /* ExerciseModel.swift in Sources */,
-				33A5E2982BDC0040009EC780 /* TapControlsOverlay.swift in Sources */,
 				332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,68 +13,84 @@ struct ActiveWorkoutView: View {
     @Environment(Workout.self) var current_workout
     @State private var is_showing_timer: Bool = false
     @State private var is_showing_superset_settings: Bool = false
-        
+    
     var body: some View {
         ScrollView(.vertical)
-            {
-                ActiveSupersetScrollView()
-                Spacer()
-                HStack {
-                    Button(action: {
-                            if (settings.auto_reset_timer)
-                            {
-                                if let active_superset_info = current_workout.active_superset
-                                {
-                                    if (active_superset_info.rest_timer.time_remaining < 0.000001)
-                                    {
-                                        active_superset_info.rest_timer.stop()
-                                        active_superset_info.rest_timer.ResetRemainingTime()
-                                    }
-                                }
-                            }
-                            is_showing_timer = true
-                        }, label: {
-                            Label(
-                                title: { Text("") },
-                                icon: { Image(systemName: "clock") }
-                            )
-                    })
-                    Button(action: {
-                        if (current_workout.UpdateSuperset())
+        {
+            ActiveSupersetScrollView()
+            Spacer()
+            HStack {
+                Button(action: {
+                    if (settings.auto_reset_timer)
+                    {
+                        if let active_superset_info = current_workout.active_superset
                         {
-                            if (settings.rest_between_supersets)
+                            if (active_superset_info.rest_timer.time_remaining < 0.000001)
                             {
-                                is_showing_timer = true
-                            }
-                        } else {
-                            if (settings.rest_between_sets)
-                            {
-                                is_showing_timer = true
+                                active_superset_info.rest_timer.stop()
+                                active_superset_info.rest_timer.ResetRemainingTime()
                             }
                         }
-                    }, label: {
-                        Label(
-                            title: { Text("") },
-                            icon: { Image(systemName: "dumbbell") }
-                        )
-                    })
-                }
+                    }
+                    is_showing_timer = true
+                }, label: {
+                    Label(
+                        title: { Text("") },
+                        icon: { Image(systemName: "clock") }
+                    )
+                })
+                Button(action: {
+                    UpdateSuperset()
+                }, label: {
+                    Label(
+                        title: { Text("") },
+                        icon: { Image(systemName: "dumbbell") }
+                    )
+                })
             }
-            .sheet(isPresented: $is_showing_timer) {
-                if let active_superset_info = current_workout.active_superset
+        }
+        .sheet(isPresented: $is_showing_timer) {
+            if let active_superset_info = current_workout.active_superset
+            {
+                TimerView(rest_timer: active_superset_info.rest_timer)
+            }
+        }
+        .onChange(of: current_workout.is_showing_superset_settings, { oldValue, newValue in
+            print("is showing settings from: \(oldValue) to \(newValue)")
+            withAnimation {
+                is_showing_superset_settings = true
+            }
+        })
+        .sheet(isPresented: $is_showing_superset_settings, content: {
+            SupersetSettingsSheetView()
+        })
+        if let active_ss = current_workout.active_superset
+        {
+            EmptyView()
+            .onChange(of: active_ss.is_ss_complete) { oldValue, newValue in
+                if (newValue)
                 {
-                    TimerView(rest_timer: active_superset_info.rest_timer)
+                    print("is complete changed to \(newValue)")
+                    UpdateSuperset()
                 }
             }
-            .onChange(of: current_workout.is_showing_superset_settings, { oldValue, newValue in
-                print("is showing settings from: \(oldValue) to \(newValue)")
-                withAnimation {
-                    is_showing_superset_settings = true
-                }
-            })
-            .sheet(isPresented: $is_showing_superset_settings, content: {
-                SupersetSettingsSheetView()
-            })
+        }
+    }
+    
+    private func UpdateSuperset()
+    {
+        if (current_workout.UpdateSuperset())
+        {
+            if (settings.rest_between_supersets)
+            {
+                is_showing_timer = true
+            }
+        } else {
+            if (settings.rest_between_sets)
+            {
+                is_showing_timer = true
+            }
+        }
     }
 }
 

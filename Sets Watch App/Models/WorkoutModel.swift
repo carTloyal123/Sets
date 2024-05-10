@@ -186,6 +186,7 @@ extension Array {
     
     func UpdateSuperset() -> Bool
     {
+        print("Updating super set \(self.name)")
         if let current_ss = self.active_superset
         {
             current_ss.MarkNextSetComplete()

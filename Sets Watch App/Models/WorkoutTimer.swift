@@ -15,6 +15,7 @@ import UserNotifications
     var is_complete: Bool = false
     var is_running: Bool = false
     var end_date: Date = Date()
+    var callback: (() -> Void)? = nil
     private var timer: Timer?
     
     private enum CodingKeys: String, CodingKey {
@@ -49,6 +50,12 @@ import UserNotifications
         self.time_remaining = (total_time_in_seconds)
         self.default_time_in_seconds = (total_time_in_seconds)
     }
+    
+    func SetCallback(for new_callback: @escaping (() -> Void))
+    {
+        self.callback = nil
+        self.callback = new_callback
+    }
 
     func start() {
         print("should start timer")
@@ -57,19 +64,27 @@ import UserNotifications
         if self.timer == nil
         {
             let remaining = self.time_remaining < self.default_time_in_seconds ? self.time_remaining : self.default_time_in_seconds
+            print("Creating new timer! remaining: \(remaining)")
+            if (remaining.isEqual(to: 0.0))
+            {
+                // dont setup timer, we dont need it I dont think
+                print("not starting timer for no time remaining")
+                return
+            }
             self.end_date = Date.now.addingTimeInterval(remaining)
             self.is_running = true
-            print("Creating new timer!")
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
                 
                 let new_time_remaining = self.end_date.timeIntervalSinceNow.rounded(.up)
-                self.time_remaining = new_time_remaining < 0 ? TimeInterval(0) : new_time_remaining
+                print("time remaining: \(new_time_remaining)")
+                self.time_remaining = new_time_remaining < 0 ? 0 : new_time_remaining
                 
                 if self.time_remaining < 1 {
-                    self.time_remaining = TimeInterval(0)
+                    self.time_remaining = 0
                     self.stopTimer()
                     self.is_complete = true
+                    self.callback?()
                 }
 
             }

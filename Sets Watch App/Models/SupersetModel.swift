@@ -64,8 +64,24 @@ import Combine
     {
         let complete_exercise_count = exercise_list.filter { $0.is_complete }.count
         self.exercises_complete = complete_exercise_count
-        self.is_ss_complete = complete_exercise_count == exercise_list.count
+        
+        // TODO: only mark ss complete if final timer is done as well
+        
+        let is_last_set_complete = complete_exercise_count == exercise_list.count
+        if (is_last_set_complete)
+        {
+            // send a callback to the rest timer so it can mark this ss complete when done
+            self.rest_timer.SetCallback {
+                self.MarkComplete()
+            }
+        }
         return complete_exercise_count
+    }
+    
+    func MarkComplete()
+    {
+        print("Marking \(self.name) complete!")
+        self.is_ss_complete = true
     }
     
     func Reset()
