@@ -42,7 +42,9 @@ struct EntryLayerView: View {
                 }
                 
                 Button {
-                    is_showing_welcome.toggle()
+                    withAnimation {
+                        is_showing_welcome = true
+                    }
                 } label: {
                     Text("Show Welcome")
                 }
@@ -50,13 +52,24 @@ struct EntryLayerView: View {
             .navigationTitle("Sets")
         }
         .onAppear(perform: {
-            print("Will show welcome: \(settings_controller.should_show_welcome)")
-            is_showing_welcome = settings_controller.should_show_welcome
-            settings_controller.should_show_welcome = false
+            print("onappear")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                ShowWelcome()
+                print("fired")
+            }
         })
         .sheet(isPresented: $is_showing_welcome, content: {
             WelcomeView()
         })
+    }
+    
+    private func ShowWelcome()
+    {
+        print("Will show welcome: \(settings_controller.should_show_welcome)")
+        withAnimation {
+            is_showing_welcome = settings_controller.should_show_welcome
+            settings_controller.should_show_welcome = false
+        }
     }
 }
 
