@@ -62,12 +62,16 @@ import UserNotifications
             print("Creating new timer!")
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
-                self.time_remaining = self.end_date.timeIntervalSinceNow.rounded(.up)
+                
+                let new_time_remaining = self.end_date.timeIntervalSinceNow.rounded(.up)
+                self.time_remaining = new_time_remaining < 0 ? TimeInterval(0) : new_time_remaining
+                
                 if self.time_remaining < 1 {
                     self.time_remaining = TimeInterval(0)
                     self.stopTimer()
                     self.is_complete = true
                 }
+
             }
             
             if let current_timer = self.timer
