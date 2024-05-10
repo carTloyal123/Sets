@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WorkoutListView: View {
-    @Environment(CentralStorage.self) private var app_storage
+    @Environment(CentralStorage.self) private var app_storage: CentralStorage    
     var body: some View {
         NavigationStack
         {
