@@ -28,6 +28,7 @@ extension Array {
     var active_superset: Superset?
     var active_superset_idx: Int = 0
     var elapsed_time: TimeInterval = TimeInterval()
+    var is_showing_superset_settings: Bool = false
     private var workout_timer: Timer?
     
     private enum CodingKeys: String, CodingKey {

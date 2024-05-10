@@ -10,7 +10,6 @@ import UIKit
 
 struct SingleSupersetView: View {
     @Environment(Workout.self) var current_workout: Workout
-    @State private var is_showing_settings_sheet: Bool = false
     var active_ss: Superset
 
     var body: some View {
@@ -29,8 +28,7 @@ struct SingleSupersetView: View {
                     .frame(width: 24, height: 24)
                     .foregroundColor(.secondary)
                     .onTapGesture {
-                        print("Settings Tapped! \(self.is_showing_settings_sheet)")
-                        self.is_showing_settings_sheet.toggle()
+                        ToggleSettings()
                     }
             }
 
@@ -62,9 +60,6 @@ struct SingleSupersetView: View {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(active_ss.color)
         })
-        .sheet(isPresented: $is_showing_settings_sheet, content: {
-            SupersetSettingsSheetView(isPresented: $is_showing_settings_sheet)
-        })
     }
     
     func NextSuperset()
@@ -72,7 +67,6 @@ struct SingleSupersetView: View {
         withAnimation {
             current_workout.NextSuperset()
         }
-
     }
     
     func PreviousSuperset()
@@ -80,7 +74,13 @@ struct SingleSupersetView: View {
         withAnimation {
             current_workout.PreviousSuperset()
         }
-        
+    }
+    
+    func ToggleSettings()
+    {
+        withAnimation {
+            current_workout.is_showing_superset_settings.toggle()
+        }
     }
 }
 

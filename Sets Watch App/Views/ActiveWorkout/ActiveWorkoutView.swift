@@ -12,6 +12,7 @@ struct ActiveWorkoutView: View {
     @EnvironmentObject var settings: SettingsController
     @Environment(Workout.self) var current_workout
     @State private var is_showing_timer: Bool = false
+    @State private var is_showing_superset_settings: Bool = false
         
     var body: some View {
         ScrollView(.vertical)
@@ -65,6 +66,15 @@ struct ActiveWorkoutView: View {
                     TimerView(rest_timer: active_superset_info.rest_timer)
                 }
             }
+            .onChange(of: current_workout.is_showing_superset_settings, { oldValue, newValue in
+                print("is showing settings from: \(oldValue) to \(newValue)")
+                withAnimation {
+                    is_showing_superset_settings = true
+                }
+            })
+            .sheet(isPresented: $is_showing_superset_settings, content: {
+                SupersetSettingsSheetView()
+            })
     }
 }
 

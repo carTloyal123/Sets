@@ -9,48 +9,25 @@ import SwiftUI
 
 struct SupersetSettingsSheetView: View {
     @Environment(Workout.self) var current_workout: Workout
-    @Binding var isPresented: Bool
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ScrollView {
             Button("Complete Superset") {
                 // Perform action for Option 1
                 current_workout.active_superset?.Complete()
-                isPresented = false // Dismiss the modal sheet
+                dismiss() // Dismiss the modal sheet
             }
             
             Button("Reset Superset") {
                 // Perform action for Option 2
                 current_workout.active_superset?.Reset()
-                isPresented = false // Dismiss the modal sheet
+                dismiss() // Dismiss the modal sheet
             }
-            
-            HStack
-            {
-                Button(action: {
-                    print("Back")
-                    current_workout.PreviousSuperset()
-                    isPresented = false
-                }, label: {
-                    Text("Back")
-                })
-                
-                Spacer()
-                Button {
-                    print("Next")
-                    current_workout.NextSuperset()
-                    isPresented = false
-                } label: {
-                    Text("Next")
-                }
-
-            }
-            .padding()
-            .foregroundColor(.red)
-            
+            Divider()
             Text("Workout Time: " + Utils.timeString(current_workout.elapsed_time))
 
-        }.navigationTitle("Superset Options")
+        }.navigationTitle("\(current_workout.active_superset?.name ?? "Superset") Opts")
     }
 }
 
@@ -59,6 +36,6 @@ struct SupersetSettingsSheetView: View {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetExampleStrengthWorkout()
     example_workout.Start()
-    return SupersetSettingsSheetView(isPresented: $is_showing)
+    return SupersetSettingsSheetView()
         .environment(example_workout)
 }
