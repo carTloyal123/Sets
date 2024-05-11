@@ -64,26 +64,22 @@ struct ActiveWorkoutView: View {
         .sheet(isPresented: $is_showing_superset_settings, content: {
             SupersetSettingsSheetView()
         })
-//        if let current_ss = current_workout.active_superset
-//        {
-//            EmptyView()
-//                .onChange(of: current_ss.is_ss_complete) { oldValue, newValue in
-//                    current_workout.NextSuperset()
-//                }
-//        }
     }
     
     private func UpdateSuperset()
     {
-        if (current_workout.UpdateSuperset())
-        {
-            if (settings.rest_between_supersets)
+        withAnimation {
+            if (current_workout.UpdateSuperset())
             {
-                is_showing_timer = true
-            }
-            if (settings.rest_between_sets)
-            {
-                is_showing_timer = true
+                if (settings.rest_between_supersets)
+                {
+                    is_showing_timer = true
+                }
+            } else {
+                if (settings.rest_between_sets)
+                {
+                    is_showing_timer = true
+                }
             }
         }
     }
