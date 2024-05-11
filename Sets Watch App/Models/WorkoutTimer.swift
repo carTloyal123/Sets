@@ -58,8 +58,7 @@ import UserNotifications
     }
 
     func start() {
-        print("should start timer")
-        
+        is_complete = false
         // Set end date of timer so we always know our end point
         if self.timer == nil
         {
@@ -77,16 +76,14 @@ import UserNotifications
                 guard let self = self else { return }
                 
                 let new_time_remaining = self.end_date.timeIntervalSinceNow.rounded(.up)
-                print("time remaining: \(new_time_remaining)")
                 self.time_remaining = new_time_remaining < 0 ? 0 : new_time_remaining
                 
                 if self.time_remaining < 1 {
                     self.time_remaining = 0
                     self.stopTimer()
-                    self.is_complete = true
                     self.callback?()
+                    self.is_complete = true
                 }
-
             }
             
             if let current_timer = self.timer
@@ -97,7 +94,6 @@ import UserNotifications
         } else {
             print("Timer should already exist!")
         }
-        print("THIS IS GOOD")
     }
 
     func stop() {
@@ -115,6 +111,7 @@ import UserNotifications
     {
         stop()
         ResetRemainingTime()
+        self.is_complete = false
         start()
     }
     

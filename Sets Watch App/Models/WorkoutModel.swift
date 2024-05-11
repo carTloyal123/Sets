@@ -158,53 +158,21 @@ extension Array {
         }
     }
     
-    func UpdateSuperSetIndex(index: Int)
-    {
-        print("Getting next SS")
-        var new_idx = index
-        if (new_idx > (self.supersets.count - 1))
-        {
-            new_idx = self.supersets.count - 1
-        }
-        
-        if (new_idx < 0)
-        {
-            new_idx = 0
-        }
-        
-        if let new_ss = self.supersets[safe: new_idx]
-        {
-            print("Got superset: \(new_ss.name)")
-            self.active_superset = new_ss
-            self.active_superset_idx = new_idx
-        } else {
-            print("Unable to get next ss at idx: \(new_idx)")
-            self.active_superset = self.supersets.first
-            self.active_superset_idx = 0
-        }
-    }
-    
     func UpdateSuperset() -> Bool
     {
+        // this should set the current set complete, and activate the timer for the set
         print("Updating super set \(self.name)")
         if let current_ss = self.active_superset
         {
             current_ss.MarkNextSetComplete()
-            if (current_ss.is_ss_complete)
+            // check if this is the last set in superset, if so pass to timer callback for update, otherwise proceed as normal
+            
+            if current_ss.is_ss_complete
             {
-                // get new super set
-                print("SS Complete, getting from store!")
-                if let new_ss = self.supersets[safe: self.active_superset_idx + 1]
-                {
-                    self.active_superset = new_ss
-                    self.active_superset_idx = self.active_superset_idx + 1
-                } else {
-                    self.active_superset = self.supersets.first
-                    self.active_superset_idx = 0
-                }
-                if let new_active_ss = self.active_superset
-                {
-                    new_active_ss.rest_timer.reset()
+                // pass update to timer, otherwise normal
+                print("Sending superset update to timer!")
+                current_ss.rest_timer.SetCallback {
+                    self.NextSuperset()
                 }
                 return true
             } else {
@@ -216,6 +184,32 @@ extension Array {
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
             return false
+        }
+    }
+    
+    func UpdateSuperSetIndex(index: Int)
+    {
+        print("Getting next SS")
+        var new_idx = index
+        if (new_idx > (self.supersets.count - 1))
+        {
+            new_idx = self.supersets.count - 1
+        }
+
+        if (new_idx < 0)
+        {
+            new_idx = 0
+        }
+
+        if let new_ss = self.supersets[safe: new_idx]
+        {
+            print("Got superset: \(new_ss.name)")
+            self.active_superset = new_ss
+            self.active_superset_idx = new_idx
+        } else {
+            print("Unable to get next ss at idx: \(new_idx)")
+            self.active_superset = self.supersets.first
+            self.active_superset_idx = 0
         }
     }
 }
