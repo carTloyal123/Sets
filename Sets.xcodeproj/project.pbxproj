@@ -41,6 +41,8 @@
 		33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */; };
 		33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */; };
 		33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */; };
+		339798F72BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */; };
+		339798F92BF05DFA0009D4CA /* SupersetOptionsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */; };
 		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
 		33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */; };
 		33B9C2B22BED8BF80056E45F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */; };
@@ -126,6 +128,8 @@
 		33831C022BE3D70400C3D3A4 /* Sets Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sets Watch App.entitlements"; sourceTree = "<group>"; };
 		33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkButtonStyle.swift; sourceTree = "<group>"; };
 		33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsNotificationDelegate.swift; sourceTree = "<group>"; };
+		339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutSupersetTabView.swift; sourceTree = "<group>"; };
+		339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetOptionsSheetView.swift; sourceTree = "<group>"; };
 		33A5E28B2BD976EB009EC780 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Sets-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSupersetScrollView.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 			children = (
 				330361F82BD893F90014CD3C /* ActiveWorkoutView.swift */,
 				33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */,
+				339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */,
+				339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -515,7 +521,9 @@
 				33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */,
 				3335032F2BD42D090068076C /* ExampleData.swift in Sources */,
 				3357F2582BD9656E0037D35C /* Utils.swift in Sources */,
+				339798F72BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift in Sources */,
 				333503252BD4270D0068076C /* HelperModels.swift in Sources */,
+				339798F92BF05DFA0009D4CA /* SupersetOptionsSheetView.swift in Sources */,
 				332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */,
 				333503352BD434C20068076C /* ExerciseSetCheckButtonView.swift in Sources */,
 				33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */,

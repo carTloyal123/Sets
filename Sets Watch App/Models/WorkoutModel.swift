@@ -29,6 +29,8 @@ extension Array {
     var active_superset_idx: Int = 0
     var elapsed_time: TimeInterval = TimeInterval()
     var is_showing_superset_settings: Bool = false
+    var is_showing_superset_overview: Bool = false
+
     private var workout_timer: Timer?
     
     private enum CodingKeys: String, CodingKey {
@@ -210,6 +212,22 @@ extension Array {
             print("Unable to get next ss at idx: \(new_idx)")
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
+        }
+    }
+    
+    func UpdateSuperSet(for uuid: UUID)
+    {
+        // find which exercise has matching uuid otherwise stay as is
+        var ss_idx = 0
+        for ss in supersets {
+            if (ss.id == uuid)
+            {
+                active_superset = ss
+                active_superset_idx = ss_idx
+                print("Set superset by UUID to: \(ss.name)")
+                return
+            }
+            ss_idx += 1
         }
     }
 }

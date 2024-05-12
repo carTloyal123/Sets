@@ -145,6 +145,7 @@ class ExampleData {
         superset_three.AddExercise(exercise: five_exercise)
         
         let workout = Workout(name: "Strength Workout", exercises: [warmup_one, one_exercise, two_exercise, three_exercise, four_exercise], supersets: [superset_warmup, superset_one, superset_three, superset_two], created_at: Date.now, completed_at: Date())
+        workout.active_superset = workout.supersets.first!
         
         return workout
     }

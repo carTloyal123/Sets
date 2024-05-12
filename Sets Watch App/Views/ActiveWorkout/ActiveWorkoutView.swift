@@ -13,11 +13,14 @@ struct ActiveWorkoutView: View {
     @Environment(Workout.self) var current_workout
     @State private var is_showing_timer: Bool = false
     @State private var is_showing_superset_settings: Bool = false
-    
+    @State private var is_showing_superset_options: Bool = false
+
     var body: some View {
         ScrollView(.vertical)
         {
             ActiveSupersetScrollView()
+//            ActiveWorkoutSupersetTabView()
+//                .containerRelativeFrame(.vertical)
             Spacer()
             HStack {
                 Button(action: {
@@ -49,12 +52,16 @@ struct ActiveWorkoutView: View {
                 })
             }
         }
-        .sheet(isPresented: $is_showing_timer) {
-            if let active_superset_info = current_workout.active_superset
-            {
-                TimerView(rest_timer: active_superset_info.rest_timer)
+        .onChange(of: current_workout.is_showing_superset_overview, { oldValue, newValue in
+            print("is showing overview from: \(oldValue) to \(newValue)")
+            withAnimation {
+                is_showing_superset_options = true
             }
-        }
+        })
+        .sheet(isPresented: $is_showing_superset_options, content: {
+            SupersetOptionsSheetView()
+        })
+        
         .onChange(of: current_workout.is_showing_superset_settings, { oldValue, newValue in
             print("is showing settings from: \(oldValue) to \(newValue)")
             withAnimation {
@@ -64,6 +71,13 @@ struct ActiveWorkoutView: View {
         .sheet(isPresented: $is_showing_superset_settings, content: {
             SupersetSettingsSheetView()
         })
+        
+        .sheet(isPresented: $is_showing_timer) {
+            if let active_superset_info = current_workout.active_superset
+            {
+                TimerView(rest_timer: active_superset_info.rest_timer)
+            }
+        }
     }
     
     private func UpdateSuperset()
