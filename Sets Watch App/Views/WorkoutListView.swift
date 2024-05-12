@@ -20,11 +20,6 @@ struct WorkoutListView: View {
                     Text(workout.name)
                 }
             }
-            NavigationLink {
-                SignInWithAppleView()
-            } label: {
-                Text("Account")
-            }
         
             Button(role: .destructive) {
                 dismiss()

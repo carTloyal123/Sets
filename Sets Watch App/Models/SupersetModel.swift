@@ -16,10 +16,9 @@ import Combine
     
     var name: String = "ss1"
     var exercise_list = [Exercise]()
-    var complete_exercise_list: [Exercise] = []
-    var exercises_complete: Int = 0
+    var exercises_complete: Int { exercise_list.filter { e in e.is_complete }.count}
     var rest_timer: WorkoutTimer
-    var is_ss_complete: Bool = false
+    var is_ss_complete: Bool { exercises_complete == exercise_list.count }
     var color: Color
     var id = UUID()
     private var cancellables = Set<AnyCancellable>()
@@ -27,14 +26,11 @@ import Combine
     private enum CodingKeys: String, CodingKey {
         case _name = "name"
         case _exercise_list = "exercise_list"
-        case _complete_exercise_list = "complete_exercise_list"
-        case _exercises_complete = "exercises_complete"
         case _rest_timer = "rest_timer"
         case _color = "color"
         case _id = "id"
     }
 
-    
     init(name: String ) {
         self.name = name
         self.color = Utils.GetRandomColor()
@@ -57,22 +53,12 @@ import Combine
         for exercise in exercise_list {
             exercise.MarkNextSetComplete(is: true)
         }
-        self.exercises_complete = CheckCompleteExercises()
-    }
-    
-    func CheckCompleteExercises() -> Int
-    {
-        let complete_exercise_count = exercise_list.filter { $0.is_complete }.count
-        self.exercises_complete = complete_exercise_count
-        self.is_ss_complete = complete_exercise_count == exercise_list.count
-        return complete_exercise_count
+        
+        self.rest_timer.reset()
     }
     
     func Reset()
     {
-        self.is_ss_complete = false
-        self.complete_exercise_list.removeAll()
-        self.exercises_complete = 0
         for exercise in exercise_list {
             exercise.Reset()
         }
@@ -80,9 +66,6 @@ import Combine
     
     func Complete()
     {
-        self.is_ss_complete = true
-        self.complete_exercise_list = self.exercise_list
-        self.exercises_complete = self.exercise_list.count
         for exercise in exercise_list {
             exercise.Complete()
         }

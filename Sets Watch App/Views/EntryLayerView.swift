@@ -41,6 +41,18 @@ struct EntryLayerView: View {
                     }
                 }
                 
+                NavigationLink {
+                    SignInWithAppleView()
+                        .navigationBarTitle("Account")
+                } label: {
+                    HStack
+                    {
+                        Text("Account")
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                    }
+                }
+                
                 Button {
                     withAnimation {
                         is_showing_welcome = true
@@ -52,10 +64,9 @@ struct EntryLayerView: View {
             .navigationTitle("Sets")
         }
         .onAppear(perform: {
-            print("onappear")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 ShowWelcome()
-                print("fired")
+                print("fired welcome timer")
             }
         })
         .sheet(isPresented: $is_showing_welcome, content: {

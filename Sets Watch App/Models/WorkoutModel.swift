@@ -29,6 +29,8 @@ extension Array {
     var active_superset_idx: Int = 0
     var elapsed_time: TimeInterval = TimeInterval()
     var is_showing_superset_settings: Bool = false
+    var is_showing_superset_overview: Bool = false
+
     private var workout_timer: Timer?
     
     private enum CodingKeys: String, CodingKey {
@@ -158,6 +160,35 @@ extension Array {
         }
     }
     
+    func UpdateSuperset() -> Bool
+    {
+        // this should set the current set complete, and activate the timer for the set
+        print("Updating super set \(self.name)")
+        if let current_ss = self.active_superset
+        {
+            current_ss.MarkNextSetComplete()
+            // check if this is the last set in superset, if so pass to timer callback for update, otherwise proceed as normal
+            
+            if current_ss.is_ss_complete
+            {
+                // pass update to timer, otherwise normal
+                print("Sending superset update to timer!")
+                current_ss.rest_timer.SetCallback {
+                    self.NextSuperset()
+                }
+                return true
+            } else {
+                current_ss.rest_timer.reset()
+                return false
+            }
+        } else {
+            print("SS not active, getting from store!")
+            self.active_superset = self.supersets.first
+            self.active_superset_idx = 0
+            return false
+        }
+    }
+    
     func UpdateSuperSetIndex(index: Int)
     {
         print("Getting next SS")
@@ -166,12 +197,12 @@ extension Array {
         {
             new_idx = self.supersets.count - 1
         }
-        
+
         if (new_idx < 0)
         {
             new_idx = 0
         }
-        
+
         if let new_ss = self.supersets[safe: new_idx]
         {
             print("Got superset: \(new_ss.name)")
@@ -184,37 +215,19 @@ extension Array {
         }
     }
     
-    func UpdateSuperset() -> Bool
+    func UpdateSuperSet(for uuid: UUID)
     {
-        if let current_ss = self.active_superset
-        {
-            current_ss.MarkNextSetComplete()
-            if (current_ss.is_ss_complete)
+        // find which exercise has matching uuid otherwise stay as is
+        var ss_idx = 0
+        for ss in supersets {
+            if (ss.id == uuid)
             {
-                // get new super set
-                print("SS Complete, getting from store!")
-                if let new_ss = self.supersets[safe: self.active_superset_idx + 1]
-                {
-                    self.active_superset = new_ss
-                    self.active_superset_idx = self.active_superset_idx + 1
-                } else {
-                    self.active_superset = self.supersets.first
-                    self.active_superset_idx = 0
-                }
-                if let new_active_ss = self.active_superset
-                {
-                    new_active_ss.rest_timer.reset()
-                }
-                return true
-            } else {
-                current_ss.rest_timer.reset()
-                return false
+                active_superset = ss
+                active_superset_idx = ss_idx
+                print("Set superset by UUID to: \(ss.name)")
+                return
             }
-        } else {
-            print("SS not active, getting from store!")
-            self.active_superset = self.supersets.first
-            self.active_superset_idx = 0
-            return false
+            ss_idx += 1
         }
     }
 }
