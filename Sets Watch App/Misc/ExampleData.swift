@@ -149,4 +149,18 @@ class ExampleData {
         
         return workout
     }
+    
+    func GenerateExampleFitnessDatabase() -> FitnessDatabase {
+        var exercises = [
+            Exercise(name: "Push-ups"),
+            Exercise(name: "Pull-ups"),
+            Exercise(name: "Squats"),
+            Exercise(name: "Bench Press")
+        ]
+        
+        for i in 1...100 {
+            exercises.append(Exercise(name: "Exercise \(i)"))
+        }
+        return FitnessDatabase(with: exercises)
+    }
 }
