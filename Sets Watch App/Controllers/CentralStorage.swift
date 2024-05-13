@@ -66,6 +66,7 @@ import SwiftUI
             let archiveURL = documentsDirectory.appendingPathComponent("stored_workouts.json")
             do {
                 try encoded.write(to: archiveURL)
+                print("saved workouts to stored_workouts.json success")
             } catch {
                 print("Failed to save data to file: \(error)")
             }

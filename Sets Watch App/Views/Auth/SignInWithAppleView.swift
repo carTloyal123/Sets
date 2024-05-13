@@ -38,7 +38,6 @@ struct SignInWithAppleView: View {
                     }
                 }
             })
-            .navigationTitle("Setup")
         }
         
         private func handleSuccessfulLogin(with authorization: ASAuthorization) {
