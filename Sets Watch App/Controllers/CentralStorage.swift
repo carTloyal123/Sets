@@ -12,6 +12,11 @@ import SwiftUI
     var workouts: [Workout] = []
     var in_progress_workout: Workout = Workout(name: "in_progress")
     
+    private enum CodingKeys: String, CodingKey
+    {
+        case _workouts = "workouts"
+    }
+    
     init()
     {
         Task

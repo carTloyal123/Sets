@@ -54,6 +54,7 @@
 		33B9C2B22BED8BF80056E45F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */; };
 		33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B32BED8C060056E45F /* WelcomeView.swift */; };
 		33B9C2B82BED92430056E45F /* EntryLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B72BED92430056E45F /* EntryLayerView.swift */; };
+		33C73F322BF25AB100148110 /* SetsAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C73F312BF25AB100148110 /* SetsAssets.xcassets */; };
 		33CB45762BDE01D8000390CB /* ExerciseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +149,7 @@
 		33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		33B9C2B32BED8C060056E45F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		33B9C2B72BED92430056E45F /* EntryLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLayerView.swift; sourceTree = "<group>"; };
+		33C73F312BF25AB100148110 /* SetsAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SetsAssets.xcassets; sourceTree = "<group>"; };
 		33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,6 +257,7 @@
 				3335032D2BD42CF50068076C /* Misc */,
 				333502F42BD425180068076C /* Assets.xcassets */,
 				333502F62BD425180068076C /* Preview Content */,
+				33C73F312BF25AB100148110 /* SetsAssets.xcassets */,
 			);
 			path = "Sets Watch App";
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 			files = (
 				333502F82BD425180068076C /* Preview Assets.xcassets in Resources */,
 				333502F52BD425180068076C /* Assets.xcassets in Resources */,
+				33C73F322BF25AB100148110 /* SetsAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
