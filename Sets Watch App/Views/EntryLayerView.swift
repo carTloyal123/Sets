@@ -77,10 +77,14 @@ struct EntryLayerView: View {
     private func ShowWelcome()
     {
         print("Will show welcome: \(settings_controller.should_show_welcome)")
-        withAnimation {
-            is_showing_welcome = settings_controller.should_show_welcome
-            settings_controller.should_show_welcome = false
+        if (settings_controller.should_show_welcome)
+        {
+            withAnimation {
+                is_showing_welcome.toggle()
+                settings_controller.should_show_welcome = false
+            }
         }
+
     }
 }
 
