@@ -9,25 +9,37 @@ import SwiftUI
 
 struct ExerciseSetView: View {
     var current_set: ExerciseSet
-
+    
     var body: some View {
         HStack
         {
             Text(String(current_set.set_data.set_number))
                 .padding()
-            Text(String(current_set.set_data.exercise_type.toStringLabel ?? ""))
+            Spacer()
+            Text(current_set.GetVolumeLabel())
+
+            switch (current_set.set_data.exercise_type)
+            {
+            case .duration:
+                EmptyView()
+            case .weight:
+                Spacer()
+                Text("\(current_set.GetRepsLabel())")
+            case .none:
+                EmptyView()
+            }
             Spacer()
             ExerciseSetCheckButtonView(current_set: current_set)
-                .frame(maxWidth: 60)
+                .frame(maxWidth: 40)
         }
     }
 }
 
 #Preview {
     let example_data = ExampleData()
-    @State var preview_set1 = example_data.GetExampleExerciseSet(set_number: 1, type: .none)
-    @State var preview_set2 = example_data.GetExampleExerciseSet(set_number: 1, type: .reps(40))
-    @State var preview_set3 = example_data.GetExampleExerciseSet(set_number: 1, type: .weight(600))
+    @State var preview_set1 = example_data.GetExampleExerciseSet(set_number: 1, type: .none, reps: 100, volume: 23)
+    @State var preview_set2 = example_data.GetExampleExerciseSet(set_number: 1, type: .duration, reps: 100, volume: 23)
+    @State var preview_set3 = example_data.GetExampleExerciseSet(set_number: 1, type: .weight, reps: 100, volume: 23)
 
     return ScrollView {
         ExerciseSetView(current_set: preview_set1)

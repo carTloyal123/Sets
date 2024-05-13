@@ -31,4 +31,14 @@ class Utils
             return String(format: "%02d:%02d", minutes, seconds)
         }
     }
+    
+    static func GetRange(start: Int, count: Int, interval: Int) -> [Int]
+    {
+        var output: [Int] = []
+        for i in 0..<count
+        {
+            output.append(start + i*interval)
+        }
+        return output
+    }
 }

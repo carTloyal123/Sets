@@ -10,7 +10,7 @@ import Combine
 
 @Observable class Exercise: NSObject, NSCopying, Identifiable, Codable {
     func copy(with zone: NSZone? = nil) -> Any {
-        let copy = Exercise(name: name, sets: sets, exercise_type: exercise_type)
+        let copy = Exercise(name: name, sets: sets, exercise_type: exercise_type, exercise_target_area: exercise_target_area)
         return copy
     }
     
@@ -20,7 +20,8 @@ import Combine
     var sets: [ExerciseSet] = []
     var is_complete: Bool { sets.filter { single_set in single_set.set_data.is_complete == true }.count == sets.count}
     var super_set_tag: Superset?
-    var exercise_type: ExerciseTargetArea = .full_body
+    var exercise_target_area: ExerciseTargetArea = .full_body
+    var exercise_type: ExerciseSetType = .none
     var id = UUID()
     
     static func == (lhs: Exercise, rhs: Exercise) -> Bool {
@@ -33,14 +34,20 @@ import Combine
         case _sets = "sets"
 //        case _super_set_tag = "super_set_tag"
         case _exercise_type = "exercise_type"
+        case _exercise_target_area = "exercise_target_area"
         case _id = "id"
     }
     
-    init(name: String, sets: [ExerciseSet], super_set_tag: Superset? = nil, exercise_type: ExerciseTargetArea) {
+    init(name: String, sets: [ExerciseSet], super_set_tag: Superset? = nil, exercise_type: ExerciseSetType, exercise_target_area: ExerciseTargetArea) {
         self.name = name
         self.sets = sets
         self.super_set_tag = super_set_tag
         self.exercise_type = exercise_type
+        self.exercise_target_area = exercise_target_area
+        for s in sets
+        {
+            s.set_data.exercise_type = exercise_type
+        }
     }
     
     init(name: String)
@@ -50,6 +57,8 @@ import Combine
     
     func AddSet(for exercise_set: ExerciseSet)
     {
+        print("adding new set for id: \(exercise_set.id.uuidString)")
+        exercise_set.set_data.exercise_type = exercise_type
         self.sets.append(exercise_set)
     }
     
