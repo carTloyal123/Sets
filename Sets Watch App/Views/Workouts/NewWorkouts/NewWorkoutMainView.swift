@@ -11,6 +11,7 @@ struct NewWorkoutMainView: View {
     @Environment(CentralStorage.self) private var app_storage: CentralStorage
     @Environment(\.dismiss) private var dismiss
     @State private var new_workout_name: String = ""
+    @State private var show_confirm_cancel: Bool = false
 
     var body: some View {
         List
@@ -28,6 +29,7 @@ struct NewWorkoutMainView: View {
                     {
                         Text("Exercises")
                         Spacer()
+                        Text("\(app_storage.in_progress_workout.exercises.count)")
                         Image(systemName: "chevron.right")
                     }
                 }
@@ -40,6 +42,7 @@ struct NewWorkoutMainView: View {
                     {
                         Text("Supersets")
                         Spacer()
+                        Text("\(app_storage.in_progress_workout.supersets.count)")
                         Image(systemName: "chevron.right")
                     }
                 }
@@ -48,12 +51,7 @@ struct NewWorkoutMainView: View {
             Section
             {
                 Button {
-                    if (!new_workout_name.isEmpty)
-                    {
-                        app_storage.in_progress_workout.name = new_workout_name
-                        app_storage.AddWorkout(for: app_storage.in_progress_workout)
-                        app_storage.in_progress_workout = Workout(name: "")
-                    }
+                    SaveWorkout()
                     dismiss()
                 } label: {
                     HStack
@@ -64,7 +62,13 @@ struct NewWorkoutMainView: View {
                     }
                 }
                 Button(role: .cancel) {
-                    dismiss()
+                    if (!new_workout_name.isEmpty || app_storage.in_progress_workout.supersets.count > 0 || app_storage.in_progress_workout.exercises.count > 0)
+                    {
+                        show_confirm_cancel.toggle()
+                    } else
+                    {
+                        dismiss()
+                    }
                 } label: {
                     HStack
                     {
@@ -74,6 +78,24 @@ struct NewWorkoutMainView: View {
                     }
                 }
             }
+        }
+        .sheet(isPresented: $show_confirm_cancel, content: {
+            ConfirmCancelView {
+                SaveWorkout()
+                dismiss()
+            } discard_action: {
+                dismiss()
+            }
+        })
+    }
+    
+    func SaveWorkout()
+    {
+        if (!new_workout_name.isEmpty)
+        {
+            app_storage.in_progress_workout.name = new_workout_name
+            app_storage.AddWorkout(for: app_storage.in_progress_workout)
+            app_storage.in_progress_workout = Workout(name: "")
         }
     }
 }

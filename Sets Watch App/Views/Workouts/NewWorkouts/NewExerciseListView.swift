@@ -31,7 +31,9 @@ struct NewExerciseListView: View {
             Section
             {
                 Button {
-                    is_showing_exercise_db.toggle()
+                    withAnimation {
+                        is_showing_exercise_db.toggle()
+                    }
                 } label: {
                     Text("Add Exercise")
                 }

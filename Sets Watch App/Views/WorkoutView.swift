@@ -21,13 +21,12 @@ struct WorkoutView: View {
     var body: some View {
         TabView(selection: $tab_selection) {
             WorkoutOverview(tab_selection: $tab_selection)
-                .navigationBarTitle("Overview")
+                .navigationBarTitle(current_workout.name)
                 .tag(Tab.overview)
             
             ActiveWorkoutView()
                 .tag(Tab.workout)
-                .navigationBarTitle(current_workout.name)
-                .navigationBarTitleDisplayMode(.large)
+                .navigationBarTitle("Active Session")
                 .navigationBarBackButtonHidden(true)
         }
         .environment(current_workout)

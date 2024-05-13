@@ -12,6 +12,11 @@ import SwiftUI
     var workouts: [Workout] = []
     var in_progress_workout: Workout = Workout(name: "in_progress")
     
+    private enum CodingKeys: String, CodingKey
+    {
+        case _workouts = "workouts"
+    }
+    
     init()
     {
         Task
@@ -61,18 +66,19 @@ import SwiftUI
     func SaveWorkoutsToDevice()
     {
         let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(workouts) {
-            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let archiveURL = documentsDirectory.appendingPathComponent("stored_workouts.json")
-            do {
-                try encoded.write(to: archiveURL)
-                print("saved workouts to stored_workouts.json success")
-            } catch {
-                print("Failed to save data to file: \(error)")
-            }
+        guard let encoded = try? encoder.encode(workouts) else {
+            print("Unable to encode workouts")
+            return
+        }
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let archiveURL = documentsDirectory.appendingPathComponent("stored_workouts.json")
+        do {
+            try encoded.write(to: archiveURL)
+            print("saved workouts to stored_workouts.json success")
+        } catch {
+            print("Failed to save data to file: \(error)")
         }
     }
-    
     func LoadWorkoutsFromDevice()
     {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

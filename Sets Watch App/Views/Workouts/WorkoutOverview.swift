@@ -15,11 +15,6 @@ struct WorkoutOverview: View {
     var body: some View {
             ScrollView
             {
-                // some view to select your workout
-                Text(current_workout.name)
-                Divider()
-                // check if we have supersets, order based on supers if so
-                
                 ForEach(current_workout.supersets) { single_superset in
                     SupersetView(current_superset: single_superset)
                 }
@@ -58,6 +53,8 @@ struct WorkoutOverview: View {
     @State var tab_selected: Tab = .overview
     return NavigationStack
     {
-        WorkoutOverview(tab_selection: $tab_selected).environment(example_workout)
+        WorkoutOverview(tab_selection: $tab_selected)
+            .navigationTitle(example_workout.name)
+            .environment(example_workout)
     }
 }

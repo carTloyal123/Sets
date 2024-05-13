@@ -37,11 +37,16 @@ struct SupersetCreationView: View {
             
             Section {
                 ForEach(app_storage.in_progress_workout.exercises) { exercise  in
-                    Button(action: {
-                        superset_to_edit.exercise_list.append(exercise)
-                    }, label: {
-                        Text(exercise.name)
-                    })
+                    if (exercise.super_set_tag == nil)
+                    {
+                        Button(action: {
+                            withAnimation {
+                                superset_to_edit.AddExercise(exercise: exercise)
+                            }
+                        }, label: {
+                            Text(exercise.name)
+                        })
+                    }
                 }
             } header: {
                 Text("Workout Exercises")
@@ -76,6 +81,7 @@ struct SupersetCreationView: View {
     @State var current_workout: Workout = ExampleData().GetExampleStrengthWorkout()
     @State var app_storage: CentralStorage = CentralStorage()
     @State var fitness_db: FitnessDatabase = ExampleData().GenerateExampleFitnessDatabase()
+    app_storage.in_progress_workout = current_workout
     
     let example_data = ExampleData()
     app_storage.workouts.append(example_data.GetExampleStrengthWorkout())

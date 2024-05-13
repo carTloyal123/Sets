@@ -10,8 +10,15 @@ import Foundation
 @Observable class FitnessDatabase: Codable
 {
     var name: String = "fitness_database"
-    
     var exercises: [Exercise] = []
+    
+    private enum CodingKeys: String, CodingKey
+    {
+        case _name = "name"
+        case _exercises = "exercises"
+    }
+    
+    init() {}
 
     init(name: String, exercises: [Exercise]) {
         self.name = name
@@ -23,6 +30,4 @@ import Foundation
         self.name = "default_fitness_database"
         self.exercises = exercises
     }
-    
-    init() {}
 }

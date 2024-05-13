@@ -8,7 +8,12 @@
 import Foundation
 import Combine
 
-@Observable class Exercise: Identifiable, Equatable, Hashable, Codable {
+@Observable class Exercise: NSObject, NSCopying, Identifiable, Codable {
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = Exercise(name: name, sets: sets, exercise_type: exercise_type)
+        return copy
+    }
+    
     private var cancellables = Set<AnyCancellable>()
 
     var name: String = "Defaule Exercise"
@@ -26,12 +31,11 @@ import Combine
     {
         case _name = "name"
         case _sets = "sets"
-        case _super_set_tag = "super_set_tag"
+//        case _super_set_tag = "super_set_tag"
         case _exercise_type = "exercise_type"
         case _id = "id"
     }
     
-    init() { }
     init(name: String, sets: [ExerciseSet], super_set_tag: Superset? = nil, exercise_type: ExerciseTargetArea) {
         self.name = name
         self.sets = sets
@@ -42,10 +46,6 @@ import Combine
     init(name: String)
     {
         self.name = name
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
     }
     
     func AddSet(for exercise_set: ExerciseSet)

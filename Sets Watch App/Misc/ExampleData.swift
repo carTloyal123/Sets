@@ -103,6 +103,9 @@ class ExampleData {
         let warmup_set_one = GetExampleExerciseSet(set_number: 0, type: .duration(TimeInterval(60*10)))
         let warmup_one = Exercise(name: "Cycling", sets: [warmup_set_one], exercise_type: .full_body)
         
+        let warmup_two_set_one = GetExampleExerciseSet(set_number: 0, type: .duration(TimeInterval(60*10)))
+        let warmup_two = Exercise(name: "Basketball", sets: [warmup_set_one], exercise_type: .full_body)
+        
         let one_set_one = GetExampleExerciseSet(set_number: 1, type: .weight(135))
         let one_set_two = GetExampleExerciseSet(set_number: 2, type: .weight(155))
         let one_set_three = GetExampleExerciseSet(set_number: 3, type: .weight(185))
@@ -144,7 +147,7 @@ class ExampleData {
         superset_three.AddExercise(exercise: one_exercise)
         superset_three.AddExercise(exercise: five_exercise)
         
-        let workout = Workout(name: "Strength Workout", exercises: [warmup_one, one_exercise, two_exercise, three_exercise, four_exercise], supersets: [superset_warmup, superset_one, superset_three, superset_two], created_at: Date.now, completed_at: Date())
+        let workout = Workout(name: "Strength Workout", exercises: [warmup_one, warmup_two, one_exercise, two_exercise, three_exercise, four_exercise], supersets: [superset_warmup, superset_one, superset_three, superset_two], created_at: Date.now, completed_at: Date())
         workout.active_superset = workout.supersets.first!
         
         return workout
