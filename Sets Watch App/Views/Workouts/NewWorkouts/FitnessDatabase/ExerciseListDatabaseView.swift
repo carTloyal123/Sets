@@ -20,7 +20,6 @@ struct ExerciseListDatabaseView: View {
             {
                 ForEach(fitness_db.exercises) { exercise in
                     Button(action: {
-                        print("selected \(exercise.name)")
                         app_storage.in_progress_workout.AddExercise(exercise: exercise)
                     }, label: {
                         Text(exercise.name)
