@@ -121,6 +121,13 @@ import UserNotifications
     }
     
     func ScheduleTimeBasedNotification() {
+        
+        if (self.time_remaining < 1)
+        {
+            print("not enought time for notification!")
+            return
+        }
+        
         // 1. Request permission to display alerts and play sounds.
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
             if granted {

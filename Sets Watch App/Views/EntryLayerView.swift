@@ -86,14 +86,13 @@ struct EntryLayerView: View {
 
 #Preview {
     @State var settings_controller: SettingsController = SettingsController()
-    @State var current_workout: Workout = ExampleData().GetExampleStrengthWorkout()
     @State var app_storage: CentralStorage = CentralStorage()
     let example_data = ExampleData()
     app_storage.workouts.append(example_data.GetExampleStrengthWorkout())
     app_storage.workouts.append(example_data.GetExampleWorkout())
     app_storage.workouts.append(example_data.GetSupersetWorkout())
-
+    
     return EntryLayerView()
         .environment(app_storage)
         .environmentObject(settings_controller)
-        .environment(current_workout)}
+}
