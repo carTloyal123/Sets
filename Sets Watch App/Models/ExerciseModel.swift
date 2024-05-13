@@ -18,6 +18,8 @@ import Combine
 
     var name: String = "Defaule Exercise"
     var sets: [ExerciseSet] = []
+    var warmup_set_count: Int { sets.filter { single_set in single_set.set_data.set_number < 1 }.count }
+    var working_set_count: Int { sets.filter { single_set in single_set.set_data.set_number > 0 }.count }
     var is_complete: Bool { sets.filter { single_set in single_set.set_data.is_complete == true }.count == sets.count}
     var super_set_tag: Superset?
     var exercise_target_area: ExerciseTargetArea = .full_body
@@ -55,11 +57,49 @@ import Combine
         self.name = name
     }
     
+    func ChangeSetType(set_type: ExerciseSetType)
+    {
+        self.exercise_type = set_type
+        for set in sets {
+            set.set_data.exercise_type = set_type
+        }
+    }
+    
     func AddSet(for exercise_set: ExerciseSet)
     {
         print("adding new set for id: \(exercise_set.id.uuidString)")
+        if (exercise_set.set_data.set_number > 0)
+        {
+            exercise_set.set_data.set_number = self.working_set_count + 1
+        }
         exercise_set.set_data.exercise_type = exercise_type
         self.sets.append(exercise_set)
+    }
+    
+    func RemoveSet(for index_set: IndexSet)
+    {
+        print("removing sets")
+        self.sets.remove(atOffsets: index_set)
+        RecalculateSetNumbers()
+    }
+    
+    func RecalculateSetNumbers()
+    {
+        var warmup_sets: [ExerciseSet] = []
+        var working_sets: [ExerciseSet] = []
+        var idx = 1
+        for set in sets {
+            if (set.set_data.set_number > 0)
+            {
+                set.set_data.set_number = idx
+                idx += 1
+                working_sets.append(set)
+            } else {
+                warmup_sets.append(set)
+            }
+        }
+        warmup_sets.append(contentsOf: working_sets)
+        self.sets = warmup_sets
     }
     
     func MarkNextSetComplete(is complete: Bool)
@@ -92,6 +132,19 @@ import Combine
         for i in 0..<self.sets.count
         {
             self.sets[i].set_data.is_complete = false
+        }
+    }
+    
+    func GetTypeLabel() -> String
+    {
+        switch (exercise_type)
+        {
+        case .weight:
+            return "weight"
+        case .duration:
+            return "duration"
+        case .none:
+            return "none"
         }
     }
 }

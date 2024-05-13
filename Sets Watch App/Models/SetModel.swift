@@ -53,6 +53,16 @@ struct SingleSetData: Identifiable, Codable
         self.set_data = SingleSetData(set_number: set_number, is_complete: is_complete, exercise_type: exercise_type, reps: reps, volume: volume)
     }
     
+    func GetSetNumberLabel() -> String
+    {
+        if (set_data.set_number > 0)
+        {
+            return "\(set_data.set_number)"
+        } else {
+            return "w"
+        }
+    }
+    
     func GetVolumeLabel() -> String
     {
         switch (set_data.exercise_type)

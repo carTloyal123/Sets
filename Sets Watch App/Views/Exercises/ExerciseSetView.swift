@@ -13,7 +13,7 @@ struct ExerciseSetView: View {
     var body: some View {
         HStack
         {
-            Text(String(current_set.set_data.set_number))
+            Text(current_set.GetSetNumberLabel())
                 .padding()
             Spacer()
             Text(current_set.GetVolumeLabel())
@@ -37,8 +37,8 @@ struct ExerciseSetView: View {
 
 #Preview {
     let example_data = ExampleData()
-    @State var preview_set1 = example_data.GetExampleExerciseSet(set_number: 1, type: .none, reps: 100, volume: 23)
-    @State var preview_set2 = example_data.GetExampleExerciseSet(set_number: 1, type: .duration, reps: 100, volume: 23)
+    @State var preview_set1 = example_data.GetExampleExerciseSet(set_number: 0, type: .none, reps: 100, volume: 23)
+    @State var preview_set2 = example_data.GetExampleExerciseSet(set_number: 0, type: .duration, reps: 100, volume: 23)
     @State var preview_set3 = example_data.GetExampleExerciseSet(set_number: 1, type: .weight, reps: 100, volume: 23)
 
     return ScrollView {

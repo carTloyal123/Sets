@@ -10,35 +10,56 @@ import SwiftUI
 struct ExerciseView: View {
     var current_exercise: Exercise
     var body: some View {
-        List
+        Form
         {
-            if let first_set = current_exercise.sets.first
+            List
             {
-                ExerciseHeaderView(current_set: first_set)
-            }
-            ForEach(current_exercise.sets) { exercise_set in
-                NavigationLink {
-                    EditExerciseSetView(exercise_set: exercise_set)
-                } label: {
-                    ExerciseSetView(current_set: exercise_set)
+                if let first_set = current_exercise.sets.first
+                {
+                    NavigationLink {
+                        EditExerciseView(exercise: current_exercise)
+                    } label: {
+                        ExerciseHeaderView(current_set: first_set)
+                    }
                 }
-
+                ForEach(current_exercise.sets) { exercise_set in
+                    NavigationLink {
+                        EditExerciseSetView(current_exercise: current_exercise, exercise_set: exercise_set)
+                    } label: {
+                        ExerciseSetView(current_set: exercise_set)
+                    }
+                }
+                .onDelete(perform: { indexSet in
+                    RemoveSet(for: indexSet)
+                })
             }
             
-            Button {
-                AddNewSet()
-            } label: {
-                HStack
-                {
-                    Spacer()
-                    Image(systemName: "plus")
-                    Spacer()
+            Section {
+                Button {
+                    AddNewSet()
+                } label: {
+                    HStack
+                    {
+                        Spacer()
+                        Image(systemName: "plus")
+                        Spacer()
+                    }
                 }
+            } footer: {
+                Text("Swipe to remove sets")
             }
 
             
         }
+        
         .navigationTitle(current_exercise.name)
+    }
+    
+    func RemoveSet(for index: IndexSet)
+    {
+        withAnimation {
+            current_exercise.RemoveSet(for: index)
+        }
     }
     
     func AddNewSet()
