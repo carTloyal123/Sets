@@ -30,6 +30,6 @@ struct ExerciseSetCheckButtonView: View {
 
 #Preview {
     let example_data = ExampleData()
-    let preview_set = example_data.GetExampleExerciseSet(set_number: 1, type: .reps(10))
+    let preview_set = example_data.GetExampleExerciseSet(set_number: 1, type: .weight, reps: 100, volume: 100)
     return ExerciseSetCheckButtonView(current_set: preview_set)
 }

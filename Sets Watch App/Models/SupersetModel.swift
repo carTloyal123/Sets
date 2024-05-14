@@ -45,6 +45,7 @@ import Combine
     
     func AddExercise(exercise: Exercise)
     {
+        exercise.super_set_tag = self
         self.exercise_list.append(exercise)
     }
     

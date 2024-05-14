@@ -19,6 +19,7 @@ extension Array {
 }
 
 @Observable class Workout: Codable, Identifiable {
+    
     var name: String = "Default Workout"
     var exercises: [Exercise] = []
     var supersets: [Superset] = []
@@ -30,6 +31,7 @@ extension Array {
     var elapsed_time: TimeInterval = TimeInterval()
     var is_showing_superset_settings: Bool = false
     var is_showing_superset_overview: Bool = false
+    var id: UUID = UUID()
 
     private var workout_timer: Timer?
     
@@ -85,7 +87,10 @@ extension Array {
     
     func AddExercise(exercise: Exercise)
     {
-        self.exercises.append(exercise)
+        let new_exercise = exercise.copy() as! Exercise
+        new_exercise.id = UUID()
+        print("adding new exercise to workout \(new_exercise.name) with id: \(new_exercise.id.uuidString)")
+        self.exercises.append(new_exercise)
     }
     
     func AddSuperset(superset: Superset)

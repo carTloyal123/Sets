@@ -8,14 +8,22 @@
 import Foundation
 import Combine
 
-@Observable class Exercise: Identifiable, Equatable, Hashable, Codable {
+@Observable class Exercise: NSObject, NSCopying, Identifiable, Codable {
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = Exercise(name: name, sets: sets, exercise_type: exercise_type, exercise_target_area: exercise_target_area)
+        return copy
+    }
+    
     private var cancellables = Set<AnyCancellable>()
 
     var name: String = "Defaule Exercise"
     var sets: [ExerciseSet] = []
+    var warmup_set_count: Int { sets.filter { single_set in single_set.set_data.set_number < 1 }.count }
+    var working_set_count: Int { sets.filter { single_set in single_set.set_data.set_number > 0 }.count }
     var is_complete: Bool { sets.filter { single_set in single_set.set_data.is_complete == true }.count == sets.count}
     var super_set_tag: Superset?
-    var exercise_type: ExerciseTargetArea = .full_body
+    var exercise_target_area: ExerciseTargetArea = .full_body
+    var exercise_type: ExerciseSetType = .none
     var id = UUID()
     
     static func == (lhs: Exercise, rhs: Exercise) -> Bool {
@@ -26,17 +34,22 @@ import Combine
     {
         case _name = "name"
         case _sets = "sets"
-        case _super_set_tag = "super_set_tag"
+//        case _super_set_tag = "super_set_tag"
         case _exercise_type = "exercise_type"
+        case _exercise_target_area = "exercise_target_area"
         case _id = "id"
     }
     
-    init() { }
-    init(name: String, sets: [ExerciseSet], super_set_tag: Superset? = nil, exercise_type: ExerciseTargetArea) {
+    init(name: String, sets: [ExerciseSet], super_set_tag: Superset? = nil, exercise_type: ExerciseSetType, exercise_target_area: ExerciseTargetArea) {
         self.name = name
         self.sets = sets
         self.super_set_tag = super_set_tag
         self.exercise_type = exercise_type
+        self.exercise_target_area = exercise_target_area
+        for s in sets
+        {
+            s.set_data.exercise_type = exercise_type
+        }
     }
     
     init(name: String)
@@ -44,13 +57,49 @@ import Combine
         self.name = name
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
+    func ChangeSetType(set_type: ExerciseSetType)
+    {
+        self.exercise_type = set_type
+        for set in sets {
+            set.set_data.exercise_type = set_type
+        }
     }
     
     func AddSet(for exercise_set: ExerciseSet)
     {
+        print("adding new set for id: \(exercise_set.id.uuidString)")
+        if (exercise_set.set_data.set_number > 0)
+        {
+            exercise_set.set_data.set_number = self.working_set_count + 1
+        }
+        exercise_set.set_data.exercise_type = exercise_type
         self.sets.append(exercise_set)
+    }
+    
+    func RemoveSet(for index_set: IndexSet)
+    {
+        print("removing sets")
+        self.sets.remove(atOffsets: index_set)
+        RecalculateSetNumbers()
+    }
+    
+    func RecalculateSetNumbers()
+    {
+        var warmup_sets: [ExerciseSet] = []
+        var working_sets: [ExerciseSet] = []
+        var idx = 1
+        for set in sets {
+            if (set.set_data.set_number > 0)
+            {
+                set.set_data.set_number = idx
+                idx += 1
+                working_sets.append(set)
+            } else {
+                warmup_sets.append(set)
+            }
+        }
+        warmup_sets.append(contentsOf: working_sets)
+        self.sets = warmup_sets
     }
     
     func MarkNextSetComplete(is complete: Bool)
@@ -83,6 +132,19 @@ import Combine
         for i in 0..<self.sets.count
         {
             self.sets[i].set_data.is_complete = false
+        }
+    }
+    
+    func GetTypeLabel() -> String
+    {
+        switch (exercise_type)
+        {
+        case .weight:
+            return "weight"
+        case .duration:
+            return "duration"
+        case .none:
+            return "none"
         }
     }
 }

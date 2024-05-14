@@ -77,23 +77,26 @@ struct EntryLayerView: View {
     private func ShowWelcome()
     {
         print("Will show welcome: \(settings_controller.should_show_welcome)")
-        withAnimation {
-            is_showing_welcome = settings_controller.should_show_welcome
-            settings_controller.should_show_welcome = false
+        if (settings_controller.should_show_welcome)
+        {
+            withAnimation {
+                is_showing_welcome.toggle()
+                settings_controller.should_show_welcome = false
+            }
         }
+
     }
 }
 
 #Preview {
     @State var settings_controller: SettingsController = SettingsController()
-    @State var current_workout: Workout = ExampleData().GetExampleStrengthWorkout()
     @State var app_storage: CentralStorage = CentralStorage()
     let example_data = ExampleData()
     app_storage.workouts.append(example_data.GetExampleStrengthWorkout())
     app_storage.workouts.append(example_data.GetExampleWorkout())
     app_storage.workouts.append(example_data.GetSupersetWorkout())
-
+    
     return EntryLayerView()
         .environment(app_storage)
         .environmentObject(settings_controller)
-        .environment(current_workout)}
+}

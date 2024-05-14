@@ -13,14 +13,37 @@ struct WorkoutListView: View {
     
     var body: some View {
         List {
-            ForEach(app_storage.workouts) { workout in
-                NavigationLink {
-                    WorkoutView(current_workout: workout)
-                } label: {
-                    Text(workout.name)
+            Section {
+                ForEach(app_storage.workouts) { workout in
+                    NavigationLink {
+                        WorkoutView(current_workout: workout)
+                    } label: {
+                        Text(workout.name)
+                    }
+                }
+                .onDelete(perform: { indexSet in
+                    print("should delete: \(indexSet)")
+                    for idx in indexSet
+                    {
+                        print("\(idx)")
+                    }
+                    app_storage.RemoveWorkout(for: indexSet)
+                })
+            } header: {
+                EmptyView()
+            }
+
+            NavigationLink {
+                NewWorkoutMainView()
+                    .navigationTitle("Create Workout")
+            } label: {
+                HStack
+                {
+                    Spacer()
+                    Image(systemName: "plus")
+                    Spacer()
                 }
             }
-        
             Button(role: .destructive) {
                 dismiss()
             } label: {
@@ -47,8 +70,8 @@ struct WorkoutListView: View {
 
     return NavigationStack {
         WorkoutListView()
-            .environment(app_storage)
-            .environmentObject(settings_controller)
-            .environment(current_workout)
-    }
+    }            
+    .environmentObject(settings_controller)
+    .environment(app_storage)
+    .environment(current_workout)
 }
