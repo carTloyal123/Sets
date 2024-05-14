@@ -8,36 +8,35 @@
 import SwiftUI
 
 struct EditExerciseView: View {
-    
+    @Environment(\.dismiss) private var dismiss
     var exercise: Exercise
-    @State private var selected_type: ExerciseSetType = .none
+    
     var body: some View {
-        VStack
+        List
         {
-            Text("Current exercise type: \(exercise.GetTypeLabel())")
-            Picker(selection: $selected_type) {
-                ForEach(ExerciseSetType.allCases, id: \.self) { t in
-                    Text(t.rawValue)
+            Section {
+                ForEach(ExerciseSetType.allCases, id: \.self) { c in
+                    Button(action: {
+                        print("Presesd \(c.rawValue)")
+                        exercise.ChangeSetType(set_type: c)
+                        dismiss()
+                    }, label: {
+                        HStack
+                        {
+                            Spacer()
+                            Text("\(c.rawValue.localizedCapitalized)")
+                            if (exercise.exercise_type == c)
+                            {
+                                Image(systemName: "checkmark")
+                            }
+                            Spacer()
+                        }
+                    })
                 }
-            } label: {
-                EmptyView()
+            } header: {
+                Text("Select exercise type:")
             }
-            .frame(minWidth: 120, minHeight: 80)
-            
-            Button {
-                print("save")
-            } label: {
-                Text("Save")
-            }
-
         }
-        .onChange(of: selected_type) { oldValue, newValue in
-            exercise.ChangeSetType(set_type: newValue)
-        }
-        .onAppear(perform: {
-            selected_type = exercise.exercise_type
-        })
-        
     }
 }
 

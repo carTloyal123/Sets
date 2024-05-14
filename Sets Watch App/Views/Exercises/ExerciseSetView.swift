@@ -14,7 +14,7 @@ struct ExerciseSetView: View {
         HStack
         {
             Text(current_set.GetSetNumberLabel())
-                .padding()
+                .frame(width: 25)
             Spacer()
             Text(current_set.GetVolumeLabel())
 
@@ -30,7 +30,7 @@ struct ExerciseSetView: View {
             }
             Spacer()
             ExerciseSetCheckButtonView(current_set: current_set)
-                .frame(maxWidth: 40)
+                .frame(maxWidth: 60)
         }
     }
 }

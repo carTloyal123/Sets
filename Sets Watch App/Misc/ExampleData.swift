@@ -67,13 +67,13 @@ class ExampleData {
     }
     
     func GetExampleExercise(name: String) -> Exercise {
-        let one_set = GetExampleExerciseSet(set_number: 0, type: .weight, reps: 10, volume: 40)
+        let one_set = GetExampleExerciseSet(set_number: 0, type: .weight, reps: 10, volume: 200)
         let two_set = GetExampleExerciseSet(set_number: 1, type: .weight, reps: 10, volume: 40)
         let three_set = GetExampleExerciseSet(set_number: 2, type: .weight, reps: 10, volume: 40)
         let four_set = GetExampleExerciseSet(set_number: 3, type: .weight, reps: 10, volume: 40)
 
         let one_exercise = Exercise(name: name)
-        one_exercise.exercise_type = .weight
+        one_exercise.exercise_type = .duration
         one_exercise.AddSet(for: one_set)
         one_exercise.AddSet(for: two_set)
         one_exercise.AddSet(for: three_set)

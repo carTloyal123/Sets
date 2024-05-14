@@ -18,6 +18,7 @@ struct ExerciseView: View {
                 {
                     NavigationLink {
                         EditExerciseView(exercise: current_exercise)
+                            .navigationTitle("Type")
                     } label: {
                         ExerciseHeaderView(current_set: first_set)
                     }
@@ -31,6 +32,9 @@ struct ExerciseView: View {
                 }
                 .onDelete(perform: { indexSet in
                     RemoveSet(for: indexSet)
+                })
+                .onMove(perform: { indices, newOffset in
+                    print("should move stuff?")
                 })
             }
             
@@ -51,7 +55,6 @@ struct ExerciseView: View {
 
             
         }
-        
         .navigationTitle(current_exercise.name)
     }
     

@@ -15,13 +15,13 @@ struct ExerciseHeaderView: View {
         HStack
         {
             Text("#")
-                .padding()
+                .frame(width: 25)
+            Spacer()
             switch (current_set.set_data.exercise_type)
             {
             case .duration:
                 Text("time")
             case .weight:
-                Spacer()
                 Text("lbs")
                 Spacer()
                 Text("reps")
@@ -33,7 +33,7 @@ struct ExerciseHeaderView: View {
             {
                 Rectangle()
                     .foregroundStyle(.clear)
-                Image(systemName: "checkmark")
+                Image(systemName: "checkmark.circle.fill")
             }
             .frame(maxWidth: 60)
         }

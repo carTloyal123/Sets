@@ -9,12 +9,14 @@ import SwiftUI
 
 struct EditExerciseSetView: View {
     @Environment(\.dismiss) private var dismiss
-    
+    @State private var is_warmup_set: Bool = false
     @State private var selected_volume = 1
     @State private var selected_reps = 1
+    @State private var selected_minute = 0
+    @State private var selected_second = 1
     @State private var volume_range = Utils.GetRange(start: 0, count: 100, interval: 5)
     @State private var reps_range = Utils.GetRange(start: 0, count: 100, interval: 1)
-    @State private var is_warmup_set: Bool = false
+    
     var current_exercise: Exercise
     var exercise_set: ExerciseSet
 
@@ -34,41 +36,16 @@ struct EditExerciseSetView: View {
             .onTapGesture {
                 is_warmup_set.toggle()
             }
-            HStack
+            switch (current_exercise.exercise_type)
             {
-                VStack
-                {
-                    Picker(selection: $selected_volume, label: EmptyView()) {
-                        ForEach(volume_range, id: \.self) { number in
-                            Text("\(number)")
-                        }
-                    }
-                    Text("Volume")
-                        .font(.system(size: 12))
-                        .opacity(0.8)
-                }
-                
-                VStack
-                {
-                    Picker(selection: $selected_reps, label: EmptyView()) {
-                        ForEach(reps_range, id: \.self) { number in
-                            Text("\(number)")
-                        }
-                    }
-                    Text("Reps")
-                        .font(.system(size: 12))
-                        .opacity(0.8)
-                }
+            case .weight:
+                WeightSetPickerView(selected_volume: $selected_volume, selected_reps: $selected_reps, volume_range: $volume_range, reps_range: $reps_range)
+            case .duration:
+                DurationSetPickerView(secondSelection: $selected_second, minuteSelection: $selected_minute)
+            default:
+                EmptyView()
             }
-            .frame(minWidth: 120, minHeight: 80)
-            Button {
-                SaveUpdates()
-            } label: {
-                Text("Save")
-                    .font(.caption)
-            }
-            .scaleEffect(CGSize(width: 0.8, height: 0.8))
-            .frame(height: 35)
+            
         }
         .onAppear(perform: {
             GetValues()
@@ -81,18 +58,104 @@ struct EditExerciseSetView: View {
     
     func SaveUpdates()
     {
-        current_exercise.RecalculateSetNumbers()
         exercise_set.set_data.set_number = is_warmup_set ? 0 : 1
-        exercise_set.set_data.volume = selected_volume
+        
+        switch (current_exercise.exercise_type)
+        {
+        case .weight:
+            exercise_set.set_data.volume = selected_volume
+        case .duration:
+            exercise_set.set_data.volume = selected_second + selected_minute*60
+        default:
+            exercise_set.set_data.volume = selected_volume
+        }        
         exercise_set.set_data.reps = selected_reps
-        dismiss()
+        withAnimation {
+            current_exercise.RecalculateSetNumbers()
+            dismiss()
+        }
     }
     
     func GetValues()
     {
+        selected_second = exercise_set.set_data.volume % 60
+        selected_minute = exercise_set.set_data.volume / 60
         selected_volume = exercise_set.set_data.volume
         selected_reps = exercise_set.set_data.reps
         is_warmup_set = exercise_set.set_data.set_number < 1
+    }
+}
+
+struct DurationSetPickerView: View {
+    @Binding var secondSelection: Int
+    @Binding var minuteSelection: Int
+    
+    static private let maxHours = 120
+    static private let maxMinutes = 60
+    private let hours = [Int](0...Self.maxHours)
+    private let minutes = [Int](0...Self.maxMinutes)
+    
+    var body: some View {
+        HStack {
+            VStack
+            {
+                Picker(selection: $minuteSelection, label: EmptyView()) {
+                    ForEach(hours, id: \.self) { number in
+                        Text("\(number)")
+                    }
+                }
+                Text("Minutes")
+                    .font(.system(size: 12))
+                    .opacity(0.8)
+            }
+
+            VStack
+            {
+                Picker(selection: $secondSelection, label: EmptyView()) {
+                    ForEach(minutes, id: \.self) { number in
+                        Text("\(number)")
+                    }
+                }
+                Text("Seconds")
+                    .font(.system(size: 12))
+                    .opacity(0.8)
+            }
+        }
+    }
+}
+
+struct WeightSetPickerView: View {
+    @Binding var selected_volume: Int
+    @Binding var selected_reps: Int
+    @Binding var volume_range: [Int]
+    @Binding var reps_range: [Int]
+    var body: some View {
+        HStack
+        {
+            VStack
+            {
+                Picker(selection: $selected_volume, label: EmptyView()) {
+                    ForEach(volume_range, id: \.self) { number in
+                        Text("\(number)")
+                    }
+                }
+                Text("Volume")
+                    .font(.system(size: 12))
+                    .opacity(0.8)
+            }
+            
+            VStack
+            {
+                Picker(selection: $selected_reps, label: EmptyView()) {
+                    ForEach(reps_range, id: \.self) { number in
+                        Text("\(number)")
+                    }
+                }
+                Text("Reps")
+                    .font(.system(size: 12))
+                    .opacity(0.8)
+            }
+        }
     }
 }
 
