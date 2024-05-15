@@ -19,23 +19,10 @@ struct ActiveWorkoutView: View {
         ScrollView(.vertical)
         {
             ActiveSupersetScrollView()
-//            ActiveWorkoutSupersetTabView()
-//                .containerRelativeFrame(.vertical)
             Spacer()
             HStack {
                 Button(action: {
-                    if (settings.auto_reset_timer)
-                    {
-                        if let active_superset_info = current_workout.active_superset
-                        {
-                            if (active_superset_info.rest_timer.time_remaining < 0.000001)
-                            {
-                                active_superset_info.rest_timer.stop()
-                                active_superset_info.rest_timer.ResetRemainingTime()
-                            }
-                        }
-                    }
-                    is_showing_timer = true
+                    TimerButtonAction()
                 }, label: {
                     Label(
                         title: { Text("") },
@@ -78,6 +65,22 @@ struct ActiveWorkoutView: View {
                 TimerView(rest_timer: active_superset_info.rest_timer)
             }
         }
+    }
+    
+    private func TimerButtonAction()
+    {
+        if (settings.auto_reset_timer)
+        {
+            if let active_superset_info = current_workout.active_superset
+            {
+                if (active_superset_info.rest_timer.time_remaining < 0.000001)
+                {
+                    active_superset_info.rest_timer.stop()
+                    active_superset_info.rest_timer.ResetRemainingTime()
+                }
+            }
+        }
+        is_showing_timer = true
     }
     
     private func UpdateSuperset()
