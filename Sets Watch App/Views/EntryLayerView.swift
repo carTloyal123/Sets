@@ -10,6 +10,7 @@ import SwiftUI
 struct EntryLayerView: View {
     @EnvironmentObject private var settings_controller: SettingsController
     @State private var is_showing_welcome: Bool = false
+        
     var body: some View {
         NavigationStack
         {

@@ -10,6 +10,7 @@ import UIKit
 
 struct SingleSupersetView: View {
     @Environment(Workout.self) var current_workout: Workout
+    @Environment(\.isLuminanceReduced) private var isLumReduced: Bool
     var active_ss: Superset
 
     var body: some View {
@@ -20,7 +21,15 @@ struct SingleSupersetView: View {
                 Group{
                     Text(active_ss.name)
                     Spacer()
-                    Text(Utils.timeString(active_ss.rest_timer.time_remaining))
+                    VStack
+                    {
+                        Text(GetTimerString())
+                        let c = active_ss.exercise_list.filter( {
+                            return $0.sets.filter { $0.set_data.is_complete }.count == $0.sets.count
+                        }).count
+                        Text("\(c)/\(active_ss.exercise_list.count)")
+                    }
+                    
                 }
                 .onTapGesture {
                     current_workout.is_showing_superset_overview.toggle()
@@ -37,16 +46,6 @@ struct SingleSupersetView: View {
             }
             Group
             {
-                HStack
-                {
-                    Text("Exercises:")
-                    Spacer()
-                    let c = active_ss.exercise_list.filter( {
-                        return $0.sets.filter { $0.set_data.is_complete }.count == $0.sets.count
-                    }).count
-                    Text("\(c)/\(active_ss.exercise_list.count)")
-                }
-
                 // show each exercise and how many sets to go
                 ForEach(active_ss.exercise_list) { single_exercise in
                     if (!single_exercise.is_complete)
@@ -71,6 +70,16 @@ struct SingleSupersetView: View {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundStyle(active_ss.color)
         })
+    }
+    
+    func GetTimerString() -> String
+    {
+        if (isLumReduced)
+        {
+            return "--:--"
+        } else {
+            return Utils.timeString(active_ss.rest_timer.time_remaining)
+        }
     }
     
     func NextSuperset()
