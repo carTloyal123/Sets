@@ -14,40 +14,65 @@ struct ActiveWorkoutView: View {
     @State private var is_showing_timer: Bool = false
     @State private var is_showing_superset_settings: Bool = false
     @State private var is_showing_superset_options: Bool = false
+    
+    
+    var backgroundView: some View {
+        return Group {
+            VStack
+            {
+                Spacer()
 
+            }
+            .ignoresSafeArea()
+        }
+    }
+    
+    var buttonView: some View {
+        return ZStack {
+            VStack(spacing: 0)
+            {
+                Spacer()
+                LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
+                    .frame(height: 10)
+                HStack {
+                    Button(action: {
+                        TimerButtonAction()
+                    }, label: {
+                        VStack
+                        {
+                            Image(systemName: "clock")
+                            if let current_ss = current_workout.active_superset
+                            {
+                                Text(current_ss.rest_timer.is_running ? "\(                            Utils.timeString(current_ss.rest_timer.time_remaining))" : "00:00")
+                                    .font(.footnote)
+                                    .opacity(0.8)
+                            }
+                        }
+                    })
+                    Button(action: {
+                        UpdateSuperset()
+                    }, label: {
+                        Image(systemName: "dumbbell")
+                    })
+                }
+                .background {
+                    Color.black
+                        .ignoresSafeArea()
+                }
+            }
+        }
+        .padding(.bottom, 8)
+        .ignoresSafeArea()
+    }
+    
     var body: some View {
-        VStack {
+        ZStack {
             ScrollView
             {
                 ActiveSupersetScrollView()
             }
-            Spacer()
-            HStack {
-                Button(action: {
-                    TimerButtonAction()
-                }, label: {
-                    VStack
-                    {
-                        Image(systemName: "clock")
-                        if let current_ss = current_workout.active_superset
-                        {
-                            Text(current_ss.rest_timer.is_running ? "\(                            Utils.timeString(current_ss.rest_timer.time_remaining))" : "00:00")
-                                .font(.footnote)
-                                .opacity(0.8)
-                        }
-                    }
-                })
-                Button(action: {
-                    UpdateSuperset()
-                }, label: {
-                    Image(systemName: "dumbbell")
-                })
-            }
-            .frame(maxHeight: 40)
-            Color.clear
-                .frame(height: 10)
+            buttonView
         }
-        .ignoresSafeArea(edges: .bottom)
         .onChange(of: current_workout.is_showing_superset_overview, { oldValue, newValue in
             print("is showing overview from: \(oldValue) to \(newValue)")
             withAnimation {
@@ -57,7 +82,6 @@ struct ActiveWorkoutView: View {
         .sheet(isPresented: $is_showing_superset_options, content: {
             SupersetOptionsSheetView()
         })
-        
         .onChange(of: current_workout.is_showing_superset_settings, { oldValue, newValue in
             print("is showing settings from: \(oldValue) to \(newValue)")
             withAnimation {
@@ -72,6 +96,8 @@ struct ActiveWorkoutView: View {
             if let active_superset_info = current_workout.active_superset
             {
                 TimerView(rest_timer: active_superset_info.rest_timer)
+            } else {
+                Text("No active ss")
             }
         }
     }
@@ -89,7 +115,9 @@ struct ActiveWorkoutView: View {
                 }
             }
         }
-        is_showing_timer = true
+        withAnimation {
+            is_showing_timer = true
+        }
     }
     
     private func UpdateSuperset()
@@ -114,7 +142,19 @@ struct ActiveWorkoutView: View {
 #Preview {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetExampleStrengthWorkout()
-    return ActiveWorkoutView()
-        .environmentObject(SettingsController())
-        .environment(example_workout)
+    return NavigationStack
+    {
+        NavigationLink {
+            TabView {
+                ActiveWorkoutView()
+                    .environmentObject(SettingsController())
+                    .environment(example_workout)
+                    .tag("main")
+                Text("Placeholder")
+                    .tag("placeholder")
+            }
+        } label: {
+            Text("workout")
+        }
+    }
 }

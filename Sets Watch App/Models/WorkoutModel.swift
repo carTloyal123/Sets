@@ -83,6 +83,16 @@ extension Array {
         {
             RunLoop.main.add(current_timer, forMode: .common)
         }
+        
+        // Pop first superset as current
+        if let first_ss = self.supersets.first
+        {
+            if self.active_superset == nil
+            {
+                self.active_superset = first_ss
+                print("set first superset as active for workout start")
+            }
+        }
     }
     
     func AddExercise(exercise: Exercise)
