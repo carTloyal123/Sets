@@ -21,6 +21,7 @@
 		330941A02BF12B6C002C1719 /* NewWorkoutSupersetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309419F2BF12B6C002C1719 /* NewWorkoutSupersetListView.swift */; };
 		330941A22BF1368C002C1719 /* SupersetCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330941A12BF1368C002C1719 /* SupersetCreationView.swift */; };
 		33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33254A2D2BDC118B004001DE /* SingleSupersetView.swift */; };
+		332A38452BF51AA70000C4C1 /* EditSupersetRestTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A38442BF51AA70000C4C1 /* EditSupersetRestTimerView.swift */; };
 		332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82702BD9439D008FE9B4 /* TimerView.swift */; };
 		332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */; };
 		333502EC2BD425170068076C /* Sets Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 333502EB2BD425170068076C /* Sets Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -114,6 +115,7 @@
 		3309419F2BF12B6C002C1719 /* NewWorkoutSupersetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutSupersetListView.swift; sourceTree = "<group>"; };
 		330941A12BF1368C002C1719 /* SupersetCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetCreationView.swift; sourceTree = "<group>"; };
 		33254A2D2BDC118B004001DE /* SingleSupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSupersetView.swift; sourceTree = "<group>"; };
+		332A38442BF51AA70000C4C1 /* EditSupersetRestTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSupersetRestTimerView.swift; sourceTree = "<group>"; };
 		332E82702BD9439D008FE9B4 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimer.swift; sourceTree = "<group>"; };
 		333502E52BD425170068076C /* Sets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 			children = (
 				3309419F2BF12B6C002C1719 /* NewWorkoutSupersetListView.swift */,
 				330941A12BF1368C002C1719 /* SupersetCreationView.swift */,
+				332A38442BF51AA70000C4C1 /* EditSupersetRestTimerView.swift */,
 			);
 			path = SuperSetCreation;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				333502F12BD425170068076C /* SetsApp.swift in Sources */,
 				333503372BD441310068076C /* ExerciseView.swift in Sources */,
 				33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */,
+				332A38452BF51AA70000C4C1 /* EditSupersetRestTimerView.swift in Sources */,
 				330941A22BF1368C002C1719 /* SupersetCreationView.swift in Sources */,
 				330362002BD935B60014CD3C /* SettingsView.swift in Sources */,
 				330361FD2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift in Sources */,

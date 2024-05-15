@@ -26,13 +26,19 @@ import UserNotifications
     }
     
     init() {
-        self.time_remaining = -1
-        self.default_time_in_seconds = -1
+        self.time_remaining = 0
+        self.default_time_in_seconds = 0
     }
     
     init(total_rest_time_seconds: Int) {
-        self.time_remaining = TimeInterval(total_rest_time_seconds)
-        self.default_time_in_seconds = TimeInterval(total_rest_time_seconds)
+        if (total_rest_time_seconds <= 0)
+        {
+            self.time_remaining = 0
+            self.default_time_in_seconds = 0
+        } else {
+            self.time_remaining = TimeInterval(total_rest_time_seconds)
+            self.default_time_in_seconds = TimeInterval(total_rest_time_seconds)
+        }
     }
 
     deinit {
@@ -43,6 +49,7 @@ import UserNotifications
     {
         self.time_remaining = TimeInterval(total_time_in_seconds)
         self.default_time_in_seconds = TimeInterval(total_time_in_seconds)
+        print("setup timer with new total time: \(total_time_in_seconds)")
     }
     
     func setup(total_time_in_seconds: TimeInterval)
