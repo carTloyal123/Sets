@@ -16,29 +16,38 @@ struct ActiveWorkoutView: View {
     @State private var is_showing_superset_options: Bool = false
 
     var body: some View {
-        ScrollView(.vertical)
-        {
-            ActiveSupersetScrollView()
+        VStack {
+            ScrollView
+            {
+                ActiveSupersetScrollView()
+            }
             Spacer()
             HStack {
                 Button(action: {
                     TimerButtonAction()
                 }, label: {
-                    Label(
-                        title: { Text("") },
-                        icon: { Image(systemName: "clock") }
-                    )
+                    VStack
+                    {
+                        Image(systemName: "clock")
+                        if let current_ss = current_workout.active_superset
+                        {
+                            Text(current_ss.rest_timer.is_running ? "\(                            Utils.timeString(current_ss.rest_timer.time_remaining))" : "00:00")
+                                .font(.footnote)
+                                .opacity(0.8)
+                        }
+                    }
                 })
                 Button(action: {
                     UpdateSuperset()
                 }, label: {
-                    Label(
-                        title: { Text("") },
-                        icon: { Image(systemName: "dumbbell") }
-                    )
+                    Image(systemName: "dumbbell")
                 })
             }
+            .frame(maxHeight: 40)
+            Color.clear
+                .frame(height: 10)
         }
+        .ignoresSafeArea(edges: .bottom)
         .onChange(of: current_workout.is_showing_superset_overview, { oldValue, newValue in
             print("is showing overview from: \(oldValue) to \(newValue)")
             withAnimation {

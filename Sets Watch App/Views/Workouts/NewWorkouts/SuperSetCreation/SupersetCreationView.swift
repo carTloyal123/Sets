@@ -17,62 +17,73 @@ struct SupersetCreationView: View {
     var is_new: Bool = false
 
     var body: some View {
-        Form
+        NavigationStack
         {
-            Section {
-                TextField(text: $superset_to_edit.name, prompt: Text("Tap to set name")) {
-                    Text("New Superset Name")
-                }
-            } header: {
-                Text("Superset Name")
-            }
-            
-            Section {
-                ForEach(superset_to_edit.exercise_list) { exercise  in
-                    Text(exercise.name)
-                }
-            } header: {
-                Text("Superset Exercises")
-            }
-            
-            Section {
-                ForEach(app_storage.in_progress_workout.exercises) { exercise  in
-                    if (exercise.super_set_tag == nil)
-                    {
-                        Button(action: {
-                            withAnimation {
-                                superset_to_edit.AddExercise(exercise: exercise)
-                            }
-                        }, label: {
-                            Text(exercise.name)
-                        })
+            Form
+            {
+                Section {
+                    TextField(text: $superset_to_edit.name, prompt: Text("Tap to set name")) {
+                        Text("New Superset Name")
                     }
-                }
-            } header: {
-                Text("Workout Exercises")
-            }
+                    NavigationLink {
+                        EditSupersetRestTimerView(superset_to_edit: $superset_to_edit)
+                    } label: {
+                        HStack
+                        {
+                            Text("\(Utils.timeString(superset_to_edit.rest_timer.default_time_in_seconds))")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                    }
 
-            Section {
-                Button {
-                    if (is_new && !superset_to_edit.name.isEmpty)
-                    {
-                        app_storage.in_progress_workout.supersets.append(superset_to_edit)
-                        print("saved new superset to in progress workout: \(superset_to_edit.name)")
+                } header: {
+                    Text("Superset Options")
+                }
+                
+                Section {
+                    ForEach(superset_to_edit.exercise_list) { exercise  in
+                        Text(exercise.name)
                     }
-                    dismiss()
-                } label: {
-                    HStack
-                    {
-                        Spacer()
-                        Text("Save")
-                        Spacer()
+                } header: {
+                    Text("Included Exercises")
+                }
+                
+                Section {
+                    ForEach(app_storage.in_progress_workout.exercises) { exercise  in
+                        if (exercise.super_set_tag == nil)
+                        {
+                            Button(action: {
+                                withAnimation {
+                                    superset_to_edit.AddExercise(exercise: exercise)
+                                }
+                            }, label: {
+                                Text(exercise.name)
+                            })
+                        }
                     }
+                } header: {
+                    Text("Workout Exercises")
                 }
 
+                Section {
+                    Button {
+                        if (is_new && !superset_to_edit.name.isEmpty)
+                        {
+                            app_storage.in_progress_workout.supersets.append(superset_to_edit)
+                            print("saved new superset to in progress workout: \(superset_to_edit.name)")
+                        }
+                        dismiss()
+                    } label: {
+                        HStack
+                        {
+                            Spacer()
+                            Text("Save")
+                            Spacer()
+                        }
+                    }
+                }
             }
-            
         }
-
     }
 }
 
