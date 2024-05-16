@@ -11,21 +11,11 @@ struct ActiveWorkoutView: View {
     
     @EnvironmentObject var settings: SettingsController
     @Environment(Workout.self) var current_workout
+    @Environment(\.isLuminanceReduced) var isRedLum: Bool
     @State private var is_showing_timer: Bool = false
     @State private var is_showing_superset_settings: Bool = false
     @State private var is_showing_superset_options: Bool = false
     
-    
-    var backgroundView: some View {
-        return Group {
-            VStack
-            {
-                Spacer()
-
-            }
-            .ignoresSafeArea()
-        }
-    }
     
     var buttonView: some View {
         return ZStack {
@@ -43,7 +33,7 @@ struct ActiveWorkoutView: View {
                             Image(systemName: "clock")
                             if let current_ss = current_workout.active_superset
                             {
-                                Text(current_ss.rest_timer.is_running ? "\(                            Utils.timeString(current_ss.rest_timer.time_remaining))" : "00:00")
+                                Text("\(Utils.timeString(current_ss.rest_timer.time_remaining, reduced: isRedLum))")
                                     .font(.footnote)
                                     .opacity(0.8)
                             }

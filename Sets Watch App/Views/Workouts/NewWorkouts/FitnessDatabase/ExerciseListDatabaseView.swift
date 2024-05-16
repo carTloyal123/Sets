@@ -14,20 +14,34 @@ struct ExerciseListDatabaseView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        List
+        NavigationStack
         {
-            Section
+            List
             {
-                ForEach(fitness_db.exercises) { exercise in
-                    Button(action: {
-                        app_storage.in_progress_workout.AddExercise(exercise: exercise)
-                    }, label: {
-                        Text(exercise.name)
+                Section
+                {
+                    ForEach(fitness_db.exercises) { exercise in
+                        Button(action: {
+                            app_storage.in_progress_workout.AddExercise(exercise: exercise)
+                        }, label: {
+                            Text(exercise.name)
+                        })
+                    }
+                    .onDelete(perform: { indexSet in
+                        fitness_db.RemoveExercise(for: indexSet)
                     })
+                } footer: {
+                    Text("\(fitness_db.exercises.count) exercises")
+                }
+
+                Section {
+                    NavigationLink {
+                        NewExerciseView()
+                    } label: {
+                        Text("Add Custom")
+                    }
                 }
             }
-
-            Text("Total: \(fitness_db.exercises.count)")
         }
     }
 }

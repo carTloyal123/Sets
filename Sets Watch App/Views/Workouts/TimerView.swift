@@ -9,15 +9,15 @@ import SwiftUI
 
 struct TimerView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.isLuminanceReduced) var isRedLum: Bool
     @EnvironmentObject var settings: SettingsController
     var rest_timer: WorkoutTimer
     
     var body: some View {
         ScrollView {
-            Text(Utils.timeString(rest_timer.time_remaining))
+            Text(Utils.timeString(rest_timer.time_remaining, reduced: isRedLum))
                 .font(.largeTitle)
                 .onChange(of: rest_timer.time_remaining) { oldValue, newValue in
-                    print("new value: \(newValue)")
                     if (settings.auto_hide_rest_timer)
                     {
                         if (newValue < 0.0001)

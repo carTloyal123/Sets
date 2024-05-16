@@ -6,21 +6,40 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainHistoryView: View {
-    @Environment(CentralStorage.self) var app_storage: CentralStorage
-
+    @Environment(HistoryController.self) var history_storage: HistoryController
+    
     var body: some View {
-        Text("History")
-        List(app_storage.workout_history) { workout in
-            Text("\(workout.name)")
+        Form
+        {
+            Section(content: {
+                ForEach(history_storage.workouts) { hWorkout in
+                    VStack
+                    {
+                        Text("\(hWorkout.name)")
+                    }
+                }
+            }, footer: {
+                Text("\(history_storage.workouts.count) workouts")
+            })
         }
+        .navigationTitle("History")
     }
+    
 }
 
 #Preview {
+    @State var history_storage: HistoryController = HistoryController()
+    @State var settings_controller: SettingsController = SettingsController()
     @State var app_storage: CentralStorage = CentralStorage()
-
+    let example_data = ExampleData()
+    history_storage.workouts.append(example_data.GetExampleStrengthWorkout())
+    history_storage.workouts.append(example_data.GetExampleWorkout())
+    history_storage.workouts.append(example_data.GetSupersetWorkout())
     return MainHistoryView()
         .environment(app_storage)
+        .environment(history_storage)
+        .environmentObject(settings_controller)
 }

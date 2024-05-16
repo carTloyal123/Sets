@@ -14,10 +14,10 @@ enum ExerciseSetType: String, Codable, CaseIterable {
     case none
 }
 
-enum ExerciseTargetArea: String, Codable {
-    case upper_body
-    case lower_body
-    case abdomen
-    case cardio
-    case full_body
+enum ExerciseTargetArea: String, Codable, CaseIterable {
+    case upper_body = "Upper Body"
+    case lower_body = "Lower Body"
+    case abdomen = "Abdomen"
+    case cardio = "Cardio"
+    case full_body = "Full Body"
 }

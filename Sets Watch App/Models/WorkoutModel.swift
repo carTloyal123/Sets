@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 extension Array {
     subscript(safe index: Index) -> Element? {
@@ -100,8 +101,6 @@ extension Array {
         self.completed_at = Date.now
         self.workout_timer?.invalidate()
         self.active_superset = nil
-        
-        
     }
     
     func AddExercise(exercise: Exercise)
@@ -127,6 +126,8 @@ extension Array {
     {
         self.workout_timer?.invalidate()
         self.started_at = nil
+        self.completed_at = nil
+        self.created_at = Date.now
         self.elapsed_time = TimeInterval(0)
 
         for single_exercise in exercises
