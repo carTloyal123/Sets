@@ -159,12 +159,11 @@ class ExampleData {
             Exercise(name: "Push-ups"),
             Exercise(name: "Pull-ups"),
             Exercise(name: "Squats"),
-            Exercise(name: "Bench Press")
+            Exercise(name: "Bench Press"),
+            Exercise(name: "Curls", sets: [], exercise_type: .weight, exercise_target_area: .upper_body),
+            Exercise(name: "Tricep Pull Downs", sets: [], exercise_type: .weight, exercise_target_area: .upper_body),
+            Exercise(name: "Crunches", sets: [], exercise_type: .duration, exercise_target_area: .abdomen)
         ]
-        
-        for i in 1...100 {
-            exercises.append(Exercise(name: "Exercise \(i)"))
-        }
         return FitnessDatabase(with: exercises)
     }
 }

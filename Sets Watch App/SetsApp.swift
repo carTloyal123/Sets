@@ -8,12 +8,14 @@
 import SwiftUI
 import UIKit
 import UserNotifications
+import SwiftData
 
 @main
 struct Sets_Watch_AppApp: App {    
     // This is the main entry for the app
     @State var settings_controller: SettingsController = SettingsController()
     @State var app_storage: CentralStorage = CentralStorage()
+    @State var history_controller: HistoryController = HistoryController()
     @State var fitness_db: FitnessDatabase = ExampleData().GenerateExampleFitnessDatabase()
     
     var body: some Scene {
@@ -22,6 +24,7 @@ struct Sets_Watch_AppApp: App {
                 .environmentObject(settings_controller)
                 .environment(app_storage)
                 .environment(fitness_db)
+                .environment(history_controller)
         }
     }
 }

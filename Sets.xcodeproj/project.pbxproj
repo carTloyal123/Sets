@@ -45,6 +45,9 @@
 		333CB4702BF2C2FF000ABA0F /* EditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333CB46F2BF2C2FF000ABA0F /* EditExerciseView.swift */; };
 		334944622BF5B2E000CF5A06 /* MainHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944612BF5B2E000CF5A06 /* MainHistoryView.swift */; };
 		334944642BF5B41500CF5A06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944632BF5B41500CF5A06 /* Constants.swift */; };
+		334944662BF684D000CF5A06 /* SaveUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944652BF684D000CF5A06 /* SaveUtils.swift */; };
+		334944682BF69F4900CF5A06 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944672BF69F4900CF5A06 /* HistoryController.swift */; };
+		3349446A2BF6AA0F00CF5A06 /* NewExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944692BF6AA0F00CF5A06 /* NewExerciseView.swift */; };
 		3357F2582BD9656E0037D35C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2572BD9656E0037D35C /* Utils.swift */; };
 		33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */; };
 		33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */; };
@@ -144,6 +147,9 @@
 		333CB46F2BF2C2FF000ABA0F /* EditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseView.swift; sourceTree = "<group>"; };
 		334944612BF5B2E000CF5A06 /* MainHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHistoryView.swift; sourceTree = "<group>"; };
 		334944632BF5B41500CF5A06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		334944652BF684D000CF5A06 /* SaveUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveUtils.swift; sourceTree = "<group>"; };
+		334944672BF69F4900CF5A06 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
+		334944692BF6AA0F00CF5A06 /* NewExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseView.swift; sourceTree = "<group>"; };
 		3357F2572BD9656E0037D35C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutBackendController.swift; sourceTree = "<group>"; };
 		33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
@@ -339,6 +345,7 @@
 				33A5E28B2BD976EB009EC780 /* SettingsController.swift */,
 				33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */,
 				330941972BF12146002C1719 /* FitnessDatabase.swift */,
+				334944672BF69F4900CF5A06 /* HistoryController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -350,6 +357,7 @@
 				3357F2572BD9656E0037D35C /* Utils.swift */,
 				33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */,
 				334944632BF5B41500CF5A06 /* Constants.swift */,
+				334944652BF684D000CF5A06 /* SaveUtils.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -363,6 +371,7 @@
 				33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */,
 				3397515C2BF27920006CD8C3 /* EditExerciseSetView.swift */,
 				333CB46F2BF2C2FF000ABA0F /* EditExerciseView.swift */,
+				334944692BF6AA0F00CF5A06 /* NewExerciseView.swift */,
 			);
 			path = Exercises;
 			sourceTree = "<group>";
@@ -611,6 +620,7 @@
 				332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */,
 				333503352BD434C20068076C /* ExerciseSetCheckButtonView.swift in Sources */,
 				33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */,
+				334944682BF69F4900CF5A06 /* HistoryController.swift in Sources */,
 				333503222BD426400068076C /* SetModel.swift in Sources */,
 				3335033F2BD583B40068076C /* SupersetView.swift in Sources */,
 				333502F12BD425170068076C /* SetsApp.swift in Sources */,
@@ -623,6 +633,7 @@
 				330362002BD935B60014CD3C /* SettingsView.swift in Sources */,
 				330361FD2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift in Sources */,
 				330361F92BD893F90014CD3C /* ActiveWorkoutView.swift in Sources */,
+				334944662BF684D000CF5A06 /* SaveUtils.swift in Sources */,
 				33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */,
 				3397515B2BF26CDF006CD8C3 /* ConfirmCancelView.swift in Sources */,
 				3309419A2BF12418002C1719 /* NewExerciseListView.swift in Sources */,
@@ -633,6 +644,7 @@
 				3335032C2BD42A240068076C /* SupersetModel.swift in Sources */,
 				333CB4702BF2C2FF000ABA0F /* EditExerciseView.swift in Sources */,
 				33B9C2B22BED8BF80056E45F /* SplashScreenView.swift in Sources */,
+				3349446A2BF6AA0F00CF5A06 /* NewExerciseView.swift in Sources */,
 				33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */,
 				33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */,
 				3335033B2BD456C90068076C /* WorkoutView.swift in Sources */,

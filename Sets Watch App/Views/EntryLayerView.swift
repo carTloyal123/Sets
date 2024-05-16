@@ -19,8 +19,6 @@ struct EntryLayerView: View {
                 NavigationLink {
                     WorkoutListView()
                         .navigationBarTitle("Workouts")
-                        .navigationBarBackButtonHidden()
-                        .navigationBarTitleDisplayMode(.large)
                 } label: {
                     HStack
                     {
@@ -54,24 +52,17 @@ struct EntryLayerView: View {
                     }
                 }
                 
-//                NavigationLink {
-//                    SignInWithAppleView()
-//                        .navigationBarTitle("Account")
-//                } label: {
-//                    HStack
-//                    {
-//                        Text("Account")
-//                        Spacer()
-//                        Image(systemName: "chevron.right")
-//                    }
-//                }
-                
                 Button {
                     withAnimation {
                         is_showing_welcome = true
                     }
                 } label: {
-                    Text("Show Welcome")
+                    HStack
+                    {
+                        Spacer()
+                        Text("Welcome")
+                        Spacer()
+                    }
                 }
             }
             .navigationTitle("Sets")

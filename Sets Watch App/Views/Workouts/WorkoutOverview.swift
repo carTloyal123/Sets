@@ -11,6 +11,8 @@ struct WorkoutOverview: View {
     
     @Environment(Workout.self) var current_workout: Workout
     @Environment(CentralStorage.self) var app_storage: CentralStorage
+    @Environment(HistoryController.self) var history_storage: HistoryController
+
     @Binding var tab_selection: Tab
     
     var body: some View {
@@ -23,21 +25,31 @@ struct WorkoutOverview: View {
                 // Start Button
                 Divider()
                 Button(action: {
-                    if current_workout.started_at == nil {
+                    if ((current_workout.started_at) == nil)
+                    {
                         current_workout.Start()
                         withAnimation {
                             self.tab_selection = .workout
+                        }                    } else {
+                        if (current_workout.completed_at == nil)
+                        {
+                            current_workout.Complete()
+                            history_storage.SaveWorkoutToHistory(for: current_workout)
+                        } else {
+                            print("workout is already complete!")
                         }
-                    } else {
-                        current_workout.Complete()
-                        app_storage.SaveWorkoutToHistory(for: current_workout)
                     }
-
                 }) {
-                    if current_workout.started_at == nil {
-                        Text("Start workout!")
+                    if ((current_workout.started_at) == nil)
+                    {
+                        Text("Start Workout!")
                     } else {
-                        Text("End workout!")
+                        if (current_workout.completed_at == nil)
+                        {
+                            Text("End Workout")
+                        } else {
+                            Text("Workout Complete!")
+                        }
                     }
                 }.buttonStyle(GradientButtonStyle())
                 
@@ -54,6 +66,8 @@ struct WorkoutOverview: View {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var app_storage: CentralStorage = CentralStorage()
+    @State var history_storage: HistoryController = HistoryController()
+
     @State var tab_selected: Tab = .overview
     @State var fitness_db: FitnessDatabase = FitnessDatabase()
 
@@ -64,5 +78,6 @@ struct WorkoutOverview: View {
             .environment(example_workout)
             .environment(app_storage)
             .environment(fitness_db)
+            .environment(history_storage)
     }
 }

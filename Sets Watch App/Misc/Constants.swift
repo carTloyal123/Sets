@@ -15,4 +15,5 @@ struct SaveFiles {
 struct SaveDirectories
 {
     static let History = "history_archive"
+    static let ExerciseDatabase = "exercies_database"
 }
