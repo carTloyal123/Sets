@@ -15,7 +15,7 @@ struct SupersetOptionsSheetView: View {
         NavigationStack {
             if let active_ss = current_workout.active_superset
             {
-                ForEach(active_ss.exercise_list) { each_exercise in
+                List(active_ss.exercise_list) { each_exercise in
                     NavigationLink {
                         ExerciseView(current_exercise: each_exercise)
                     } label: {

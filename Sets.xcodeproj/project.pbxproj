@@ -43,6 +43,8 @@
 		3335033B2BD456C90068076C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033A2BD456C90068076C /* WorkoutView.swift */; };
 		3335033F2BD583B40068076C /* SupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033E2BD583B40068076C /* SupersetView.swift */; };
 		333CB4702BF2C2FF000ABA0F /* EditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333CB46F2BF2C2FF000ABA0F /* EditExerciseView.swift */; };
+		334944622BF5B2E000CF5A06 /* MainHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944612BF5B2E000CF5A06 /* MainHistoryView.swift */; };
+		334944642BF5B41500CF5A06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944632BF5B41500CF5A06 /* Constants.swift */; };
 		3357F2582BD9656E0037D35C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2572BD9656E0037D35C /* Utils.swift */; };
 		33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */; };
 		33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */; };
@@ -140,6 +142,8 @@
 		3335033A2BD456C90068076C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		3335033E2BD583B40068076C /* SupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetView.swift; sourceTree = "<group>"; };
 		333CB46F2BF2C2FF000ABA0F /* EditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseView.swift; sourceTree = "<group>"; };
+		334944612BF5B2E000CF5A06 /* MainHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHistoryView.swift; sourceTree = "<group>"; };
+		334944632BF5B41500CF5A06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3357F2572BD9656E0037D35C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutBackendController.swift; sourceTree = "<group>"; };
 		33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				33831C032BE40F1900C3D3A4 /* Styles */,
 				330361FE2BD935AB0014CD3C /* Settings */,
 				333503382BD456AD0068076C /* Exercises */,
+				334944602BF5B2D200CF5A06 /* History */,
 				330361F72BD893E50014CD3C /* ActiveWorkout */,
 				333503392BD456BC0068076C /* Workouts */,
 				33831BFF2BE3D2E000C3D3A4 /* Auth */,
@@ -344,6 +349,7 @@
 				3335032E2BD42D090068076C /* ExampleData.swift */,
 				3357F2572BD9656E0037D35C /* Utils.swift */,
 				33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */,
+				334944632BF5B41500CF5A06 /* Constants.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -372,6 +378,14 @@
 				330362012BD9363A0014CD3C /* WorkoutOverview.swift */,
 			);
 			path = Workouts;
+			sourceTree = "<group>";
+		};
+		334944602BF5B2D200CF5A06 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				334944612BF5B2E000CF5A06 /* MainHistoryView.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		33831BFF2BE3D2E000C3D3A4 /* Auth */ = {
@@ -600,6 +614,8 @@
 				333503222BD426400068076C /* SetModel.swift in Sources */,
 				3335033F2BD583B40068076C /* SupersetView.swift in Sources */,
 				333502F12BD425170068076C /* SetsApp.swift in Sources */,
+				334944642BF5B41500CF5A06 /* Constants.swift in Sources */,
+				334944622BF5B2E000CF5A06 /* MainHistoryView.swift in Sources */,
 				333503372BD441310068076C /* ExerciseView.swift in Sources */,
 				33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */,
 				332A38452BF51AA70000C4C1 /* EditSupersetRestTimerView.swift in Sources */,

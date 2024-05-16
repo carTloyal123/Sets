@@ -43,16 +43,28 @@ struct EntryLayerView: View {
                 }
                 
                 NavigationLink {
-                    SignInWithAppleView()
-                        .navigationBarTitle("Account")
+                    MainHistoryView()
+                        .navigationBarTitle("History")
                 } label: {
                     HStack
                     {
-                        Text("Account")
+                        Text("History")
                         Spacer()
                         Image(systemName: "chevron.right")
                     }
                 }
+                
+//                NavigationLink {
+//                    SignInWithAppleView()
+//                        .navigationBarTitle("Account")
+//                } label: {
+//                    HStack
+//                    {
+//                        Text("Account")
+//                        Spacer()
+//                        Image(systemName: "chevron.right")
+//                    }
+//                }
                 
                 Button {
                     withAnimation {

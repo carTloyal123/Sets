@@ -25,7 +25,7 @@ extension Array {
     var supersets: [Superset] = []
     var created_at: Date = Date.now
     var started_at: Date? = nil
-    var completed_at: Date = Date()
+    var completed_at: Date? = nil
     var active_superset: Superset?
     var active_superset_idx: Int = 0
     var elapsed_time: TimeInterval = TimeInterval()
@@ -93,6 +93,15 @@ extension Array {
                 print("set first superset as active for workout start")
             }
         }
+    }
+    
+    func Complete()
+    {
+        self.completed_at = Date.now
+        self.workout_timer?.invalidate()
+        self.active_superset = nil
+        
+        
     }
     
     func AddExercise(exercise: Exercise)
