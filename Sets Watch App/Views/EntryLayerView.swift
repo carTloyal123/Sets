@@ -12,13 +12,14 @@ struct EntryLayerView: View {
     @State private var is_showing_welcome: Bool = false
         
     var body: some View {
+
         NavigationStack
         {
             List
             {
                 NavigationLink {
                     WorkoutListView()
-                        .navigationBarTitle("Workouts")
+                        .navigationBarBackButtonHidden()
                 } label: {
                     HStack
                     {
@@ -65,7 +66,6 @@ struct EntryLayerView: View {
                     }
                 }
             }
-            .navigationTitle("Sets")
         }
         .onAppear(perform: {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {

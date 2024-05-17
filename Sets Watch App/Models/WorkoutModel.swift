@@ -192,25 +192,43 @@ extension Array {
         if let current_ss = self.active_superset
         {
             current_ss.MarkNextSetComplete()
-            // check if this is the last set in superset, if so pass to timer callback for update, otherwise proceed as normal
-            
-            if current_ss.is_ss_complete
-            {
-                // pass update to timer, otherwise normal
-                print("Sending superset update to timer!")
-                current_ss.rest_timer.SetCallback {
-                    self.NextSuperset()
-                }
-                return true
-            } else {
-                current_ss.rest_timer.reset()
-                return false
-            }
+            return HandleLastRestTimer(for: current_ss)
         } else {
             print("SS not active, getting from store!")
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
             return false
+        }
+    }
+    
+    private func HandleLastRestTimer(for current_ss: Superset) -> Bool
+    {
+        if current_ss.is_ss_complete
+        {
+            // pass update to timer, otherwise normal
+            print("Sending superset update to timer!")
+            current_ss.rest_timer.SetCallback {
+                self.NextSuperset()
+            }
+            return true
+        } else {
+            current_ss.rest_timer.reset()
+            return false
+        }
+    }
+    
+    func SkipRestTimer()
+    {
+        if let current_ss = self.active_superset
+        {
+            if current_ss.is_ss_complete
+            {
+                print("skipped rest timer, cancelling callback!")
+                current_ss.rest_timer.callback = nil
+                self.NextSuperset()
+            } else {
+                print("skipped rest timer, ss not complete")
+            }
         }
     }
     
@@ -244,15 +262,16 @@ extension Array {
     {
         // find which exercise has matching uuid otherwise stay as is
         var ss_idx = 0
-        for ss in supersets {
-            if (ss.id == uuid)
-            {
-                active_superset = ss
-                active_superset_idx = ss_idx
-                print("Set superset by UUID to: \(ss.name)")
-                return
-            }
-            ss_idx += 1
+        let new_superset_idx = supersets.firstIndex { ss in
+            ss.id == uuid
+        }
+        if let new_idx = new_superset_idx
+        {
+            active_superset_idx = new_idx
+            active_superset = supersets[new_idx]
+            print("Set superset by UUID to: \(uuid.uuidString)")
+        } else {
+            print("UNABLE TO UPDATE SUPERSET for UUID")
         }
     }
 }

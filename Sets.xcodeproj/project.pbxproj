@@ -53,6 +53,8 @@
 		33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */; };
 		33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */; };
 		33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */; };
+		338AE3742BF72C26001EA193 /* FullscreenActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338AE3732BF72C26001EA193 /* FullscreenActiveWorkoutView.swift */; };
+		338AE3762BF745B5001EA193 /* FullscreenSupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338AE3752BF745B5001EA193 /* FullscreenSupersetView.swift */; };
 		3397515B2BF26CDF006CD8C3 /* ConfirmCancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397515A2BF26CDF006CD8C3 /* ConfirmCancelView.swift */; };
 		3397515D2BF27920006CD8C3 /* EditExerciseSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397515C2BF27920006CD8C3 /* EditExerciseSetView.swift */; };
 		339798F72BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */; };
@@ -156,6 +158,8 @@
 		33831C022BE3D70400C3D3A4 /* Sets Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sets Watch App.entitlements"; sourceTree = "<group>"; };
 		33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkButtonStyle.swift; sourceTree = "<group>"; };
 		33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsNotificationDelegate.swift; sourceTree = "<group>"; };
+		338AE3732BF72C26001EA193 /* FullscreenActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenActiveWorkoutView.swift; sourceTree = "<group>"; };
+		338AE3752BF745B5001EA193 /* FullscreenSupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenSupersetView.swift; sourceTree = "<group>"; };
 		3397515A2BF26CDF006CD8C3 /* ConfirmCancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCancelView.swift; sourceTree = "<group>"; };
 		3397515C2BF27920006CD8C3 /* EditExerciseSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseSetView.swift; sourceTree = "<group>"; };
 		339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutSupersetTabView.swift; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 				33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */,
 				339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */,
 				339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */,
+				338AE3732BF72C26001EA193 /* FullscreenActiveWorkoutView.swift */,
+				338AE3752BF745B5001EA193 /* FullscreenSupersetView.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -618,6 +624,7 @@
 				330941A02BF12B6C002C1719 /* NewWorkoutSupersetListView.swift in Sources */,
 				339798F92BF05DFA0009D4CA /* SupersetOptionsSheetView.swift in Sources */,
 				332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */,
+				338AE3762BF745B5001EA193 /* FullscreenSupersetView.swift in Sources */,
 				333503352BD434C20068076C /* ExerciseSetCheckButtonView.swift in Sources */,
 				33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */,
 				334944682BF69F4900CF5A06 /* HistoryController.swift in Sources */,
@@ -639,6 +646,7 @@
 				3309419A2BF12418002C1719 /* NewExerciseListView.swift in Sources */,
 				333503332BD4326A0068076C /* ExerciseSetView.swift in Sources */,
 				330362042BD9386B0014CD3C /* WorkoutListView.swift in Sources */,
+				338AE3742BF72C26001EA193 /* FullscreenActiveWorkoutView.swift in Sources */,
 				3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */,
 				339798FC2BF11A270009D4CA /* NewWorkoutMainView.swift in Sources */,
 				3335032C2BD42A240068076C /* SupersetModel.swift in Sources */,
