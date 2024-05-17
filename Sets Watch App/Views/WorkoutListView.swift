@@ -10,54 +10,55 @@ import SwiftUI
 struct WorkoutListView: View {
     @Environment(CentralStorage.self) private var app_storage: CentralStorage
     @Environment(\.dismiss) private var dismiss
+    @State private var show_create_workout: Bool = false
         
     var body: some View {
         NavigationSplitView {
             List {
                 ForEach(app_storage.workouts) { workout in
-                    NavigationLink {
-                        WorkoutView(current_workout: workout)
-                            .navigationBarBackButtonHidden()
-                    } label: {
+                    NavigationLink(value: workout) {
                         Text(workout.name)
                     }
                 }
                 .onDelete(perform: { indexSet in
                     deleteItems(for: indexSet)
                 })
-                buttons
-
+                            
+                Section {
+                    Button {
+                        show_create_workout.toggle()
+                    } label: {
+                        HStack
+                        {
+                            Spacer()
+                            Image(systemName: "plus")
+                            Spacer()
+                        }
+                    }
+                    
+                    Button(role: .destructive) {
+                        dismiss()
+                    } label: {
+                        HStack
+                        {
+                            Spacer()
+                            Text("Back")
+                            Spacer()
+                        }
+                    }
+                }
+            }
+            .navigationDestination(for: Workout.self) { wk in
+                WorkoutView(current_workout: wk)
+                    .navigationBarBackButtonHidden()
             }
         } detail: {
             Text("Detail view?")
         }
-    }
-    
-    var buttons: some View {
-        return Group {
-            NavigationLink {
-                NewWorkoutMainView()
-                    .navigationTitle("Create Workout")
-                    .navigationBarBackButtonHidden()
-            } label: {
-                HStack
-                {
-                    Spacer()
-                    Image(systemName: "plus")
-                    Spacer()
-                }
-            }
-            Button(role: .destructive) {
-                dismiss()
-            } label: {
-                HStack
-                {
-                    Spacer()
-                    Text("Back")
-                    Spacer()
-                }
-            }
-        }
+        .sheet(isPresented: $show_create_workout, content: {
+            NewWorkoutMainView()
+        })
+
     }
     
     private func deleteItems(for indexSet: IndexSet)

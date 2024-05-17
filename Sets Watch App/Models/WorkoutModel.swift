@@ -19,7 +19,10 @@ extension Array {
     }
 }
 
-@Observable class Workout: Codable, Identifiable {
+@Observable class Workout: Codable, Identifiable, Hashable, Equatable {
+    static func == (lhs: Workout, rhs: Workout) -> Bool {
+        return lhs.id.uuidString == rhs.id.uuidString
+    }
     
     var name: String = "Default Workout"
     var exercises: [Exercise] = []
@@ -66,6 +69,10 @@ extension Array {
     deinit {
         workout_timer?.invalidate()
         print("workout destoryed!")
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id.uuidString)
     }
     
     func Start()
