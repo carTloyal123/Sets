@@ -29,14 +29,6 @@ struct SingleSupersetView: View {
                                     ToggleSettings()
                                 }
                         }
-//                        HStack {
-//                            Text(GetTimerString())
-//                            let c = active_ss.exercise_list.filter( {
-//                                return $0.sets.filter { $0.set_data.is_complete }.count == $0.sets.count
-//                            }).count
-//                            Spacer()
-//                            Text("\(c)/\(active_ss.exercise_list.count)")
-//                        }
                     }
                 }
                 .onTapGesture {
@@ -107,8 +99,6 @@ struct SingleSupersetView: View {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var ss = example_workout.supersets.first!
-    @State var rt = ss.rest_timer
-    @State var scroll_size: CGSize = .init(width: 10, height: 10)
     return SingleSupersetView(active_ss: ss)
         .environment(example_workout)
 }

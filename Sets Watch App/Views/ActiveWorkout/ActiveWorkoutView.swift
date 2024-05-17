@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ActiveWorkoutView: View {
-    
     @EnvironmentObject var settings: SettingsController
     @Environment(Workout.self) var current_workout
     @Environment(\.isLuminanceReduced) var isRedLum: Bool
@@ -16,12 +15,10 @@ struct ActiveWorkoutView: View {
     @State private var is_showing_superset_settings: Bool = false
     @State private var is_showing_superset_options: Bool = false
     
-    
     var buttonView: some View {
         return ZStack {
             VStack(spacing: 0)
             {
-                Spacer()
                 LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
                     .frame(height: 10)
                 HStack {
@@ -45,22 +42,13 @@ struct ActiveWorkoutView: View {
                         Image(systemName: "dumbbell")
                     })
                 }
-                .background {
-                    Color.black
-                        .ignoresSafeArea()
-                }
             }
         }
-        .padding(.bottom, 8)
-        .ignoresSafeArea()
     }
     
     var body: some View {
-        ZStack {
-            ScrollView
-            {
-                ActiveSupersetScrollView()
-            }
+        VStack {
+            ActiveSupersetScrollView()
             buttonView
         }
         .onChange(of: current_workout.is_showing_superset_overview, { oldValue, newValue in
@@ -85,7 +73,9 @@ struct ActiveWorkoutView: View {
         .sheet(isPresented: $is_showing_timer) {
             if let active_superset_info = current_workout.active_superset
             {
-                TimerView(rest_timer: active_superset_info.rest_timer)
+                TimerView(rest_timer: active_superset_info.rest_timer, skip_action: {
+                    print("should skip!")
+                })
             } else {
                 Text("No active ss")
             }
@@ -132,19 +122,7 @@ struct ActiveWorkoutView: View {
 #Preview {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetExampleStrengthWorkout()
-    return NavigationStack
-    {
-        NavigationLink {
-            TabView {
-                ActiveWorkoutView()
-                    .environmentObject(SettingsController())
-                    .environment(example_workout)
-                    .tag("main")
-                Text("Placeholder")
-                    .tag("placeholder")
-            }
-        } label: {
-            Text("workout")
-        }
-    }
+    return ActiveWorkoutView()
+        .environmentObject(SettingsController())
+        .environment(example_workout)
 }

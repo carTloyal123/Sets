@@ -9,63 +9,27 @@ import SwiftUI
 
 struct ActiveSupersetScrollView: View {
     @Environment(Workout.self) var current_workout: Workout
-    @State private var scroll_id: Int?
-    @State private var scroll_view_size: CGSize = .init(width: 10, height: 10)
     @State private var is_showing_superset_details_sheet: Bool = false
-
+    @State private var selected_tag_idx: Int = 0
+    
     var body: some View {
-        ScrollView(.horizontal) {
-            LazyHStack(spacing: 0) {
-                ForEach(0..<current_workout.supersets.count, id:\.self) { index in
-                    SingleSupersetView(active_ss: current_workout.supersets[index])
-                        .containerRelativeFrame(.horizontal, alignment: .center)
-                        .scrollTransition(.animated, axis: .horizontal) { content, phase in
-                            content
-                                .opacity(phase.isIdentity ? 1.0 : 0.8)
-                                .scaleEffect(phase.isIdentity ? 1.0 : 0.8)
-                        }
-                        .id(index)
-//                        .background(
-//                            GeometryReader(content: { geo -> Color in
-//                                DispatchQueue.main.async {
-//                                    if (geo.size.height == scroll_view_size.height)
-//                                    {
-//                                        print("heights the same")
-//                                        return
-//                                    } else if (geo.size.height > scroll_view_size.height)
-//                                    {
-//                                        withAnimation {
-//                                            scroll_view_size = geo.size
-//                                        }
-//                                        print("New height: \(scroll_view_size.height)")
-//                                    }
-//                                }
-//                                return Color.clear
-//                            })
-//                        )
-                }
+        TabView(selection: $selected_tag_idx) {
+            ForEach(0..<current_workout.supersets.count, id: \.self) { idx in
+                SingleSupersetView(active_ss: current_workout.supersets[idx])
+                    .tag(idx)
             }
-            .scrollTargetLayout()
         }
-        .onTapGesture {
-            is_showing_superset_details_sheet.toggle()
-        }
+        .tabViewStyle(.verticalPage)
+        .onAppear(perform: {
+            selected_tag_idx = current_workout.active_superset_idx
+        })
         .sheet(isPresented: $is_showing_superset_details_sheet, content: {
             SupersetDetailsSheetView()
         })
-//        .frame(idealHeight: scroll_view_size.height, maxHeight: scroll_view_size.height*1.5)
-        .scrollTargetBehavior(.paging)
-        .scrollPosition(id: $scroll_id)
-        .scrollIndicators(.hidden)
-        .onAppear(perform: {
-            scroll_id = current_workout.active_superset_idx
-        })
         .onChange(of: current_workout.active_superset_idx, { oldValue, newValue in
-            scroll_id = newValue
+            selected_tag_idx = newValue
         })
-        .onChange(of: scroll_id) { oldValue, newValue in
-            guard let oldValue = oldValue else {return}
-            guard let newValue = newValue else {return}
+        .onChange(of: selected_tag_idx) { oldValue, newValue in
             print("Scroll Id Change: \(oldValue), \(newValue)")
             if (newValue == current_workout.active_superset_idx)
             {
