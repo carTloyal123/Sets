@@ -11,6 +11,7 @@ import SwiftUI
 {
     var workouts: [Workout] = []
     var in_progress_workout: Workout = Workout(name: "in_progress")
+    private var save_utils = SaveUtils.shared
     
     private enum CodingKeys: String, CodingKey
     {
@@ -39,18 +40,8 @@ import SwiftUI
     func RemoveWorkout(for workout_id: UUID)
     {
         // find workout by id first, then remove
-        var wk_id = 0
-        for wk in workouts
-        {
-            if (wk.id == workout_id)
-            {
-                workouts.remove(at: wk_id)
-                print("Removed workout \(wk.name)")
-                Task {
-                    SaveWorkoutsToDevice()
-                }
-            }
-            wk_id += 1
+        self.workouts.removeAll { workout in
+            workout.id == workout_id
         }
     }
     
@@ -79,10 +70,11 @@ import SwiftUI
             print("Failed to save data to file: \(error)")
         }
     }
+    
     func LoadWorkoutsFromDevice()
     {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let archiveURL = documentsDirectory.appendingPathComponent("stored_workouts.json")
+        let archiveURL = documentsDirectory.appendingPathComponent(SaveFiles.Workouts)
         
         if let data = try? Data(contentsOf: archiveURL) {
             let decoder = JSONDecoder()

@@ -41,14 +41,21 @@ import Combine
     }
     
     init(name: String, sets: [ExerciseSet], super_set_tag: Superset? = nil, exercise_type: ExerciseSetType, exercise_target_area: ExerciseTargetArea) {
+        super.init()
         self.name = name
         self.sets = sets
         self.super_set_tag = super_set_tag
         self.exercise_type = exercise_type
         self.exercise_target_area = exercise_target_area
-        for s in sets
+        
+        if (sets.isEmpty)
         {
-            s.set_data.exercise_type = exercise_type
+            self.sets.append(ExerciseSet(set_number: 1, is_complete: false, exercise_type: exercise_type, reps: 10, volume: 10))
+        } else {
+            for s in sets
+            {
+                s.set_data.exercise_type = exercise_type
+            }
         }
     }
     

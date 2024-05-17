@@ -10,6 +10,7 @@ import SwiftUI
 struct EntryLayerView: View {
     @EnvironmentObject private var settings_controller: SettingsController
     @State private var is_showing_welcome: Bool = false
+        
     var body: some View {
         NavigationStack
         {
@@ -18,8 +19,6 @@ struct EntryLayerView: View {
                 NavigationLink {
                     WorkoutListView()
                         .navigationBarTitle("Workouts")
-                        .navigationBarBackButtonHidden()
-                        .navigationBarTitleDisplayMode(.large)
                 } label: {
                     HStack
                     {
@@ -42,12 +41,12 @@ struct EntryLayerView: View {
                 }
                 
                 NavigationLink {
-                    SignInWithAppleView()
-                        .navigationBarTitle("Account")
+                    MainHistoryView()
+                        .navigationBarTitle("History")
                 } label: {
                     HStack
                     {
-                        Text("Account")
+                        Text("History")
                         Spacer()
                         Image(systemName: "chevron.right")
                     }
@@ -58,7 +57,12 @@ struct EntryLayerView: View {
                         is_showing_welcome = true
                     }
                 } label: {
-                    Text("Show Welcome")
+                    HStack
+                    {
+                        Spacer()
+                        Text("Welcome")
+                        Spacer()
+                    }
                 }
             }
             .navigationTitle("Sets")
