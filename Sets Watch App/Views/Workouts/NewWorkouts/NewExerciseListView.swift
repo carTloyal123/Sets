@@ -23,6 +23,12 @@ struct NewExerciseListView: View {
                     ForEach(app_storage.in_progress_workout.exercises) { exercise  in
                         Text(exercise.name)
                     }
+                    .onDelete(perform: { indexSet in
+                        print("should delete hehe")
+                        withAnimation {
+                            app_storage.in_progress_workout.RemoveExercise(at: indexSet)
+                        }
+                    })
                 } footer: {
                     Text("Selected \(app_storage.in_progress_workout.exercises.count) exercises")
                 }
