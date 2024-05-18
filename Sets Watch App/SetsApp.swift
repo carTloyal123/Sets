@@ -25,6 +25,7 @@ struct Sets_Watch_AppApp: App {
                 .environment(app_storage)
                 .environment(fitness_db)
                 .environment(history_controller)
+                .modelContainer(for: [HistoryEntry.self])
         }
     }
 }

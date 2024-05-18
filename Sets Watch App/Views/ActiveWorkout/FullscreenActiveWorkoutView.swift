@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct FullscreenActiveWorkoutView: View {
     @EnvironmentObject var settings: SettingsController
     @Environment(\.dismiss) private var dismiss
-    @Environment(Workout.self) var current_workout
     @Environment(\.isLuminanceReduced) var isRedLum: Bool
+
+    @Environment(Workout.self) var current_workout
+    @Environment(\.modelContext) private var modelContext
     
     @State private var is_showing_overview: Bool = false
     @State private var is_showing_timer: Bool = false
-
     @State private var selected_ss: UUID = UUID()
     
     var body: some View {
@@ -60,6 +62,7 @@ struct FullscreenActiveWorkoutView: View {
             ToolbarItem(placement: .topBarLeading) {
                 HStack {
                     Button {
+                        EndWorkout()
                         dismiss()
                     } label: {
                         Image(systemName: "stop")
@@ -87,6 +90,13 @@ struct FullscreenActiveWorkoutView: View {
                 }
             }
         }
+    }
+    
+    private func EndWorkout()
+    {
+        let history_entry = HistoryEntry(workout_completed_at: Date.now, workout_name: current_workout.name, exercises: current_workout.exercises, supersets: current_workout.supersets)
+        modelContext.insert(history_entry)
+        print("saved workout to history: \(current_workout.name)")
     }
     
     private func UpdateSuperset()
@@ -121,4 +131,5 @@ struct FullscreenActiveWorkoutView: View {
     return FullscreenActiveWorkoutView()
         .environmentObject(SettingsController())
         .environment(example_workout)
+        .modelContainer(for: [HistoryEntry.self])
 }
