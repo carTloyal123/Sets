@@ -28,8 +28,10 @@ struct NewWorkoutSupersetListView: View {
                         } label: {
                             Text(superset.name)
                         }
-
                     }
+                    .onDelete(perform: { indexSet in
+                        app_storage.in_progress_workout.RemoveSuperset(at: indexSet)
+                    })
                 } footer: {
                     Text("Added \(app_storage.in_progress_workout.supersets.count) supersets")
                 }

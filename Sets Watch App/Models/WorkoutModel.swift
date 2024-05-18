@@ -118,6 +118,18 @@ extension Array {
         self.exercises.append(new_exercise)
     }
     
+    func RemoveExercise(at index: IndexSet)
+    {
+        self.exercises.remove(atOffsets: index)
+    }
+    
+    func RemoveExercise(for id: UUID)
+    {
+        self.exercises.removeAll { exercise in
+            exercise.id == id
+        }
+    }
+    
     func AddSuperset(superset: Superset)
     {
         if active_superset == nil
@@ -127,6 +139,21 @@ extension Array {
         }
         
         self.supersets.append(superset)
+    }
+    
+    func RemoveSuperset(at index: IndexSet)
+    {
+        print("removing supersets at index set: \(index)")
+        self.supersets.remove(atOffsets: index)
+    }
+    
+    func RemoveSuperset(for id: UUID)
+    {
+        self.supersets.removeAll { ss in
+            let check = ss.id == id
+            if (check) { print("Removing \(ss.name)")}
+            return check
+        }
     }
     
     func Reset()
