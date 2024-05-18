@@ -29,6 +29,9 @@ struct NewExerciseListView: View {
                             app_storage.in_progress_workout.RemoveExercise(at: indexSet)
                         }
                     })
+                    .onMove { indexSet, newOffset in
+                        app_storage.in_progress_workout.MoveExercise(at: indexSet, to: newOffset)
+                    }
                 } footer: {
                     Text("Selected \(app_storage.in_progress_workout.exercises.count) exercises")
                 }
