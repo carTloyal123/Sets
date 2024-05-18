@@ -41,7 +41,7 @@ import Foundation
     {
         Task
         {
-            print("CentralStorage init: Loading from device")
+            print("FitnessDatabase init: Loading from device")
             self.exercises.append(contentsOf: LoadLocalDatabaseExercises())
         }
     }
