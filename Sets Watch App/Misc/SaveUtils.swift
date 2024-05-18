@@ -17,6 +17,11 @@ class SaveUtils {
         print("Started Save utils single instance!")
     }
     
+    func GetFileName(for fileName: String) -> String
+    {
+        return fileName + ".json"
+    }
+    
     // Function to serialize and save data to a specific directory
     func SaveToDevice<T: Codable>(data: T, to directoryName: String?, filename: String) throws {
         let encoder = JSONEncoder()
