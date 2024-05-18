@@ -96,6 +96,7 @@ struct NewWorkoutMainView: View {
     {
         if (!new_workout_name.isEmpty)
         {
+            app_storage.in_progress_workout.GenerateDefaultSupersets()
             app_storage.in_progress_workout.name = new_workout_name
             app_storage.AddWorkout(for: app_storage.in_progress_workout)
             app_storage.in_progress_workout = Workout(name: "")
