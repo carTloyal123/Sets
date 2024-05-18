@@ -22,14 +22,7 @@ struct FullscreenSupersetView: View {
                         .frame(width: 50)
                 }
                 Divider()
-                ForEach(single_superset.exercise_list) { single_exercise in
-                    HStack {
-                        Text(single_exercise.name)
-                        Spacer()
-                        let complete_sets = single_exercise.sets.filter { $0.set_data.is_complete }.count
-                        Text("\(complete_sets)/\(single_exercise.sets.count)")
-                    }.font(.footnote)
-                }
+                workoutsView
                 Divider()
                 HStack {
                     Text("Elapsed:")
@@ -40,6 +33,17 @@ struct FullscreenSupersetView: View {
                 .font(.footnote)
             }
         }.padding()
+    }
+    
+    var workoutsView: some View {
+        ForEach(single_superset.exercise_list) { single_exercise in
+            HStack {
+                Text(single_exercise.name)
+                Spacer()
+                let complete_sets = single_exercise.sets.filter { $0.set_data.is_complete }.count
+                Text("\(complete_sets)/\(single_exercise.sets.count)")
+            }.font(.footnote)
+        }
     }
     
     func GetTimerString() -> String

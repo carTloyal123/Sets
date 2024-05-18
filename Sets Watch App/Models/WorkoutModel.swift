@@ -324,7 +324,6 @@ extension Array {
     func UpdateSuperSet(for uuid: UUID)
     {
         // find which exercise has matching uuid otherwise stay as is
-        var ss_idx = 0
         let new_superset_idx = supersets.firstIndex { ss in
             ss.id == uuid
         }
@@ -336,5 +335,20 @@ extension Array {
         } else {
             print("UNABLE TO UPDATE SUPERSET for UUID")
         }
+    }
+    
+    func GenerateDefaultSupersets()
+    {
+        // check if all exercises are in supersets
+        let dangling_exerciese = self.exercises.filter { ex in
+            ex.super_set_tag == nil
+        }
+        if (dangling_exerciese.isEmpty) { return }
+        let default_ss = Superset(name: "Default")
+        for exercise in dangling_exerciese {
+            default_ss.AddExercise(exercise: exercise)
+        }
+        default_ss.rest_timer.default_time_in_seconds = 60
+        self.supersets.append(default_ss)
     }
 }

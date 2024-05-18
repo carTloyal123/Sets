@@ -117,7 +117,7 @@ struct FullscreenActiveWorkoutView: View {
 
 #Preview {
     let example_data = ExampleData()
-    @State var example_workout = example_data.GetExampleStrengthWorkout()
+    @State var example_workout = example_data.GetExerciseOnlyWorkout()
     return FullscreenActiveWorkoutView()
         .environmentObject(SettingsController())
         .environment(example_workout)
