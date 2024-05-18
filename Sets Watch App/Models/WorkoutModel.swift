@@ -118,6 +118,22 @@ extension Array {
         self.exercises.append(new_exercise)
     }
     
+    func MoveExercise(at indices: IndexSet, to newOffset: Int)
+    {
+        print("Moving exercises: \(indices) to offset: \(newOffset)")
+        // Get the items to move
+        let items = indices.map { self.exercises[$0] }
+        
+        // Remove items from their original positions
+        self.exercises.remove(atOffsets: indices)
+        
+        // Calculate the new insertion index
+        let insertionIndex = newOffset - indices.filter { $0 < newOffset }.count
+        
+        // Insert items at the new position
+        self.exercises.insert(contentsOf: items, at: insertionIndex)
+    }
+    
     func RemoveExercise(at index: IndexSet)
     {
         self.exercises.remove(atOffsets: index)
@@ -154,6 +170,19 @@ extension Array {
             if (check) { print("Removing \(ss.name)")}
             return check
         }
+    }
+    
+    func MoveSuperset(in indexSet: IndexSet, for offset: Int)
+    {
+        print("Moving \(indexSet) to offset: \(offset)")
+        let items_to_move = indexSet.map { idx in
+            self.supersets[idx]
+        }
+        
+        self.supersets.remove(atOffsets: indexSet)
+        // have to calculate new offset for ourselves since we removed items :/
+        let insertionIndex = offset - indexSet.filter { $0 < offset }.count
+        self.supersets.insert(contentsOf: items_to_move, at: insertionIndex)
     }
     
     func Reset()
