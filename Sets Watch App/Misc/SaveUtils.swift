@@ -11,21 +11,17 @@ class SaveUtils {
     
     static let shared = SaveUtils()
     
+    
     // Private initializer to prevent instantiation from other classes
     private init() {
-        // Initialization code here
-    }
-    
-    func GetFileName(for fileName: String) -> String
-    {
-        return fileName + ".json"
+        print("Started Save utils single instance!")
     }
     
     // Function to serialize and save data to a specific directory
     func SaveToDevice<T: Codable>(data: T, to directoryName: String?, filename: String) throws {
         let encoder = JSONEncoder()
         let data = try encoder.encode(data)
-        
+
         if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             var save_dir = directory
             if let folder = directoryName
