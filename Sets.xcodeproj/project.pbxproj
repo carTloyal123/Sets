@@ -53,8 +53,11 @@
 		33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */; };
 		33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */; };
 		33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */; };
+		338AE3742BF72C26001EA193 /* FullscreenActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338AE3732BF72C26001EA193 /* FullscreenActiveWorkoutView.swift */; };
+		338AE3762BF745B5001EA193 /* FullscreenSupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338AE3752BF745B5001EA193 /* FullscreenSupersetView.swift */; };
 		3397515B2BF26CDF006CD8C3 /* ConfirmCancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397515A2BF26CDF006CD8C3 /* ConfirmCancelView.swift */; };
 		3397515D2BF27920006CD8C3 /* EditExerciseSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397515C2BF27920006CD8C3 /* EditExerciseSetView.swift */; };
+		33975CE12BF8BD6B004CFD75 /* HistoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33975CE02BF8BD6B004CFD75 /* HistoryModels.swift */; };
 		339798F72BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */; };
 		339798F92BF05DFA0009D4CA /* SupersetOptionsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */; };
 		339798FC2BF11A270009D4CA /* NewWorkoutMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798FB2BF11A270009D4CA /* NewWorkoutMainView.swift */; };
@@ -156,8 +159,11 @@
 		33831C022BE3D70400C3D3A4 /* Sets Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sets Watch App.entitlements"; sourceTree = "<group>"; };
 		33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkButtonStyle.swift; sourceTree = "<group>"; };
 		33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsNotificationDelegate.swift; sourceTree = "<group>"; };
+		338AE3732BF72C26001EA193 /* FullscreenActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenActiveWorkoutView.swift; sourceTree = "<group>"; };
+		338AE3752BF745B5001EA193 /* FullscreenSupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenSupersetView.swift; sourceTree = "<group>"; };
 		3397515A2BF26CDF006CD8C3 /* ConfirmCancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCancelView.swift; sourceTree = "<group>"; };
 		3397515C2BF27920006CD8C3 /* EditExerciseSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseSetView.swift; sourceTree = "<group>"; };
+		33975CE02BF8BD6B004CFD75 /* HistoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModels.swift; sourceTree = "<group>"; };
 		339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutSupersetTabView.swift; sourceTree = "<group>"; };
 		339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetOptionsSheetView.swift; sourceTree = "<group>"; };
 		339798FB2BF11A270009D4CA /* NewWorkoutMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutMainView.swift; sourceTree = "<group>"; };
@@ -203,6 +209,8 @@
 				33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */,
 				339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */,
 				339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */,
+				338AE3732BF72C26001EA193 /* FullscreenActiveWorkoutView.swift */,
+				338AE3752BF745B5001EA193 /* FullscreenSupersetView.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -334,6 +342,7 @@
 				333503262BD427770068076C /* ExerciseModel.swift */,
 				333503292BD428F10068076C /* WorkoutModel.swift */,
 				3335032B2BD42A240068076C /* SupersetModel.swift */,
+				33975CE02BF8BD6B004CFD75 /* HistoryModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -522,7 +531,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					333502E42BD425170068076C = {
 						CreatedOnToolsVersion = 15.3;
@@ -606,6 +615,7 @@
 				33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */,
 				330362092BD93B070014CD3C /* PublishedExt.swift in Sources */,
 				3397515D2BF27920006CD8C3 /* EditExerciseSetView.swift in Sources */,
+				33975CE12BF8BD6B004CFD75 /* HistoryModels.swift in Sources */,
 				3309419D2BF12587002C1719 /* ExerciseListDatabaseView.swift in Sources */,
 				33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */,
 				3335032A2BD428F10068076C /* WorkoutModel.swift in Sources */,
@@ -618,6 +628,7 @@
 				330941A02BF12B6C002C1719 /* NewWorkoutSupersetListView.swift in Sources */,
 				339798F92BF05DFA0009D4CA /* SupersetOptionsSheetView.swift in Sources */,
 				332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */,
+				338AE3762BF745B5001EA193 /* FullscreenSupersetView.swift in Sources */,
 				333503352BD434C20068076C /* ExerciseSetCheckButtonView.swift in Sources */,
 				33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */,
 				334944682BF69F4900CF5A06 /* HistoryController.swift in Sources */,
@@ -639,6 +650,7 @@
 				3309419A2BF12418002C1719 /* NewExerciseListView.swift in Sources */,
 				333503332BD4326A0068076C /* ExerciseSetView.swift in Sources */,
 				330362042BD9386B0014CD3C /* WorkoutListView.swift in Sources */,
+				338AE3742BF72C26001EA193 /* FullscreenActiveWorkoutView.swift in Sources */,
 				3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */,
 				339798FC2BF11A270009D4CA /* NewWorkoutMainView.swift in Sources */,
 				3335032C2BD42A240068076C /* SupersetModel.swift in Sources */,
@@ -726,7 +738,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -747,7 +760,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				NEW_SETTING = "";
@@ -792,7 +805,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -807,7 +821,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				NEW_SETTING = "";
@@ -823,7 +837,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
@@ -836,7 +850,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -855,7 +869,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
@@ -868,7 +882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -886,12 +900,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				"INFOPLIST_FILE[sdk=*]" = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -904,12 +918,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				"INFOPLIST_FILE[sdk=*]" = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -924,10 +938,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -945,10 +959,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

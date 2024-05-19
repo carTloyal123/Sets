@@ -19,7 +19,10 @@ extension Array {
     }
 }
 
-@Observable class Workout: Codable, Identifiable {
+@Observable class Workout: Codable, Identifiable, Hashable, Equatable {
+    static func == (lhs: Workout, rhs: Workout) -> Bool {
+        return lhs.id.uuidString == rhs.id.uuidString
+    }
     
     var name: String = "Default Workout"
     var exercises: [Exercise] = []
@@ -68,6 +71,10 @@ extension Array {
         print("workout destoryed!")
     }
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id.uuidString)
+    }
+    
     func Start()
     {
         self.started_at = Date.now
@@ -111,6 +118,34 @@ extension Array {
         self.exercises.append(new_exercise)
     }
     
+    func MoveExercise(at indices: IndexSet, to newOffset: Int)
+    {
+        print("Moving exercises: \(indices) to offset: \(newOffset)")
+        // Get the items to move
+        let items = indices.map { self.exercises[$0] }
+        
+        // Remove items from their original positions
+        self.exercises.remove(atOffsets: indices)
+        
+        // Calculate the new insertion index
+        let insertionIndex = newOffset - indices.filter { $0 < newOffset }.count
+        
+        // Insert items at the new position
+        self.exercises.insert(contentsOf: items, at: insertionIndex)
+    }
+    
+    func RemoveExercise(at index: IndexSet)
+    {
+        self.exercises.remove(atOffsets: index)
+    }
+    
+    func RemoveExercise(for id: UUID)
+    {
+        self.exercises.removeAll { exercise in
+            exercise.id == id
+        }
+    }
+    
     func AddSuperset(superset: Superset)
     {
         if active_superset == nil
@@ -120,6 +155,34 @@ extension Array {
         }
         
         self.supersets.append(superset)
+    }
+    
+    func RemoveSuperset(at index: IndexSet)
+    {
+        print("removing supersets at index set: \(index)")
+        self.supersets.remove(atOffsets: index)
+    }
+    
+    func RemoveSuperset(for id: UUID)
+    {
+        self.supersets.removeAll { ss in
+            let check = ss.id == id
+            if (check) { print("Removing \(ss.name)")}
+            return check
+        }
+    }
+    
+    func MoveSuperset(in indexSet: IndexSet, for offset: Int)
+    {
+        print("Moving \(indexSet) to offset: \(offset)")
+        let items_to_move = indexSet.map { idx in
+            self.supersets[idx]
+        }
+        
+        self.supersets.remove(atOffsets: indexSet)
+        // have to calculate new offset for ourselves since we removed items :/
+        let insertionIndex = offset - indexSet.filter { $0 < offset }.count
+        self.supersets.insert(contentsOf: items_to_move, at: insertionIndex)
     }
     
     func Reset()
@@ -192,25 +255,43 @@ extension Array {
         if let current_ss = self.active_superset
         {
             current_ss.MarkNextSetComplete()
-            // check if this is the last set in superset, if so pass to timer callback for update, otherwise proceed as normal
-            
-            if current_ss.is_ss_complete
-            {
-                // pass update to timer, otherwise normal
-                print("Sending superset update to timer!")
-                current_ss.rest_timer.SetCallback {
-                    self.NextSuperset()
-                }
-                return true
-            } else {
-                current_ss.rest_timer.reset()
-                return false
-            }
+            return HandleLastRestTimer(for: current_ss)
         } else {
             print("SS not active, getting from store!")
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
             return false
+        }
+    }
+    
+    private func HandleLastRestTimer(for current_ss: Superset) -> Bool
+    {
+        if current_ss.is_ss_complete
+        {
+            // pass update to timer, otherwise normal
+            print("Sending superset update to timer!")
+            current_ss.rest_timer.SetCallback {
+                self.NextSuperset()
+            }
+            return true
+        } else {
+            current_ss.rest_timer.reset()
+            return false
+        }
+    }
+    
+    func SkipRestTimer()
+    {
+        if let current_ss = self.active_superset
+        {
+            if current_ss.is_ss_complete
+            {
+                print("skipped rest timer, cancelling callback!")
+                current_ss.rest_timer.callback = nil
+                self.NextSuperset()
+            } else {
+                print("skipped rest timer, ss not complete")
+            }
         }
     }
     
@@ -243,16 +324,31 @@ extension Array {
     func UpdateSuperSet(for uuid: UUID)
     {
         // find which exercise has matching uuid otherwise stay as is
-        var ss_idx = 0
-        for ss in supersets {
-            if (ss.id == uuid)
-            {
-                active_superset = ss
-                active_superset_idx = ss_idx
-                print("Set superset by UUID to: \(ss.name)")
-                return
-            }
-            ss_idx += 1
+        let new_superset_idx = supersets.firstIndex { ss in
+            ss.id == uuid
         }
+        if let new_idx = new_superset_idx
+        {
+            active_superset_idx = new_idx
+            active_superset = supersets[new_idx]
+            print("Set superset by UUID to: \(uuid.uuidString)")
+        } else {
+            print("UNABLE TO UPDATE SUPERSET for UUID")
+        }
+    }
+    
+    func GenerateDefaultSupersets()
+    {
+        // check if all exercises are in supersets
+        let dangling_exerciese = self.exercises.filter { ex in
+            ex.super_set_tag == nil
+        }
+        if (dangling_exerciese.isEmpty) { return }
+        let default_ss = Superset(name: "Default")
+        for exercise in dangling_exerciese {
+            default_ss.AddExercise(exercise: exercise)
+        }
+        default_ss.rest_timer.default_time_in_seconds = 60
+        self.supersets.append(default_ss)
     }
 }

@@ -13,6 +13,8 @@ struct TimerView: View {
     @EnvironmentObject var settings: SettingsController
     var rest_timer: WorkoutTimer
     
+    var skip_action: (() -> Void)
+    
     var body: some View {
         ScrollView {
             Text(Utils.timeString(rest_timer.time_remaining, reduced: isRedLum))
@@ -49,6 +51,7 @@ struct TimerView: View {
             Button(action: {
                 rest_timer.ResetRemainingTime()
                 rest_timer.stop()
+                skip_action()
                 dismiss()
             }, label: {
                 Text("Skip Rest Time")
@@ -62,7 +65,12 @@ struct TimerView: View {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var remaining_time: TimeInterval = TimeInterval()
-    return TimerView(rest_timer: example_workout.supersets.first!.rest_timer)
+    
+    var ac: (() -> Void) = {
+        print("testing ac")
+    }
+    
+    return TimerView(rest_timer: example_workout.supersets.first!.rest_timer, skip_action: ac)
         .onAppear(perform: {
             example_workout.supersets.first!.rest_timer.reset()
         })

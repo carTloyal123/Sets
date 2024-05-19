@@ -40,6 +40,15 @@ struct ExerciseListDatabaseView: View {
                     } label: {
                         Text("Add Custom")
                     }
+                    Button {
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("Close")
+                            Spacer()
+                        }
+                    }
                 }
             }
         }

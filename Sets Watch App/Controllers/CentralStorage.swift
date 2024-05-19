@@ -56,36 +56,50 @@ import SwiftUI
     
     func SaveWorkoutsToDevice()
     {
-        let encoder = JSONEncoder()
-        guard let encoded = try? encoder.encode(workouts) else {
-            print("Unable to encode workouts")
-            return
-        }
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let archiveURL = documentsDirectory.appendingPathComponent("stored_workouts.json")
-        do {
-            try encoded.write(to: archiveURL)
-            print("saved workouts to stored_workouts.json success")
-        } catch {
-            print("Failed to save data to file: \(error)")
-        }
+        try? save_utils.SaveToDevice(data: self.workouts, to: SaveDirectories.Workouts, filename: SaveFiles.Workouts)
+        
+//        let encoder = JSONEncoder()
+//        guard let encoded = try? encoder.encode(workouts) else {
+//            print("Unable to encode workouts")
+//            return
+//        }
+//
+//        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//        let archiveURL = documentsDirectory.appendingPathComponent("stored_workouts.json")
+//        do {
+//            try encoded.write(to: archiveURL)
+//            print("saved workouts to stored_workouts.json success")
+//        } catch {
+//            print("Failed to save data to file: \(error)")
+//        }
     }
     
     func LoadWorkoutsFromDevice()
     {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let archiveURL = documentsDirectory.appendingPathComponent(SaveFiles.Workouts)
         
-        if let data = try? Data(contentsOf: archiveURL) {
-            let decoder = JSONDecoder()
-            if let loadedData = try? decoder.decode([Workout].self, from: data) {
+        do {
+            let loaded: [Workout] = try save_utils.LoadFromDirectory(from: SaveDirectories.Workouts, filename: SaveFiles.Workouts)
                 DispatchQueue.main.async {
-                    self.workouts = loadedData
+                    self.workouts = loaded
                     print("Loaded data from device storage!")
                 }
-            } else {
-                print("Unable to load fromd device!")
-            }
+        } catch {
+            print("Error loading workouts from device: \(error.localizedDescription)")
         }
+
+//        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//        let archiveURL = documentsDirectory.appendingPathComponent(SaveFiles.Workouts)
+//        
+//        if let data = try? Data(contentsOf: archiveURL) {
+//            let decoder = JSONDecoder()
+//            if let loadedData = try? decoder.decode([Workout].self, from: data) {
+//                DispatchQueue.main.async {
+//                    self.workouts = loadedData
+//                    print("Loaded data from device storage!")
+//                }
+//            } else {
+//                print("Unable to load fromd device!")
+//            }
+//        }
     }
 }

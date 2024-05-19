@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsController
+    @State private var icloud_status: String = "none"
     
     var body: some View {
         
@@ -46,8 +47,17 @@ struct SettingsView: View {
             } footer: {
                 Text("Will be set to OFF after first launch")
             }
-
-
+            
+            Section {
+                Button(action: {
+                    icloud_status = "no info"
+                }, label: {
+                    Text("iCloud")
+                })
+                Text("Status: \(icloud_status)")
+            } footer: {
+                Text("Debug")
+            }
         }
     }
 }

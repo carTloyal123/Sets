@@ -14,71 +14,74 @@ struct NewWorkoutMainView: View {
     @State private var show_confirm_cancel: Bool = false
 
     var body: some View {
-        List
-        {
-            Section {
-                TextField(text: $new_workout_name) {
-                    Text("Workout Name")
-                }
-                
-                NavigationLink {
-                    NewExerciseListView()
-                        .navigationTitle("Exercises")
-                } label: {
-                    HStack
-                    {
-                        Text("Exercises")
-                        Spacer()
-                        Text("\(app_storage.in_progress_workout.exercises.count)")
-                        Image(systemName: "chevron.right")
-                    }
-                }
-                
-                NavigationLink {
-                    NewWorkoutSupersetListView()
-                        .navigationTitle("Supersets")
-                } label: {
-                    HStack
-                    {
-                        Text("Supersets")
-                        Spacer()
-                        Text("\(app_storage.in_progress_workout.supersets.count)")
-                        Image(systemName: "chevron.right")
-                    }
-                }
-            }
-            
-            Section
+        NavigationStack {
+            List
             {
-                Button {
-                    SaveWorkout()
-                    dismiss()
-                } label: {
-                    HStack
-                    {
-                        Spacer()
-                        Text("Add Workout")
-                        Spacer()
+                Section {
+                    TextField(text: $new_workout_name) {
+                        Text("Workout Name")
+                    }
+                    
+                    NavigationLink {
+                        NewExerciseListView()
+                            .navigationTitle("Exercises")
+                    } label: {
+                        HStack
+                        {
+                            Text("Exercises")
+                            Spacer()
+                            Text("\(app_storage.in_progress_workout.exercises.count)")
+                            Image(systemName: "chevron.right")
+                        }
+                    }
+                    
+                    NavigationLink {
+                        NewWorkoutSupersetListView()
+                            .navigationTitle("Supersets")
+                    } label: {
+                        HStack
+                        {
+                            Text("Supersets")
+                            Spacer()
+                            Text("\(app_storage.in_progress_workout.supersets.count)")
+                            Image(systemName: "chevron.right")
+                        }
                     }
                 }
-                Button(role: .cancel) {
-                    if (!new_workout_name.isEmpty || app_storage.in_progress_workout.supersets.count > 0 || app_storage.in_progress_workout.exercises.count > 0)
-                    {
-                        show_confirm_cancel.toggle()
-                    } else
-                    {
+                
+                Section
+                {
+                    Button {
+                        SaveWorkout()
                         dismiss()
+                    } label: {
+                        HStack
+                        {
+                            Spacer()
+                            Text("Add Workout")
+                            Spacer()
+                        }
                     }
-                } label: {
-                    HStack
-                    {
-                        Spacer()
-                        Text("Cancel")
-                        Spacer()
+                    Button(role: .cancel) {
+                        if (!new_workout_name.isEmpty || app_storage.in_progress_workout.supersets.count > 0 || app_storage.in_progress_workout.exercises.count > 0)
+                        {
+                            show_confirm_cancel.toggle()
+                        } else
+                        {
+                            dismiss()
+                        }
+                    } label: {
+                        HStack
+                        {
+                            Spacer()
+                            Text("Cancel")
+                            Spacer()
+                        }
                     }
                 }
             }
         }
+
         .sheet(isPresented: $show_confirm_cancel, content: {
             ConfirmCancelView {
                 SaveWorkout()
@@ -93,6 +96,7 @@ struct NewWorkoutMainView: View {
     {
         if (!new_workout_name.isEmpty)
         {
+            app_storage.in_progress_workout.GenerateDefaultSupersets()
             app_storage.in_progress_workout.name = new_workout_name
             app_storage.AddWorkout(for: app_storage.in_progress_workout)
             app_storage.in_progress_workout = Workout(name: "")
