@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EntryLayerView: View {
     @EnvironmentObject private var settings_controller: SettingsController
@@ -100,7 +101,20 @@ struct EntryLayerView: View {
     app_storage.workouts.append(example_data.GetExampleWorkout())
     app_storage.workouts.append(example_data.GetSupersetWorkout())
     
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: HistoryEntry.self, configurations: config)
+
+    @State var history_storage: HistoryController = HistoryController()
+    history_storage.workouts.append(example_data.GetExampleStrengthWorkout())
+    history_storage.workouts.append(example_data.GetExampleWorkout())
+    history_storage.workouts.append(example_data.GetSupersetWorkout())
+    for workout in history_storage.workouts {
+        container.mainContext.insert(HistoryEntry(workout_completed_at: Date.now, workout_name: workout.name, exercises: workout.exercises, supersets: workout.supersets))
+    }
+    
     return EntryLayerView()
         .environment(app_storage)
+        .environment(history_storage)
         .environmentObject(settings_controller)
+        .modelContainer(container)
 }

@@ -14,32 +14,46 @@ struct MainHistoryView: View {
     
     @Environment(HistoryController.self) var history_storage: HistoryController
     
+    @State private var show_sheet: Bool = false
+    
     var body: some View {
-        ScrollView {
-            ForEach(entries) { item in
-                VStack {
-                    HStack
-                    {
-                        Text("\(item.workout_name)")
-                        Spacer()
-                    }
-                    HStack
-                    {
-                        Text("at: " + formatDateShort(item.workout_completed_at))
-                            .font(.system(size: 14))
-                            .opacity(0.8)
-                        Spacer()
+        NavigationStack {
+            ScrollView {
+                ForEach(entries) { item in
+                    NavigationLink {
+                        HistoryDetailView(entry: item)
+                    } label: {
+                        EntryCellView(item: item)
                     }
                 }
-                .padding()
-                .background {
-                    let bg = item.supersets.first?.color ?? .orange
-                    RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(bg)
-                        .opacity(0.8)
-                }
-                
+            }.buttonStyle(PlainButtonStyle())
+        }
+    }
+}
+
+struct EntryCellView: View {
+    var item: HistoryEntry
+    var body: some View {
+        VStack {
+            HStack
+            {
+                Text("\(item.workout_name)")
+                Spacer()
             }
+            HStack
+            {
+                Text("at: " + formatDateShort(item.workout_completed_at))
+                    .font(.system(size: 14))
+                    .opacity(0.8)
+                Spacer()
+            }
+        }
+        .padding()
+        .background {
+            let bg = item.supersets.first?.color ?? .orange
+            RoundedRectangle(cornerRadius: 5)
+                .foregroundColor(bg)
+                .opacity(0.8)
         }
     }
     
@@ -48,7 +62,6 @@ struct MainHistoryView: View {
         formatter.dateFormat = "MMM d, HH:mm a"
         return formatter.string(from: date)
     }
-    
 }
 
 #Preview {
@@ -65,9 +78,15 @@ struct MainHistoryView: View {
     for workout in history_storage.workouts {
         container.mainContext.insert(HistoryEntry(workout_completed_at: Date.now, workout_name: workout.name, exercises: workout.exercises, supersets: workout.supersets))
     }
-    return MainHistoryView()
-        .environment(app_storage)
-        .environment(history_storage)
-        .environmentObject(settings_controller)
-        .modelContainer(container)
+    @State var fitness_db: FitnessDatabase = FitnessDatabase()
+
+    return NavigationStack
+    {
+        EntryLayerView()
+    }
+    .environment(fitness_db)
+    .environment(app_storage)
+    .environment(history_storage)
+    .environmentObject(settings_controller)
+    .modelContainer(container)
 }
