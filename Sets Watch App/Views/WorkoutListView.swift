@@ -13,11 +13,14 @@ struct WorkoutListView: View {
     @Environment(WorkoutSessionController.self) private var session_controller: WorkoutSessionController
     @Environment(\.dismiss) private var dismiss
     @State private var show_create_workout: Bool = false
+    
+    @State private var can_show_workout: Bool = false
+    @State private var is_showing_warning: Bool = false
         
     var body: some View {
         NavigationSplitView {
             List {
-                if let active_wk = app_storage.active_work {
+                if let active_wk = app_storage.active_workout {
                     Section {
                         NavigationLink(value: active_wk) {
                             Text(active_wk.name)
@@ -31,6 +34,20 @@ struct WorkoutListView: View {
                     NavigationLink(value: workout) {
                         Text(workout.name)
                     }
+//                    .onTapGesture {
+//                        is_showing_warning.toggle()
+//                    }
+//                    .confirmationDialog("Start New Workout", isPresented: $is_showing_warning) {
+//                        Button(action: {
+//                            print("start new")
+//                            can_show_workout.toggle()
+//                        }, label: {
+//                            Text("Button")
+//                        })
+//                    } message: {
+//                        Text("Are you sure you want to start a new workout?")
+//                    }
+
                 }
                 .onDelete(perform: { indexSet in
                     deleteItems(for: indexSet)
@@ -61,24 +78,14 @@ struct WorkoutListView: View {
                 }
             }
             .navigationDestination(for: Workout.self) { wk in
-                if (wk.name == app_storage.active_work?.name) {
+//                if (can_show_workout)
+//                {
                     WorkoutView(current_workout: wk)
                         .environment(wk)
                         .navigationBarBackButtonHidden()
-                } else {
-                    WorkoutView(current_workout: wk)
-                        .environment(wk)
-                        .navigationBarBackButtonHidden()
-                        .onAppear(perform: {
-                            session_controller.endWorkout(and: false)
-                            session_controller.resetWorkout()
-                            app_storage.active_work?.Reset()
-                            
-                            session_controller.selectedWorkout = .traditionalStrengthTraining
-                            wk.Start()
-                            app_storage.active_work = wk
-                        })
-                }
+//                } else {
+//                    EmptyView()
+//                }
             }
         } detail: {
             Text("Detail view?")

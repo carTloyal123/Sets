@@ -186,8 +186,10 @@ extension WorkoutSessionController: HKWorkoutSessionDelegate {
 
         // Wait for the session to transition states before ending the builder.
         if toState == .ended {
+            print("ENDED WORKOUT")
             builder?.endCollection(withEnd: date) { (success, error) in
                 self.builder?.finishWorkout { (workout, error) in
+                    print("Finished workout!")
                     DispatchQueue.main.async {
                         self.workout = workout
                     }
