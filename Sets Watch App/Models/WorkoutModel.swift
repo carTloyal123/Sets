@@ -271,7 +271,13 @@ extension Array {
             // pass update to timer, otherwise normal
             print("Sending superset update to timer!")
             current_ss.rest_timer.SetCallback {
-                self.NextSuperset()
+                if current_ss.is_ss_complete
+                {
+                    print("Next superset from TIMER being called")
+                    self.NextSuperset()
+                } else {
+                    print("NOT popping next superset from timer since ss not complete")
+                }
             }
             return true
         } else {

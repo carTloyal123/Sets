@@ -11,7 +11,7 @@ import WatchKit
 
 struct WorkoutView: View {
     @Environment(\.isLuminanceReduced) var isLuminanceReduced
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss_workout
 
     @Environment(WorkoutSessionController.self) var session_controller
     @State private var selection: Tab = .workout
@@ -23,7 +23,11 @@ struct WorkoutView: View {
     
     var body: some View {
         TabView(selection: $selection) {
-            ActiveWorkoutControlsView()
+            ActiveWorkoutControlsView(end_action: {
+                dismiss_workout()
+            }, pause_action: {
+                displayMetricsView()
+            })
                 .tag(Tab.controls)
                 .tabItem { Image(systemName: "gearshape.fill") }
             FullscreenActiveWorkoutView()

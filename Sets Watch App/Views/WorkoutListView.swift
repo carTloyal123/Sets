@@ -52,6 +52,7 @@ struct WorkoutListView: View {
             }
             .navigationDestination(for: Workout.self) { wk in
                 WorkoutView(current_workout: wk)
+                    .environment(wk)
                     .navigationBarBackButtonHidden()
             }
         } detail: {

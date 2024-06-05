@@ -81,6 +81,7 @@ struct SummaryMetricView: View {
 #Preview {
     @State var session = WorkoutSessionController()
     session.selectedWorkout = .traditionalStrengthTraining
+    session.workout = HKWorkout(activityType: .traditionalStrengthTraining, start: Date.now - 100, end: Date.now)
     return SummaryView()
         .environment(session)
 }

@@ -44,20 +44,36 @@ import HealthKit
             print("UNABLE to create workout session")
             return
         }
+        
+        guard let session = session else {
+            print("NO SESSION")
+            return
+        }
+        
+        guard let builder = builder else {
+            print("NO BUILDER")
+            return
+        }
 
         // Setup session and builder.
-        session?.delegate = self
-        builder?.delegate = self
+        session.delegate = self
+        builder.delegate = self
 
         // Set the workout builder's data source.
-        builder?.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
+        builder.dataSource = HKLiveWorkoutDataSource(healthStore: healthStore,
                                                      workoutConfiguration: configuration)
 
         // Start the workout session and begin data collection.
         let startDate = Date()
-        session?.startActivity(with: startDate)
-        builder?.beginCollection(withStart: startDate) { (success, error) in
-            print("COLLECTION event: \(success)")
+        session.startActivity(with: startDate)
+        builder.beginCollection(withStart: startDate) { (success, error) in
+            guard success else {
+                // Handle errors.
+                print("ERROR IN BEGIN COLLECTION")
+                return
+            }
+            print("BEGIN COLLECTION GOOD")
+            // Indicate that the session has started.
         }
         
         print("Started workout of type \(workoutType.rawValue)")
@@ -81,7 +97,13 @@ import HealthKit
 
         // Request authorization for those quantity types.
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
-            // Handle error.
+            if success {
+                print("Health is GOOD")
+            }
+            
+            if let error = error {
+                print("HEALTH IS ERROR: \(error.localizedDescription)")
+            }
         }
     }
 
@@ -153,10 +175,12 @@ import HealthKit
 
 // MARK: - HKWorkoutSessionDelegate
 extension WorkoutSessionController: HKWorkoutSessionDelegate {
+    
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState,
                         from fromState: HKWorkoutSessionState, date: Date) {
+        print("Session CHANGE STATE activity: \(fromState) -> \(toState)")
+
         DispatchQueue.main.async {
-            print("workout session state changed! \(toState.rawValue)")
             self.running = toState == .running
         }
 
@@ -171,20 +195,16 @@ extension WorkoutSessionController: HKWorkoutSessionDelegate {
             }
         }
     }
-    
-    func workoutSession(_ workoutSession: HKWorkoutSession, didBeginActivityWith workoutConfiguration: HKWorkoutConfiguration, date: Date) {
-        print("Started a workout SESSION with config: \(workoutConfiguration.activityType.name)")
-    }
 
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-        print("WORKOUT Session FAILED: \(error.localizedDescription)")
+//        print("WORKOUT SESSION FAILED: \(error.localizedDescription)")
     }
 }
 
 // MARK: - HKLiveWorkoutBuilderDelegate
 extension WorkoutSessionController: HKLiveWorkoutBuilderDelegate {
     func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
-
+        print("Builder collection event!")
     }
 
     func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FullscreenSupersetView: View {
     var single_superset: Superset
+    var context: TimelineView<EveryMinuteTimelineSchedule, Never>.Context
     @Environment(Workout.self) private var current_workout: Workout
     @Environment(WorkoutSessionController.self) private var session
     @Environment(\.isLuminanceReduced) private var isRedLum: Bool
@@ -16,27 +17,24 @@ struct FullscreenSupersetView: View {
     var body: some View {
         ZStack {
             VStack {
-
                 HStack {
                     Text(single_superset.name)
                     Spacer()
-                    VStack {
-                        HStack {
-                            Text(session.heartRate.formatted(.number.precision(.fractionLength(0))))
-                            Image(systemName: "heart.fill")
-                        }
-                        Text(GetTimerString())
-                            .frame(width: 50)
+                    HStack {
+                        Image(systemName: "heart.fill")
+                        Text(session.heartRate.formatted(.number.precision(.fractionLength(0))))
                     }
-                    
                 }
                 Divider()
                 workoutsView
                 Divider()
                 HStack {
+                    ElapsedTimeView(elapsedTime: session.builder?.elapsedTime(at: context.date) ?? 0, showSubseconds: context.cadence == .live)
                     Spacer()
-                    Text(GetElapsedTime())
-                        .frame(width: 50)
+                    HStack {
+                        Image(systemName: "moon.zzz.fill")
+                        ElapsedTimeView(elapsedTime: single_superset.rest_timer.time_remaining, showSubseconds: context.cadence == .live)
+                    }
                 }
                 .font(.footnote)
             }
@@ -72,7 +70,10 @@ struct FullscreenSupersetView: View {
     @State var ss = example_workout.supersets.first!
     @State var session = WorkoutSessionController()
     example_workout.Start()
-    return FullscreenSupersetView(single_superset: ss)
-        .environment(example_workout)
-        .environment(session)
+    return TimelineView(ActiveWorkoutTimelineView(from: session.builder?.startDate ?? Date(), isPaused: session.session?.state == .paused)) { context in
+        
+        FullscreenSupersetView(single_superset: ss, context: context)
+            .environment(example_workout)
+            .environment(session)
+    }
 }
