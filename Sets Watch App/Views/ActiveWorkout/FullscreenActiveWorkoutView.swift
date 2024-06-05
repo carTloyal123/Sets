@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import WatchKit
 
 struct FullscreenActiveWorkoutView: View {
     @EnvironmentObject var settings: SettingsController
@@ -15,6 +16,8 @@ struct FullscreenActiveWorkoutView: View {
 
     @Environment(Workout.self) var current_workout
     @Environment(\.modelContext) private var modelContext
+    
+    @Environment(WorkoutSessionController.self) private var session
     
     @State private var is_showing_overview: Bool = false
     @State private var is_showing_timer: Bool = false
@@ -32,9 +35,7 @@ struct FullscreenActiveWorkoutView: View {
                     .tag(superset.id)
             }
         })
-        .onAppear(perform: {
-            current_workout.Start()
-        })
+        .tabViewStyle(.verticalPage(transitionStyle: .blur))
         .onChange(of: current_workout.active_superset, { oldValue, newValue in
             print("Changed active superset")
             guard let _ = oldValue else { return }
@@ -61,12 +62,6 @@ struct FullscreenActiveWorkoutView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 HStack {
-                    Button {
-                        EndWorkout()
-                        dismiss()
-                    } label: {
-                        Image(systemName: "stop")
-                    }
                     Button {
                         is_showing_overview.toggle()
                     } label: {
@@ -127,8 +122,18 @@ struct FullscreenActiveWorkoutView: View {
 
 #Preview {
     let example_data = ExampleData()
-    @State var example_workout = example_data.GetExerciseOnlyWorkout()
-    return FullscreenActiveWorkoutView()
+    @State var example_workout = example_data.GetSupersetWorkout()
+    return NavigationSplitView(sidebar: {
+        NavigationLink(value: example_workout) {
+            Text("Workout")
+        }
+        .navigationDestination(for: Workout.self) { wk in
+            FullscreenActiveWorkoutView()
+        }
+    }, detail: {
+        EmptyView()
+    })
+
         .environmentObject(SettingsController())
         .environment(example_workout)
         .modelContainer(for: [HistoryEntry.self])

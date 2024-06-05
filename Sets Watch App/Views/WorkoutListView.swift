@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct WorkoutListView: View {
     @Environment(CentralStorage.self) private var app_storage: CentralStorage
+    @Environment(WorkoutSessionController.self) private var session_controller: WorkoutSessionController
     @Environment(\.dismiss) private var dismiss
     @State private var show_create_workout: Bool = false
         
@@ -58,7 +60,10 @@ struct WorkoutListView: View {
         .sheet(isPresented: $show_create_workout, content: {
             NewWorkoutMainView()
         })
-
+        .onAppear(perform: {
+            // ask for health perms
+            session_controller.requestAuthorization()
+        })
     }
     
     private func deleteItems(for indexSet: IndexSet)
@@ -84,6 +89,11 @@ struct WorkoutListView: View {
     app_storage.workouts.append(example_data.GetExampleWorkout())
     app_storage.workouts.append(example_data.GetSupersetWorkout())
 
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: HistoryEntry.self, configurations: config)
+    
+    @State var session_controller = WorkoutSessionController()
+    
     return NavigationStack {
         WorkoutListView()
     }            
@@ -91,5 +101,7 @@ struct WorkoutListView: View {
     .environment(app_storage)
     .environment(current_workout)
     .environment(history_storage)
+    .environment(session_controller)
     .environment(fitness_db)
+    .modelContainer(container)
 }

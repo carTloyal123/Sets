@@ -53,11 +53,11 @@ struct ConfirmCancelView: View {
 
 #Preview {
     
-    var myClosure: () -> Void = {
+    let myClosure: () -> Void = {
         print("Hello, Lambda!")
     }
     
-    var myClosure2: () -> Void = {
+    let myClosure2: () -> Void = {
         print("Hello, Cancel!")
     }
     

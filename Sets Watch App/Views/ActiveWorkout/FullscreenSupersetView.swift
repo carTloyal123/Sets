@@ -10,22 +10,30 @@ import SwiftUI
 struct FullscreenSupersetView: View {
     var single_superset: Superset
     @Environment(Workout.self) private var current_workout: Workout
+    @Environment(WorkoutSessionController.self) private var session
     @Environment(\.isLuminanceReduced) private var isRedLum: Bool
     
     var body: some View {
         ZStack {
             VStack {
+
                 HStack {
                     Text(single_superset.name)
                     Spacer()
-                    Text(GetTimerString())
-                        .frame(width: 50)
+                    VStack {
+                        HStack {
+                            Text(session.heartRate.formatted(.number.precision(.fractionLength(0))))
+                            Image(systemName: "heart.fill")
+                        }
+                        Text(GetTimerString())
+                            .frame(width: 50)
+                    }
+                    
                 }
                 Divider()
                 workoutsView
                 Divider()
                 HStack {
-                    Text("Elapsed:")
                     Spacer()
                     Text(GetElapsedTime())
                         .frame(width: 50)
@@ -53,7 +61,7 @@ struct FullscreenSupersetView: View {
     
     func GetElapsedTime() -> String
     {
-        return Utils.timeString(current_workout.elapsed_time, reduced: isRedLum)
+        return Utils.timeString(session.builder?.elapsedTime ?? -1, reduced: isRedLum)
     }
          
 }
@@ -62,7 +70,9 @@ struct FullscreenSupersetView: View {
     let example_data = ExampleData()
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var ss = example_workout.supersets.first!
+    @State var session = WorkoutSessionController()
     example_workout.Start()
     return FullscreenSupersetView(single_superset: ss)
         .environment(example_workout)
+        .environment(session)
 }

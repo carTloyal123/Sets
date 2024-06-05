@@ -17,6 +17,8 @@ struct Sets_Watch_AppApp: App {
     @State var app_storage: CentralStorage = CentralStorage()
     @State var history_controller: HistoryController = HistoryController()
     @State var fitness_db: FitnessDatabase = ExampleData().GenerateExampleFitnessDatabase()
+    @State var workout_session_controller: WorkoutSessionController = WorkoutSessionController()
+    
     
     var body: some Scene {
         WindowGroup {
@@ -25,6 +27,7 @@ struct Sets_Watch_AppApp: App {
                 .environment(app_storage)
                 .environment(fitness_db)
                 .environment(history_controller)
+                .environment(workout_session_controller)
                 .modelContainer(for: [HistoryEntry.self])
         }
     }
