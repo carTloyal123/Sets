@@ -82,7 +82,7 @@ struct EntryCellView: View {
 
     return NavigationStack
     {
-        EntryLayerView()
+        MainHistoryView()
     }
     .environment(fitness_db)
     .environment(app_storage)

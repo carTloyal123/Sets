@@ -184,7 +184,6 @@ class ExampleData {
         let five_set_one = GetExampleExerciseSet(set_number: 1, type: .duration, reps: 100, volume: 180)
         let five_set_two = GetExampleExerciseSet(set_number: 2, type: .duration, reps: 100, volume: 180)
         let five_set_three = GetExampleExerciseSet(set_number: 3, type: .duration, reps: 100, volume: 180)
-        let five_exercise = Exercise(name: "Ab Tobata", sets: [five_set_one, five_set_two, five_set_three], exercise_type: .duration, exercise_target_area: .abdomen)
         
         let four_set_one = GetExampleExerciseSet(set_number: 1, type: .duration, reps: 100, volume: 60*10)
         let four_exercise = Exercise(name: "Sauna", sets: [four_set_one], exercise_type: .duration, exercise_target_area: .full_body)

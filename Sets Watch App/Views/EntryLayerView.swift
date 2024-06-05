@@ -10,8 +10,10 @@ import SwiftData
 
 struct EntryLayerView: View {
     @EnvironmentObject private var settings_controller: SettingsController
+    @Environment(WorkoutSessionController.self) private var session_controller: WorkoutSessionController
     @State private var is_showing_welcome: Bool = false
-        
+    @State private var is_showing_summary: Bool = false
+
     var body: some View {
 
         NavigationStack
@@ -77,6 +79,12 @@ struct EntryLayerView: View {
         .sheet(isPresented: $is_showing_welcome, content: {
             WelcomeView()
         })
+        .sheet(isPresented: $is_showing_summary, content: {
+            SummaryView()
+        })
+        .onChange(of: session_controller.showingSummaryView) { oldValue, newValue in
+            is_showing_summary = newValue
+        }
     }
     
     private func ShowWelcome()
@@ -112,9 +120,12 @@ struct EntryLayerView: View {
         container.mainContext.insert(HistoryEntry(workout_completed_at: Date.now, workout_name: workout.name, exercises: workout.exercises, supersets: workout.supersets))
     }
     
+    @State var workout_session: WorkoutSessionController = WorkoutSessionController()
+    
     return EntryLayerView()
         .environment(app_storage)
         .environment(history_storage)
         .environmentObject(settings_controller)
+        .environment(workout_session)
         .modelContainer(container)
 }

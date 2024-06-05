@@ -30,8 +30,8 @@ struct HistoryDetailView: View {
                         SupersetView(current_superset: ss)
                     }
                 } header: {
-                    Text("Supersets (Exercise Count)")
-                        .font(.system(size: 13))
+                    Text("Summary")
+                        .font(.system(size: 12))
                         .opacity(0.8)
                 }
             }
@@ -76,7 +76,7 @@ extension View {
         container.mainContext.insert(n)
         history_entries.append(n)
     }
-    var single_entry: HistoryEntry = HistoryEntry(workout_completed_at: Date.now, workout_name: history_storage.workouts[0].name, exercises: history_storage.workouts[0].exercises, supersets: history_storage.workouts[0].supersets)
+//    var single_entry: HistoryEntry = HistoryEntry(workout_completed_at: Date.now, workout_name: history_storage.workouts[0].name, exercises: history_storage.workouts[0].exercises, supersets: history_storage.workouts[0].supersets)
 
     
     
