@@ -128,9 +128,9 @@ import HealthKit
         session?.resume()
     }
 
-    func endWorkout() {
+    func endWorkout(and showSummary: Bool = true) {
         session?.end()
-        showingSummaryView = true
+        showingSummaryView = showSummary
     }
 
     // MARK: - Workout Metrics

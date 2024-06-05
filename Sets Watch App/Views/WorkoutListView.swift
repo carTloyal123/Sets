@@ -17,6 +17,16 @@ struct WorkoutListView: View {
     var body: some View {
         NavigationSplitView {
             List {
+                if let active_wk = app_storage.active_work {
+                    Section {
+                        NavigationLink(value: active_wk) {
+                            Text(active_wk.name)
+                        }
+                    } footer: {
+                        Text("Resume Active Workout")
+                    }
+                }
+                
                 ForEach(app_storage.workouts) { workout in
                     NavigationLink(value: workout) {
                         Text(workout.name)
@@ -51,13 +61,29 @@ struct WorkoutListView: View {
                 }
             }
             .navigationDestination(for: Workout.self) { wk in
-                WorkoutView(current_workout: wk)
-                    .environment(wk)
-                    .navigationBarBackButtonHidden()
+                if (wk.name == app_storage.active_work?.name) {
+                    WorkoutView(current_workout: wk)
+                        .environment(wk)
+                        .navigationBarBackButtonHidden()
+                } else {
+                    WorkoutView(current_workout: wk)
+                        .environment(wk)
+                        .navigationBarBackButtonHidden()
+                        .onAppear(perform: {
+                            session_controller.endWorkout(and: false)
+                            session_controller.resetWorkout()
+                            app_storage.active_work?.Reset()
+                            
+                            session_controller.selectedWorkout = .traditionalStrengthTraining
+                            wk.Start()
+                            app_storage.active_work = wk
+                        })
+                }
             }
         } detail: {
             Text("Detail view?")
         }
+
         .sheet(isPresented: $show_create_workout, content: {
             NewWorkoutMainView()
         })

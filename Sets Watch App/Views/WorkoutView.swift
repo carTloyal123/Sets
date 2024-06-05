@@ -12,11 +12,11 @@ import WatchKit
 struct WorkoutView: View {
     @Environment(\.isLuminanceReduced) var isLuminanceReduced
     @Environment(\.dismiss) var dismiss_workout
-
+    
     @Environment(WorkoutSessionController.self) var session_controller
     @State private var selection: Tab = .workout
     var current_workout: Workout
-
+    
     enum Tab {
         case controls, workout, nowPlaying
     }
@@ -28,8 +28,8 @@ struct WorkoutView: View {
             }, pause_action: {
                 displayMetricsView()
             })
-                .tag(Tab.controls)
-                .tabItem { Image(systemName: "gearshape.fill") }
+            .tag(Tab.controls)
+            .tabItem { Image(systemName: "gearshape.fill") }
             FullscreenActiveWorkoutView()
                 .tag(Tab.workout)
                 .tabItem { Image(systemName: "figure.run") }
@@ -44,17 +44,14 @@ struct WorkoutView: View {
                 displayMetricsView()
             }
         }
-        .onAppear(perform: {
-            current_workout.Start()
-            session_controller.selectedWorkout = .traditionalStrengthTraining
-        })
     }
     
     private func displayMetricsView() {
         withAnimation {
             selection = .workout
         }
-    }}
+    }
+}
 
 #Preview {
     let example_data = ExampleData()
