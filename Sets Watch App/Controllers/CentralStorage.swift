@@ -10,7 +10,7 @@ import SwiftUI
 @Observable class CentralStorage: Codable
 {
     var workouts: [Workout] = []
-    var active_work: Workout?
+    var active_workout: Workout?
     var in_progress_workout: Workout = Workout(name: "in_progress")
     private var save_utils = SaveUtils.shared
     

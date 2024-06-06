@@ -19,7 +19,6 @@ struct Sets_Watch_AppApp: App {
     @State var fitness_db: FitnessDatabase = ExampleData().GenerateExampleFitnessDatabase()
     @State var workout_session_controller: WorkoutSessionController = WorkoutSessionController()
     
-    
     var body: some Scene {
         WindowGroup {
             EntryLayerView()

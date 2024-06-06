@@ -13,11 +13,14 @@ struct WorkoutListView: View {
     @Environment(WorkoutSessionController.self) private var session_controller: WorkoutSessionController
     @Environment(\.dismiss) private var dismiss
     @State private var show_create_workout: Bool = false
+    
+    @State private var can_show_workout: Bool = false
+    @State private var is_showing_warning: Bool = false
         
     var body: some View {
         NavigationSplitView {
             List {
-                if let active_wk = app_storage.active_work {
+                if let active_wk = app_storage.active_workout {
                     Section {
                         NavigationLink(value: active_wk) {
                             Text(active_wk.name)
@@ -28,8 +31,11 @@ struct WorkoutListView: View {
                 }
                 
                 ForEach(app_storage.workouts) { workout in
-                    NavigationLink(value: workout) {
-                        Text(workout.name)
+                    if (workout != app_storage.active_workout)
+                    {
+                        NavigationLink(value: workout) {
+                            Text(workout.name)
+                        }
                     }
                 }
                 .onDelete(perform: { indexSet in
@@ -61,24 +67,10 @@ struct WorkoutListView: View {
                 }
             }
             .navigationDestination(for: Workout.self) { wk in
-                if (wk.name == app_storage.active_work?.name) {
-                    WorkoutView(current_workout: wk)
-                        .environment(wk)
-                        .navigationBarBackButtonHidden()
-                } else {
-                    WorkoutView(current_workout: wk)
-                        .environment(wk)
-                        .navigationBarBackButtonHidden()
-                        .onAppear(perform: {
-                            session_controller.endWorkout(and: false)
-                            session_controller.resetWorkout()
-                            app_storage.active_work?.Reset()
-                            
-                            session_controller.selectedWorkout = .traditionalStrengthTraining
-                            wk.Start()
-                            app_storage.active_work = wk
-                        })
-                }
+                WorkoutView(current_workout: wk)
+//                FullscreenActiveWorkoutView()
+                    .environment(wk)
+                    .navigationBarBackButtonHidden()
             }
         } detail: {
             Text("Detail view?")

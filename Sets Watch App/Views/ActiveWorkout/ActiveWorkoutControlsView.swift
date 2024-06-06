@@ -10,6 +10,7 @@ import SwiftUI
 struct ActiveWorkoutControlsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(WorkoutSessionController.self) private var session_controller: WorkoutSessionController
+    @Environment(CentralStorage.self) private var app_storage
     
     @Environment(Workout.self) var current_workout
     @Environment(\.modelContext) private var modelContext
@@ -75,6 +76,8 @@ struct ActiveWorkoutControlsView: View {
         session_controller.endWorkout()
         let history_entry = HistoryEntry(workout_completed_at: Date.now, workout_name: current_workout.name, exercises: current_workout.exercises, supersets: current_workout.supersets)
         modelContext.insert(history_entry)
+        app_storage.active_workout?.Reset()
+        app_storage.active_workout = nil
         print("saved workout to history: \(current_workout.name)")
     }
     
@@ -98,5 +101,6 @@ struct ActiveWorkoutControlsView: View {
     return ActiveWorkoutControlsView()
         .environment(session)
         .environment(workout)
+        .environment(CentralStorage())
         .modelContainer(for: [HistoryEntry.self])
 }

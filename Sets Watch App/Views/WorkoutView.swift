@@ -13,8 +13,11 @@ struct WorkoutView: View {
     @Environment(\.isLuminanceReduced) var isLuminanceReduced
     @Environment(\.dismiss) var dismiss_workout
     
+    @Environment(CentralStorage.self) private var app_storage
     @Environment(WorkoutSessionController.self) var session_controller
-    @State private var selection: Tab = .workout
+    
+    @State private var is_showing_active_warning: Bool = false
+    @State private var selection: Tab = .controls
     var current_workout: Workout
     
     enum Tab {
@@ -28,8 +31,8 @@ struct WorkoutView: View {
             }, pause_action: {
                 displayMetricsView()
             })
-            .tag(Tab.controls)
-            .tabItem { Image(systemName: "gearshape.fill") }
+                .tag(Tab.controls)
+                .tabItem { Image(systemName: "gearshape.fill") }
             FullscreenActiveWorkoutView()
                 .tag(Tab.workout)
                 .tabItem { Image(systemName: "figure.run") }
@@ -44,6 +47,54 @@ struct WorkoutView: View {
                 displayMetricsView()
             }
         }
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75, execute: {
+                withAnimation {
+                    selection = .workout
+                }
+            })
+            
+            // if user tapped on the active workout, lets bring it back up
+            let match = current_workout.id.uuidString == app_storage.active_workout?.id.uuidString
+            let no_wk = app_storage.active_workout == nil
+            if (no_wk) {
+                // do nothing to resume?
+                StartNewWorkout()
+            } else if (!match) {
+                is_showing_active_warning.toggle()
+            } else {
+                // we should be showing the active workout
+                print("tapped on ACTIVE workout, resuming!")
+            }
+        })
+        .confirmationDialog("Cancel Active Workout?", isPresented: $is_showing_active_warning, titleVisibility: .visible) {
+            Button(role: .destructive) {
+                StartNewWorkout()
+            } label: {
+                Text("Start New")
+            }
+
+            Button {
+                // go back to active workout
+                dismiss_workout()
+            } label: {
+                Text("Go Back")
+            }
+
+        }
+    }
+    
+    private func StartNewWorkout()
+    {
+        // this assumes user tapped on a workout that is not the one that is active
+        session_controller.endWorkout(and: false)
+        session_controller.resetWorkout()
+        app_storage.active_workout?.Reset()
+        app_storage.active_workout = nil
+        
+        session_controller.selectedWorkout = .traditionalStrengthTraining
+        current_workout.Start()
+        app_storage.active_workout = current_workout
     }
     
     private func displayMetricsView() {
