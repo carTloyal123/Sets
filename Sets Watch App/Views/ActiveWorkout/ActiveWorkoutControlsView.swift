@@ -101,5 +101,6 @@ struct ActiveWorkoutControlsView: View {
     return ActiveWorkoutControlsView()
         .environment(session)
         .environment(workout)
+        .environment(CentralStorage())
         .modelContainer(for: [HistoryEntry.self])
 }

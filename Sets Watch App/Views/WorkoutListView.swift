@@ -31,23 +31,12 @@ struct WorkoutListView: View {
                 }
                 
                 ForEach(app_storage.workouts) { workout in
-                    NavigationLink(value: workout) {
-                        Text(workout.name)
+                    if (workout != app_storage.active_workout)
+                    {
+                        NavigationLink(value: workout) {
+                            Text(workout.name)
+                        }
                     }
-//                    .onTapGesture {
-//                        is_showing_warning.toggle()
-//                    }
-//                    .confirmationDialog("Start New Workout", isPresented: $is_showing_warning) {
-//                        Button(action: {
-//                            print("start new")
-//                            can_show_workout.toggle()
-//                        }, label: {
-//                            Text("Button")
-//                        })
-//                    } message: {
-//                        Text("Are you sure you want to start a new workout?")
-//                    }
-
                 }
                 .onDelete(perform: { indexSet in
                     deleteItems(for: indexSet)
@@ -78,14 +67,10 @@ struct WorkoutListView: View {
                 }
             }
             .navigationDestination(for: Workout.self) { wk in
-//                if (can_show_workout)
-//                {
-                    WorkoutView(current_workout: wk)
-                        .environment(wk)
-                        .navigationBarBackButtonHidden()
-//                } else {
-//                    EmptyView()
-//                }
+                WorkoutView(current_workout: wk)
+//                FullscreenActiveWorkoutView()
+                    .environment(wk)
+                    .navigationBarBackButtonHidden()
             }
         } detail: {
             Text("Detail view?")

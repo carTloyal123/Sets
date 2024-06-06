@@ -17,7 +17,7 @@ struct WorkoutView: View {
     @Environment(WorkoutSessionController.self) var session_controller
     
     @State private var is_showing_active_warning: Bool = false
-    @State private var selection: Tab = .workout
+    @State private var selection: Tab = .controls
     var current_workout: Workout
     
     enum Tab {
@@ -31,8 +31,8 @@ struct WorkoutView: View {
             }, pause_action: {
                 displayMetricsView()
             })
-            .tag(Tab.controls)
-            .tabItem { Image(systemName: "gearshape.fill") }
+                .tag(Tab.controls)
+                .tabItem { Image(systemName: "gearshape.fill") }
             FullscreenActiveWorkoutView()
                 .tag(Tab.workout)
                 .tabItem { Image(systemName: "figure.run") }
@@ -48,6 +48,12 @@ struct WorkoutView: View {
             }
         }
         .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75, execute: {
+                withAnimation {
+                    selection = .workout
+                }
+            })
+            
             // if user tapped on the active workout, lets bring it back up
             let match = current_workout.id.uuidString == app_storage.active_workout?.id.uuidString
             let no_wk = app_storage.active_workout == nil
