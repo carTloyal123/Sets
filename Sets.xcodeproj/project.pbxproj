@@ -14,6 +14,7 @@
 		330362062BD9389E0014CD3C /* CentralStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362052BD9389E0014CD3C /* CentralStorage.swift */; };
 		330362092BD93B070014CD3C /* PublishedExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362082BD93B070014CD3C /* PublishedExt.swift */; };
 		3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303620A2BD93D0C0014CD3C /* CodableColor.swift */; };
+		3303BD612C1294AF00BB68A4 /* DemoSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303BD602C1294AF00BB68A4 /* DemoSplitView.swift */; };
 		330941982BF12146002C1719 /* FitnessDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330941972BF12146002C1719 /* FitnessDatabase.swift */; };
 		3309419A2BF12418002C1719 /* NewExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330941992BF12418002C1719 /* NewExerciseListView.swift */; };
 		3309419D2BF12587002C1719 /* ExerciseListDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309419C2BF12587002C1719 /* ExerciseListDatabaseView.swift */; };
@@ -120,6 +121,7 @@
 		330362052BD9389E0014CD3C /* CentralStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralStorage.swift; sourceTree = "<group>"; };
 		330362082BD93B070014CD3C /* PublishedExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedExt.swift; sourceTree = "<group>"; };
 		3303620A2BD93D0C0014CD3C /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
+		3303BD602C1294AF00BB68A4 /* DemoSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSplitView.swift; sourceTree = "<group>"; };
 		330941972BF12146002C1719 /* FitnessDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessDatabase.swift; sourceTree = "<group>"; };
 		330941992BF12418002C1719 /* NewExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseListView.swift; sourceTree = "<group>"; };
 		3309419C2BF12587002C1719 /* ExerciseListDatabaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListDatabaseView.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */,
 				334944632BF5B41500CF5A06 /* Constants.swift */,
 				334944652BF684D000CF5A06 /* SaveUtils.swift */,
+				3303BD602C1294AF00BB68A4 /* DemoSplitView.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				330362062BD9389E0014CD3C /* CentralStorage.swift in Sources */,
 				33CB45762BDE01D8000390CB /* ExerciseHeaderView.swift in Sources */,
 				330362022BD9363A0014CD3C /* WorkoutOverview.swift in Sources */,
+				3303BD612C1294AF00BB68A4 /* DemoSplitView.swift in Sources */,
 				33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */,
 				330362092BD93B070014CD3C /* PublishedExt.swift in Sources */,
 				3397515D2BF27920006CD8C3 /* EditExerciseSetView.swift in Sources */,

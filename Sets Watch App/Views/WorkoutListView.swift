@@ -16,13 +16,19 @@ struct WorkoutListView: View {
     
     @State private var can_show_workout: Bool = false
     @State private var is_showing_warning: Bool = false
+    
+    @State private var tapped_workout: Workout?
+    @State private var selected_workout: Workout?
         
     var body: some View {
         NavigationSplitView {
             List {
                 if let active_wk = app_storage.active_workout {
                     Section {
-                        NavigationLink(value: active_wk) {
+                        Button {
+                            tapped_workout = active_wk
+                            CheckStartWorkout()
+                        } label: {
                             Text(active_wk.name)
                         }
                     } footer: {
@@ -33,7 +39,10 @@ struct WorkoutListView: View {
                 ForEach(app_storage.workouts) { workout in
                     if (workout != app_storage.active_workout)
                     {
-                        NavigationLink(value: workout) {
+                        Button {
+                            tapped_workout = workout
+                            CheckStartWorkout()
+                        } label: {
                             Text(workout.name)
                         }
                     }
@@ -66,16 +75,14 @@ struct WorkoutListView: View {
                     }
                 }
             }
-            .navigationDestination(for: Workout.self) { wk in
+            .navigationDestination(item: $selected_workout) { wk in
                 WorkoutView(current_workout: wk)
-//                FullscreenActiveWorkoutView()
                     .environment(wk)
                     .navigationBarBackButtonHidden()
             }
         } detail: {
             Text("Detail view?")
         }
-
         .sheet(isPresented: $show_create_workout, content: {
             NewWorkoutMainView()
         })
@@ -83,6 +90,54 @@ struct WorkoutListView: View {
             // ask for health perms
             session_controller.requestAuthorization()
         })
+        .confirmationDialog("Warning: Workout in Progress", isPresented: $is_showing_warning) {
+            Button("Discard and Start New") {
+                StartNewWorkout()
+            }
+            Button("Go Back to Workouts") {
+                // do nothing I think?
+                print("selected go back!")
+            }
+        } message: {
+            Text("Do you want to start a new workout or go back to the workout list?")
+        }
+    }
+    
+    private func StartNewWorkout()
+    {
+        // this assumes user tapped on a workout that is not the one that is active
+        selected_workout = tapped_workout
+        tapped_workout = nil
+        
+        if app_storage.active_workout != nil {
+            session_controller.endWorkout(and: false)
+            session_controller.resetWorkout()
+            app_storage.active_workout?.Reset()
+            app_storage.active_workout = nil
+        }
+
+        session_controller.selectedWorkout = .traditionalStrengthTraining
+        selected_workout?.Start()
+        app_storage.active_workout = selected_workout
+        print("Started brand new workout from list! \(String(describing: selected_workout?.name))")
+    }
+    
+    private func CheckStartWorkout()
+    {
+        // check if workout active
+        print("checking if we can start a new workout or if we need to warn")
+        print("Tapped: \(String(describing: tapped_workout?.name)):\(String(describing: tapped_workout?.id.uuidString))")
+        print("Active: \(String(describing: app_storage.active_workout?.name)):\(String(describing: app_storage.active_workout?.id.uuidString))")
+        if app_storage.active_workout == nil {
+            // take selected workout as good to go
+            print("active workout nil!")
+            StartNewWorkout()
+        } else if app_storage.active_workout == tapped_workout {
+            print("Tapped existing workout!")
+            selected_workout = tapped_workout
+        } else {
+            is_showing_warning.toggle()
+        }
     }
     
     private func deleteItems(for indexSet: IndexSet)
@@ -98,7 +153,8 @@ struct WorkoutListView: View {
 
 #Preview {
     @State var settings_controller: SettingsController = SettingsController()
-    @State var current_workout: Workout = ExampleData().GetExampleStrengthWorkout()
+    @State var selected_workout: Workout? = ExampleData().GetExampleStrengthWorkout()
+
     @State var app_storage: CentralStorage = CentralStorage()
     @State var history_storage: HistoryController = HistoryController()
     @State var fitness_db: FitnessDatabase = FitnessDatabase()
@@ -113,12 +169,10 @@ struct WorkoutListView: View {
     
     @State var session_controller = WorkoutSessionController()
     
-    return NavigationStack {
-        WorkoutListView()
-    }            
+    return WorkoutListView()
     .environmentObject(settings_controller)
     .environment(app_storage)
-    .environment(current_workout)
+    .environment(selected_workout)
     .environment(history_storage)
     .environment(session_controller)
     .environment(fitness_db)

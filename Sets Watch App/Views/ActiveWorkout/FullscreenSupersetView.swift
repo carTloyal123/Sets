@@ -19,7 +19,8 @@ struct FullscreenSupersetView: View {
     @Environment(\.modelContext) private var modelContext
     
     @State private var is_showing_timer: Bool = false
-    
+    @State private var is_showing_overview: Bool = false
+
     var body: some View {
         VStack { // Added ScrollView to manage list items
             HStack {
@@ -30,6 +31,7 @@ struct FullscreenSupersetView: View {
                     Text(session.heartRate.formatted(.number.precision(.fractionLength(0))))
                 }
             }
+            Divider()
             ForEach(single_superset.exercise_list) { single_exercise in
                 HStack {
                     Text(single_exercise.name)
@@ -39,75 +41,14 @@ struct FullscreenSupersetView: View {
                 }
                 .font(.system(size: 13.0))
             }
+            Divider()
             HStack {
                 Spacer()
                 ElapsedTimeView(elapsedTime: session.builder?.elapsedTime(at: context.date) ?? 0, showSubseconds: context.cadence == .live)
-                    .frame(width: 70, height: 15)
                     .font(.footnote)
             }
         }
-        .ignoresSafeArea(.all)
-        .sheet(isPresented: $is_showing_timer, content: {
-            if let active_ss = current_workout.active_superset
-            {
-                TimerView(rest_timer: active_ss.rest_timer, skip_action: SkipRestTimer)
-            } else {
-                Text("No superset :(")
-            }
-        })
-        .toolbar {
-            ToolbarItemGroup(placement: .bottomBar) {
-                Button {
-                    is_showing_timer.toggle()
-                } label: {
-                    HStack
-                    {
-                        Image(systemName: "timer")
-                        if (single_superset.rest_timer.is_running)
-                        {
-                            ElapsedTimeView(elapsedTime: single_superset.rest_timer.time_remaining, showSubseconds: false)
-                        }
-                    }
-                }
-                Button {
-                    UpdateSuperset()
-                } label: {
-                    Image(systemName: "checkmark")
-                }
-            }
-        }
-    }
-    
-    private func EndWorkout()
-    {
-        let history_entry = HistoryEntry(workout_completed_at: Date.now, workout_name: current_workout.name, exercises: current_workout.exercises, supersets: current_workout.supersets)
-        modelContext.insert(history_entry)
-        print("saved workout to history: \(current_workout.name)")
-    }
-    
-    private func UpdateSuperset()
-    {
-        withAnimation {
-            if (current_workout.UpdateSuperset())
-            {
-                if (settings.rest_between_supersets)
-                {
-                    is_showing_timer = true
-                }
-            } else {
-                if (settings.rest_between_sets)
-                {
-                    is_showing_timer = true
-                }
-            }
-        }
-    }
-    
-    private func SkipRestTimer()
-    {
-        withAnimation {
-            current_workout.SkipRestTimer()
-        }
+        .padding()
     }
     
     func GetTimerString() -> String
