@@ -20,6 +20,10 @@ struct ActiveWorkoutControlsView: View {
     var reset_action: (() -> Void)?
     
     var body: some View {
+        controlsView
+    }
+    
+    var controlsView: some View {
         VStack {
             HStack {
                 VStack {
@@ -43,7 +47,6 @@ struct ActiveWorkoutControlsView: View {
                     .font(.title2)
                     Text("Reset")
                 }
-
             }
             HStack {
                 VStack {
@@ -68,6 +71,37 @@ struct ActiveWorkoutControlsView: View {
                 }
             }
         }
+        .toolbar(content: {
+            ToolbarItemGroup(placement: .bottomBar, content: {
+                HStack {
+                    Button {
+//                        is_showing_timer.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "timer")
+                            if let active_ss = current_workout.active_superset {
+                                if (active_ss.rest_timer.is_running) {
+                                    ElapsedTimeView(elapsedTime: active_ss.rest_timer.time_remaining, showSubseconds: false)
+                                }
+                            }
+                        }
+                    }
+                    Spacer()
+                    Button {
+//                        is_showing_overview.toggle()
+                    } label: {
+                        Image(systemName: "list.clipboard.fill")
+                    }
+                    Spacer()
+                    Button {
+//                        UpdateSuperset()
+                    } label: {
+                        Image(systemName: "checkmark")
+                    }
+                }.opacity(0.0)
+                
+            })
+        })
     }
     
     func EndAction()
