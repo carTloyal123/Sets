@@ -12,6 +12,8 @@ import SwiftData
 
 @main
 struct Sets_Watch_AppApp: App {    
+    @Environment(\.scenePhase) private var scenePhase
+    
     // This is the main entry for the app
     @State var settings_controller: SettingsController = SettingsController()
     @State var app_storage: CentralStorage = CentralStorage()
@@ -28,6 +30,9 @@ struct Sets_Watch_AppApp: App {
                 .environment(history_controller)
                 .environment(workout_session_controller)
                 .modelContainer(for: [HistoryEntry.self])
+                .onChange(of: scenePhase) { oldValue, newValue in
+                    print("scene phase: \(oldValue) -> \(newValue)")
+                }
         }
     }
 }
