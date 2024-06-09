@@ -51,7 +51,6 @@
 		334944682BF69F4900CF5A06 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944672BF69F4900CF5A06 /* HistoryController.swift */; };
 		3349446A2BF6AA0F00CF5A06 /* NewExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944692BF6AA0F00CF5A06 /* NewExerciseView.swift */; };
 		3357F2582BD9656E0037D35C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2572BD9656E0037D35C /* Utils.swift */; };
-		33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */; };
 		33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */; };
 		33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */; };
 		33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */; };
@@ -63,6 +62,13 @@
 		339798F92BF05DFA0009D4CA /* SupersetOptionsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */; };
 		339798FC2BF11A270009D4CA /* NewWorkoutMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798FB2BF11A270009D4CA /* NewWorkoutMainView.swift */; };
 		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
+		33ADA4302C14300000858AD6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33ADA41A2C142DC500858AD6 /* WidgetKit.framework */; };
+		33ADA4312C14300000858AD6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33ADA41C2C142DC500858AD6 /* SwiftUI.framework */; };
+		33ADA4342C14300000858AD6 /* Sets_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ADA4332C14300000858AD6 /* Sets_Widget.swift */; };
+		33ADA4362C14300100858AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33ADA4352C14300100858AD6 /* Assets.xcassets */; };
+		33ADA43A2C14300100858AD6 /* Sets WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 33ADA42F2C14300000858AD6 /* Sets WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		33ADA4632C1449BC00858AD6 /* SetsWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ADA4622C1449BC00858AD6 /* SetsWidgetController.swift */; };
+		33ADA4642C144D0300858AD6 /* SetsWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ADA4622C1449BC00858AD6 /* SetsWidgetController.swift */; };
 		33B9C2B22BED8BF80056E45F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */; };
 		33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B32BED8C060056E45F /* WelcomeView.swift */; };
 		33B9C2B82BED92430056E45F /* EntryLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B72BED92430056E45F /* EntryLayerView.swift */; };
@@ -97,6 +103,13 @@
 			remoteGlobalIDString = 333502EA2BD425170068076C;
 			remoteInfo = "Sets Watch App";
 		};
+		33ADA4382C14300100858AD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 333502DF2BD425170068076C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33ADA42E2C14300000858AD6;
+			remoteInfo = "Sets WidgetExtension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -109,6 +122,17 @@
 				333502EC2BD425170068076C /* Sets Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33ADA4272C142DC600858AD6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				33ADA43A2C14300100858AD6 /* Sets WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -161,7 +185,6 @@
 		334944672BF69F4900CF5A06 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		334944692BF6AA0F00CF5A06 /* NewExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseView.swift; sourceTree = "<group>"; };
 		3357F2572BD9656E0037D35C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutBackendController.swift; sourceTree = "<group>"; };
 		33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
 		33831C022BE3D70400C3D3A4 /* Sets Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sets Watch App.entitlements"; sourceTree = "<group>"; };
 		33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkButtonStyle.swift; sourceTree = "<group>"; };
@@ -175,6 +198,14 @@
 		339798FB2BF11A270009D4CA /* NewWorkoutMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutMainView.swift; sourceTree = "<group>"; };
 		33A5E28B2BD976EB009EC780 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Sets-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		33ADA41A2C142DC500858AD6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		33ADA41C2C142DC500858AD6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		33ADA42F2C14300000858AD6 /* Sets WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Sets WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33ADA4332C14300000858AD6 /* Sets_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets_Widget.swift; sourceTree = "<group>"; };
+		33ADA4352C14300100858AD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33ADA4372C14300100858AD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33ADA4622C1449BC00858AD6 /* SetsWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsWidgetController.swift; sourceTree = "<group>"; };
+		33ADA4652C147F6200858AD6 /* Sets WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sets WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		33B9C2B32BED8C060056E45F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		33B9C2B72BED92430056E45F /* EntryLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLayerView.swift; sourceTree = "<group>"; };
@@ -206,6 +237,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33ADA42C2C14300000858AD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33ADA4312C14300000858AD6 /* SwiftUI.framework in Frameworks */,
+				33ADA4302C14300000858AD6 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,9 +303,13 @@
 		333502DE2BD425170068076C = {
 			isa = PBXGroup;
 			children = (
+				33ADA4652C147F6200858AD6 /* Sets WidgetExtension.entitlements */,
+				33ADA4602C14499B00858AD6 /* Sets Shared */,
 				333502EF2BD425170068076C /* Sets Watch App */,
 				333503002BD425180068076C /* Sets Watch AppTests */,
 				3335030A2BD425180068076C /* Sets Watch AppUITests */,
+				33ADA4322C14300000858AD6 /* Sets Widget */,
+				33ADA4192C142DC500858AD6 /* Frameworks */,
 				333502E62BD425170068076C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -277,6 +321,7 @@
 				333502EB2BD425170068076C /* Sets Watch App.app */,
 				333502FD2BD425180068076C /* Sets Watch AppTests.xctest */,
 				333503072BD425180068076C /* Sets Watch AppUITests.xctest */,
+				33ADA42F2C14300000858AD6 /* Sets WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -362,7 +407,6 @@
 			children = (
 				330362052BD9389E0014CD3C /* CentralStorage.swift */,
 				33A5E28B2BD976EB009EC780 /* SettingsController.swift */,
-				33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */,
 				330941972BF12146002C1719 /* FitnessDatabase.swift */,
 				334944672BF69F4900CF5A06 /* HistoryController.swift */,
 				33C8C9F62C0D1B08003E3A3D /* WorkoutSessionController.swift */,
@@ -456,6 +500,41 @@
 			path = NewWorkouts;
 			sourceTree = "<group>";
 		};
+		33ADA4192C142DC500858AD6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33ADA41A2C142DC500858AD6 /* WidgetKit.framework */,
+				33ADA41C2C142DC500858AD6 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33ADA4322C14300000858AD6 /* Sets Widget */ = {
+			isa = PBXGroup;
+			children = (
+				33ADA4332C14300000858AD6 /* Sets_Widget.swift */,
+				33ADA4352C14300100858AD6 /* Assets.xcassets */,
+				33ADA4372C14300100858AD6 /* Info.plist */,
+			);
+			path = "Sets Widget";
+			sourceTree = "<group>";
+		};
+		33ADA4602C14499B00858AD6 /* Sets Shared */ = {
+			isa = PBXGroup;
+			children = (
+				33ADA4612C1449A900858AD6 /* Controllers */,
+			);
+			path = "Sets Shared";
+			sourceTree = "<group>";
+		};
+		33ADA4612C1449A900858AD6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				33ADA4622C1449BC00858AD6 /* SetsWidgetController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		33B9C2B02BED8BDF0056E45F /* Introduction */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,10 +571,12 @@
 				333502E72BD425170068076C /* Sources */,
 				333502E82BD425170068076C /* Frameworks */,
 				333502E92BD425170068076C /* Resources */,
+				33ADA4272C142DC600858AD6 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				33ADA4392C14300100858AD6 /* PBXTargetDependency */,
 			);
 			name = "Sets Watch App";
 			productName = "Sets Watch App";
@@ -538,6 +619,23 @@
 			productReference = 333503072BD425180068076C /* Sets Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		33ADA42E2C14300000858AD6 /* Sets WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33ADA43B2C14300100858AD6 /* Build configuration list for PBXNativeTarget "Sets WidgetExtension" */;
+			buildPhases = (
+				33ADA42B2C14300000858AD6 /* Sources */,
+				33ADA42C2C14300000858AD6 /* Frameworks */,
+				33ADA42D2C14300000858AD6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Sets WidgetExtension";
+			productName = "Sets WidgetExtension";
+			productReference = 33ADA42F2C14300000858AD6 /* Sets WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -545,7 +643,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1530;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					333502E42BD425170068076C = {
@@ -561,6 +659,9 @@
 					333503062BD425180068076C = {
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = 333502EA2BD425170068076C;
+					};
+					33ADA42E2C14300000858AD6 = {
+						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
@@ -581,6 +682,7 @@
 				333502EA2BD425170068076C /* Sets Watch App */,
 				333502FC2BD425180068076C /* Sets Watch AppTests */,
 				333503062BD425180068076C /* Sets Watch AppUITests */,
+				33ADA42E2C14300000858AD6 /* Sets WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -617,6 +719,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33ADA42D2C14300000858AD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33ADA4362C14300100858AD6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -628,10 +738,10 @@
 				33CB45762BDE01D8000390CB /* ExerciseHeaderView.swift in Sources */,
 				330362022BD9363A0014CD3C /* WorkoutOverview.swift in Sources */,
 				3303BD612C1294AF00BB68A4 /* DemoSplitView.swift in Sources */,
-				33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */,
 				330362092BD93B070014CD3C /* PublishedExt.swift in Sources */,
 				3397515D2BF27920006CD8C3 /* EditExerciseSetView.swift in Sources */,
 				33975CE12BF8BD6B004CFD75 /* HistoryModels.swift in Sources */,
+				33ADA4632C1449BC00858AD6 /* SetsWidgetController.swift in Sources */,
 				3309419D2BF12587002C1719 /* ExerciseListDatabaseView.swift in Sources */,
 				33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */,
 				3335032A2BD428F10068076C /* WorkoutModel.swift in Sources */,
@@ -703,6 +813,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33ADA42B2C14300000858AD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33ADA4642C144D0300858AD6 /* SetsWidgetController.swift in Sources */,
+				33ADA4342C14300000858AD6 /* Sets_Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -720,6 +839,11 @@
 			isa = PBXTargetDependency;
 			target = 333502EA2BD425170068076C /* Sets Watch App */;
 			targetProxy = 333503082BD425180068076C /* PBXContainerItemProxy */;
+		};
+		33ADA4392C14300100858AD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33ADA42E2C14300000858AD6 /* Sets WidgetExtension */;
+			targetProxy = 33ADA4382C14300100858AD6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -853,24 +977,27 @@
 		333503122BD425180068076C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout related data will be used to display your saved workouts in Sets.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked by Sets wil be saved to HealthKit.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -885,24 +1012,27 @@
 		333503132BD425180068076C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout related data will be used to display your saved workouts in Sets.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked by Sets wil be saved to HealthKit.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1036,6 +1166,73 @@
 			};
 			name = Release;
 		};
+		33ADA43C2C14300100858AD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Sets WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Sets Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sets Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets.watchkitapp.Sets-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		33ADA43D2C14300100858AD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Sets WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Sets Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sets Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets.watchkitapp.Sets-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1080,6 +1277,15 @@
 			buildConfigurations = (
 				3335031C2BD425180068076C /* Debug */,
 				3335031D2BD425180068076C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33ADA43B2C14300100858AD6 /* Build configuration list for PBXNativeTarget "Sets WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33ADA43C2C14300100858AD6 /* Debug */,
+				33ADA43D2C14300100858AD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

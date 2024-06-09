@@ -7,6 +7,7 @@
 
 import Foundation
 import UserNotifications
+import WidgetKit
 
 
 @Observable class WorkoutTimer: Codable {
@@ -78,10 +79,12 @@ import UserNotifications
                 return
             }
             self.end_date = Date.now.addingTimeInterval(remaining)
+            let remaining_int = Int(remaining)
+            SetsWidgetController.SetTestInt(for: remaining_int)
+            print("should have stored: \(SetsWidgetController.GetTestInt() ?? -1) to storage!")
             self.is_running = true
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
-                
                 let new_time_remaining = self.end_date.timeIntervalSinceNow.rounded(.up)
                 self.time_remaining = new_time_remaining < 0 ? 0 : new_time_remaining
                 
@@ -104,11 +107,13 @@ import UserNotifications
     }
 
     func stop() {
+        print("TIMER - Stop")
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         stopTimer()
     }
 
     private func stopTimer() {
+        print("TIMER - StopTimer")
         timer?.invalidate()
         self.is_running = false
         timer = nil
@@ -116,6 +121,8 @@ import UserNotifications
     
     func reset()
     {
+        print("TIMER - Reset Timer")
+
         stop()
         ResetRemainingTime()
         self.is_complete = false

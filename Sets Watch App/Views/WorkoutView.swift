@@ -42,7 +42,7 @@ struct WorkoutView: View {
 
             NowPlayingView()
                 .tag(Tab.nowPlaying)
-                .tabItem { Image(systemName: "music.note.list") }
+                .tabItem { Image(systemName: "music.note.list").padding() }
         }
         .onChange(of: isLuminanceReduced) { oldValue, newValue in
             if newValue {
