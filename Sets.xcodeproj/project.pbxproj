@@ -216,6 +216,7 @@
 		33C8C9FA2C0D6A8B003E3A3D /* ActivityRingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingsView.swift; sourceTree = "<group>"; };
 		33C8C9FC2C0D79F1003E3A3D /* HealthKitExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitExt.swift; sourceTree = "<group>"; };
 		33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHeaderView.swift; sourceTree = "<group>"; };
+		33F58BCE2C17E5FF00D42768 /* DatePlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DatePlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +424,7 @@
 				334944632BF5B41500CF5A06 /* Constants.swift */,
 				334944652BF684D000CF5A06 /* SaveUtils.swift */,
 				3303BD602C1294AF00BB68A4 /* DemoSplitView.swift */,
+				33F58BCE2C17E5FF00D42768 /* DatePlayground.playground */,
 			);
 			path = Misc;
 			sourceTree = "<group>";

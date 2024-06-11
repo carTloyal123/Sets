@@ -71,10 +71,8 @@ struct EntryLayerView: View {
             }
         }
         .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                ShowWelcome()
-                print("fired welcome timer")
-            }
+            SetupWidget()
+            ShowWelcome()
         })
         .sheet(isPresented: $is_showing_welcome, content: {
             WelcomeView()
@@ -87,14 +85,21 @@ struct EntryLayerView: View {
         }
     }
     
+    private func SetupWidget()
+    {
+        SetsWidgetController.SetTimerIdle()
+    }
+    
     private func ShowWelcome()
     {
         print("Will show welcome: \(settings_controller.should_show_welcome)")
         if (settings_controller.should_show_welcome)
         {
-            withAnimation {
-                is_showing_welcome.toggle()
-                settings_controller.should_show_welcome = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation {
+                    is_showing_welcome.toggle()
+                    settings_controller.should_show_welcome = false
+                }
             }
         }
 
