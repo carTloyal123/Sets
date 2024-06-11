@@ -87,6 +87,7 @@ struct EntryLayerView: View {
     
     private func SetupWidget()
     {
+        print("should set timer to idle")
         SetsWidgetController.SetTimerIdle()
     }
     
