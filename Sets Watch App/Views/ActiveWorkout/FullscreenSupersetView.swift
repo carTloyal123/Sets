@@ -48,7 +48,10 @@ struct FullscreenSupersetView: View {
                     .font(.footnote)
             }
         }
+        .font(.system(size: 18))
+        .bold()
         .padding()
+
     }
     
     func GetTimerString() -> String

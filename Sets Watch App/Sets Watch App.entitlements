@@ -27,5 +27,9 @@
 	<array>
 		<string>iCloud.com.clengineering.Sets</string>
 	</array>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.sets_workout_app</string>
+	</array>
 </dict>
 </plist>
