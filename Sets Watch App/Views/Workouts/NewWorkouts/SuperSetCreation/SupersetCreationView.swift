@@ -42,8 +42,20 @@ struct SupersetCreationView: View {
                 
                 Section {
                     ForEach(superset_to_edit.exercise_list) { exercise  in
-                        Text(exercise.name)
+                        Button {
+                            print("selected included exercise: \(exercise.name)")
+                            RemoveIncludedItem(for: exercise)
+                        } label: {
+                            Text(exercise.name)
+                        }
                     }
+                    .onDelete(perform: { indexSet in
+                        RemoveIncludedItem(for: indexSet)
+                    })
+                    .onMove { indexSet, newIndex in
+                        move(from: indexSet, to: newIndex)
+                    }
+                    
                 } header: {
                     Text("Included Exercises")
                 }
@@ -64,7 +76,7 @@ struct SupersetCreationView: View {
                 } header: {
                     Text("Workout Exercises")
                 }
-
+                
                 Section {
                     Button {
                         if (is_new && !superset_to_edit.name.isEmpty)
@@ -83,6 +95,27 @@ struct SupersetCreationView: View {
                     }
                 }
             }
+        }
+    }
+    
+    private func move(from source: IndexSet, to destination: Int) {
+        // move the data here
+        print("moving items! \(source) to \(destination)")
+        superset_to_edit.MoveExercises(from: source, to: destination)
+    }
+    
+    private func RemoveIncludedItem(for indexSet: IndexSet)
+    {
+        withAnimation {
+            superset_to_edit.RemoveExercise(for: indexSet)
+        }
+    }
+
+    private func RemoveIncludedItem(for exercise: Exercise)
+    {
+        withAnimation {
+            exercise.super_set_tag = nil
+            superset_to_edit.RemoveExercise(for: exercise.id)
         }
     }
 }

@@ -67,21 +67,27 @@ struct ExerciseView: View {
     
     func AddNewSet()
     {
-        if let last_set = current_exercise.sets.last
-        {
-            let new_set_copy = last_set.copy() as! ExerciseSet
-            new_set_copy.set_data.is_complete = false
-            new_set_copy.set_data.set_number += 1
-            withAnimation {
-                current_exercise.AddSet(for: new_set_copy)
-            }
-        } else {
-            let new_set = ExerciseSet(set_number: 1, is_complete: false, exercise_type: .none, reps: 10, volume: 100)
-            withAnimation {
-                current_exercise.AddSet(for: new_set)
+        Task {
+            if let last_set = current_exercise.sets.last
+            {
+                let new_set_copy = last_set.copy() as! ExerciseSet
+                new_set_copy.set_data.is_complete = false
+                new_set_copy.set_data.set_number += 1
+                DispatchQueue.main.async {
+                    withAnimation {
+                        current_exercise.AddSet(for: new_set_copy)
+                    }
+                }
+
+            } else {
+                let new_set = ExerciseSet(set_number: 1, is_complete: false, exercise_type: .none, reps: 10, volume: 100)
+                DispatchQueue.main.async {
+                    withAnimation {
+                        current_exercise.AddSet(for: new_set)
+                    }
+                }
             }
         }
-
     }
 }
 

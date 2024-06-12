@@ -49,6 +49,35 @@ import Combine
         self.exercise_list.append(exercise)
     }
     
+    func RemoveExercise(for uuid: UUID)
+    {
+        // get items by uuid so we can mark their superset tag nil before deleting
+        self.exercise_list.forEach { exercise in
+            if exercise.id == uuid {
+                exercise.super_set_tag = nil
+            }
+        }
+        
+        self.exercise_list.removeAll { exercise in
+            exercise.id == uuid
+        }
+    }
+    
+    func RemoveExercise(for indexSet: IndexSet)
+    {
+        let idsToDelete: [Exercise] = indexSet.map { self.exercise_list[$0] }
+        for exercise in idsToDelete {
+            exercise.super_set_tag = nil
+        }
+        
+        self.exercise_list.remove(atOffsets: indexSet)
+    }
+    
+    func MoveExercises(from source: IndexSet, to destination: Int)
+    {
+        self.exercise_list.move(fromOffsets: source, toOffset: destination)
+    }
+    
     func MarkNextSetComplete()
     {
         for exercise in exercise_list {
