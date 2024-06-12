@@ -70,10 +70,10 @@ struct EntryLayerView: View {
                 }
             }
         }
-        .onAppear(perform: {
+        .task {
             SetupWidget()
             ShowWelcome()
-        })
+        }
         .sheet(isPresented: $is_showing_welcome, content: {
             WelcomeView()
         })

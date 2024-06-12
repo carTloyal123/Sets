@@ -49,8 +49,8 @@ struct WorkoutView: View {
                 displayMetricsView()
             }
         }
-        .onAppear(perform: {
-            if current_workout.elapsed_time < 2.0
+        .task {
+            if current_workout.elapsed_time < 5.0
             {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
                     withAnimation {
@@ -58,7 +58,7 @@ struct WorkoutView: View {
                     }
                 })
             }
-        })
+        }
     }
     
     private func displayMetricsView() {

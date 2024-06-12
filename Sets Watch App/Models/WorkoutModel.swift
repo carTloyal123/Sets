@@ -187,6 +187,7 @@ extension Array {
     
     func Reset()
     {
+        SetsWidgetController.SetTimerIdle()
         self.workout_timer?.invalidate()
         self.started_at = nil
         self.completed_at = nil

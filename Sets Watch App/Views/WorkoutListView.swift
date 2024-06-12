@@ -86,10 +86,9 @@ struct WorkoutListView: View {
         .sheet(isPresented: $show_create_workout, content: {
             NewWorkoutMainView()
         })
-        .onAppear(perform: {
-            // ask for health perms
+        .task {
             session_controller.requestAuthorization()
-        })
+        }
         .confirmationDialog("Warning: Workout in Progress", isPresented: $is_showing_warning) {
             Button("Discard and Start New") {
                 StartNewWorkout()
