@@ -43,7 +43,7 @@ struct EditSupersetRestTimerView: View {
         // convert minutes and seconds to seconds to send to rest timer
         let new_seconds = selectedSeconds + (selectedMinutes*60)
         superset_to_edit.rest_timer.setup(total_time_in_seconds: new_seconds)
-        print("new seconds: \(new_seconds)")
+        Log.logger.debug("new seconds: \(new_seconds)")
     }
     
     func GetData()
@@ -63,7 +63,7 @@ struct EditSupersetRestTimerView: View {
         } label: {
             Text("Edit Timer: \(ss_to_edit.rest_timer.default_time_in_seconds)")
                 .onAppear {
-                    print("new timer: \(ss_to_edit.rest_timer.default_time_in_seconds)")
+                    Log.logger.debug("new timer: \(ss_to_edit.rest_timer.default_time_in_seconds)")
                 }
         }
 

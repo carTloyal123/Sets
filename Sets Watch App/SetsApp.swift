@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 import SwiftData
 
+
 @main
 struct Sets_Watch_AppApp: App {    
     @Environment(\.scenePhase) private var scenePhase
@@ -31,8 +32,11 @@ struct Sets_Watch_AppApp: App {
                 .environment(workout_session_controller)
                 .modelContainer(for: [HistoryEntry.self])
                 .onChange(of: scenePhase) { oldValue, newValue in
-                    print("scene phase: \(oldValue) -> \(newValue)")
+                    Log.logger.debug("scene phase: \(oldValue) -> \(newValue)")
                 }
+        }
+        .backgroundTask(.appRefresh(SetsWidgetController.BG_REFRESH_KEY)) { item in
+            Log.logger.debug("Should update complication!")
         }
     }
 }

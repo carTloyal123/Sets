@@ -28,11 +28,11 @@ struct SignInWithAppleView: View {
                 controller.getCredentialState(forUserID: "current_user") { (credentialState, error) in
                     switch credentialState {
                     case .authorized:
-                        print("apple id cred valid")
+                        Log.logger.debug("apple id cred valid")
                         break // The Apple ID credential is valid.
                     case .revoked, .notFound:
                         // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
-                        print("apple id cred not found")
+                        Log.logger.debug("apple id cred not found")
                     default:
                         break
                     }
@@ -42,20 +42,22 @@ struct SignInWithAppleView: View {
         
         private func handleSuccessfulLogin(with authorization: ASAuthorization) {
             if let userCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-                print(userCredential.user)
+                var str = ""
+                Log.logger.debug("\(userCredential.user)")
                 
                 if userCredential.authorizedScopes.contains(.fullName) {
-                    print(userCredential.fullName?.givenName ?? "No given name")
+                    str = userCredential.fullName?.givenName ?? "No given name"
                 }
                 
                 if userCredential.authorizedScopes.contains(.email) {
-                    print(userCredential.email ?? "No email")
+                    str = userCredential.email ?? "No email"
                 }
+                Log.logger.debug("\(str)")
             }
         }
         
         private func handleLoginError(with error: Error) {
-            print("Could not authenticate: \\(error.localizedDescription)")
+            Log.logger.debug("Could not authenticate: \\(error.localizedDescription)")
         }
 }
 

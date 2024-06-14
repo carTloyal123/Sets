@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct EditExerciseView: View {
     @Environment(\.dismiss) private var dismiss
     var exercise: Exercise
@@ -17,7 +18,7 @@ struct EditExerciseView: View {
             Section {
                 ForEach(ExerciseSetType.allCases, id: \.self) { c in
                     Button(action: {
-                        print("Presesd \(c.rawValue)")
+                        Log.logger.debug("Presesd \(c.rawValue)")
                         exercise.ChangeSetType(set_type: c)
                         dismiss()
                     }, label: {

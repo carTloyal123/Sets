@@ -41,14 +41,14 @@ import Foundation
     {
         Task
         {
-            print("FitnessDatabase init: Loading from device")
+            Log.logger.debug("FitnessDatabase init: Loading from device")
             self.exercises.append(contentsOf: LoadLocalDatabaseExercises())
         }
     }
     
     func AddCustomExercise(for new_exercise: Exercise)
     {
-        print("Adding custom exercise to local DB: \(new_exercise.name)")
+        Log.logger.debug("Adding custom exercise to local DB: \(new_exercise.name)")
         self.exercises.append(new_exercise)
         SaveExerciseToDatabase(for: new_exercise)
     }
@@ -73,7 +73,7 @@ import Foundation
     
     private func RemoveFromLocalDatabase(for id: UUID)
     {
-        print("Removing DB Exercise: \(id.uuidString)")
+        Log.logger.debug("Removing DB Exercise: \(id.uuidString)")
         save_utils.RemoveFile(named: save_utils.GetFileName(for: id.uuidString), from: SaveDirectories.ExerciseDatabase)
     }
     
@@ -85,7 +85,7 @@ import Foundation
             all_exercises.append(contentsOf: db_exercise)
         }
         for all_exercise in all_exercises {
-            print("Loaded DB Exercise: \(all_exercise.name)")
+            Log.logger.debug("Loaded DB Exercise: \(all_exercise.name)")
         }
         return all_exercises
     }

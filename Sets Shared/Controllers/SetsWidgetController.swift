@@ -7,6 +7,8 @@
 
 import Foundation
 import WidgetKit
+import WatchKit
+
 
 struct RestTimerEntry: TimelineEntry {
     let date: Date
@@ -41,6 +43,7 @@ struct RestTimerData: Codable {
 }
 
 class SetsWidgetController {
+    static let BG_REFRESH_KEY = "complication_state_refresh"
     static let TEST_KEY = "test_key"
     static let REST_END_KEY = "rest_timer_end_date"
     static let REST_TIMER_DATA = "rest_timer_data"
@@ -48,7 +51,7 @@ class SetsWidgetController {
     static let APP_GROUP = "group.sets_workout_app"
     
     static func SetTimerIdle() {
-        print("setting timer to preview")
+        Log.logger.debug("setting timer to preview")
         var initialData = RestTimerData()
         initialData.state = .preview
         SetsWidgetController.SetRestTimerData(for: initialData)
@@ -57,7 +60,7 @@ class SetsWidgetController {
     static func SetRestTimerData(for restData: RestTimerData)
     {
         guard let ud = UserDefaults(suiteName: APP_GROUP) else {
-            print("NO USER DEFAULTS for rest data")
+            Log.logger.debug("NO USER DEFAULTS for rest data")
             return
         }
         // encode rest data first
@@ -66,26 +69,45 @@ class SetsWidgetController {
         if let data = data {
             ud.set(data, forKey: REST_TIMER_DATA)
         }
-        print("Set rest timer Data!: \(restData.startDate) -> \(restData.endDate)")
+        Log.logger.debug("Set rest timer Data!: \(restData.startDate) -> \(restData.endDate)")
         WidgetCenter.shared.reloadTimelines(ofKind: WIDGET_KIND)
     }
     
     static func GetRestTimerData() -> RestTimerData?
     {
         guard let ud = UserDefaults(suiteName: APP_GROUP) else {
-            print("NO USER DEFAULTS")
+            Log.logger.debug("NO USER DEFAULTS")
             return nil
         }
         guard let data = ud.data(forKey: REST_TIMER_DATA) else {
-            print("no rest timer data")
+            Log.logger.debug("no rest timer data")
             return nil
         }
         let decoder = JSONDecoder()
         guard let rv = try? decoder.decode(RestTimerData.self, from: data) else {
-            print("cannot parse rest timer date from user defaults")
+            Log.logger.debug("cannot parse rest timer date from user defaults")
             return nil
         }
-        print("Got rest timer data from store: \(rv.endDate)")
+        Log.logger.debug("Got rest timer data from store: \(rv.endDate)")
         return rv
+    }
+    
+    static func HandleBackgroundRefresh()
+    {
+        // always just set it to preview?
+    }
+    
+    static func ScheduleBackgroundRefresh()
+    {
+        WKApplication.shared()
+            .scheduleBackgroundRefresh(
+                withPreferredDate: Date.init(timeIntervalSinceNow: 15.0 * 60.0),
+                userInfo: BG_REFRESH_KEY as NSSecureCoding & NSObjectProtocol) { error in
+                    if error != nil {
+                        // Handle the scheduling error.
+                        fatalError("*** An error occurred while scheduling the background refresh task. ***")
+                    }
+                    Log.logger.debug("*** Scheduled! ***")
+                }
     }
 }

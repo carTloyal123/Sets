@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class SaveUtils {
     
     static let shared = SaveUtils()
@@ -14,7 +15,7 @@ class SaveUtils {
     
     // Private initializer to prevent instantiation from other classes
     private init() {
-        print("Started Save utils single instance!")
+        Log.logger.debug("Started Save utils single instance!")
     }
     
     func GetFileName(for fileName: String) -> String
@@ -41,7 +42,7 @@ class SaveUtils {
             
             let fileURL = save_dir.appendingPathComponent(filename)
             try data.write(to: fileURL)
-            print("Saved file to: \(fileURL)")
+            Log.logger.debug("Saved file to: \(fileURL)")
         } else {
             throw NSError(domain: "FileError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to locate directory in documents directory"])
         }
@@ -104,7 +105,7 @@ class SaveUtils {
     func RemoveFile(named filename: String, from folder: String) {
         // Get the URL of the document directory
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            print("Failed to locate the document directory")
+            Log.logger.debug("Failed to locate the document directory")
             return
         }
         
@@ -117,20 +118,20 @@ class SaveUtils {
             do {
                 // Attempt to delete the file
                 try FileManager.default.removeItem(at: fileURL)
-                print("File deleted successfully")
+                Log.logger.debug("File deleted successfully")
             } catch {
                 // Handle any errors
-                print("Failed to delete file: \(error.localizedDescription)")
+                Log.logger.debug("Failed to delete file: \(error.localizedDescription)")
             }
         } else {
-            print("File does not exist at path: \(fileURL.path)")
+            Log.logger.debug("File does not exist at path: \(fileURL.path)")
         }
     }
     
     func RemoveFolder(named folder: String) {
         // Get the URL of the document directory
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            print("Failed to locate the document directory")
+            Log.logger.debug("Failed to locate the document directory")
             return
         }
         
@@ -142,13 +143,13 @@ class SaveUtils {
             do {
                 // Attempt to delete the folder
                 try FileManager.default.removeItem(at: folderURL)
-                print("Folder deleted successfully")
+                Log.logger.debug("Folder deleted successfully")
             } catch {
                 // Handle any errors
-                print("Failed to delete folder: \(error.localizedDescription)")
+                Log.logger.debug("Failed to delete folder: \(error.localizedDescription)")
             }
         } else {
-            print("Folder does not exist at path: \(folderURL.path)")
+            Log.logger.debug("Folder does not exist at path: \(folderURL.path)")
         }
     }
 }

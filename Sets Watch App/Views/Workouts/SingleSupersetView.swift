@@ -33,7 +33,7 @@ struct SingleSupersetView: View {
                 }
                 .onTapGesture {
                     current_workout.is_showing_superset_overview.toggle()
-                    print("toggle overview pressed: \(current_workout.is_showing_superset_overview)")
+                    Log.logger.debug("toggle overview pressed: \(current_workout.is_showing_superset_overview)")
                 }
             }
             Group {
@@ -52,7 +52,7 @@ struct SingleSupersetView: View {
             }
             .onTapGesture {
                 current_workout.is_showing_superset_overview.toggle()
-                print("toggle overview pressed: \(current_workout.is_showing_superset_overview)")
+                Log.logger.debug("toggle overview pressed: \(current_workout.is_showing_superset_overview)")
             }
         }
         .padding(4)
@@ -88,7 +88,7 @@ struct SingleSupersetView: View {
     
     func ToggleSettings()
     {
-        print("toggle settings pressed")
+        Log.logger.debug("toggle settings pressed")
         withAnimation {
             current_workout.is_showing_superset_settings.toggle()
         }

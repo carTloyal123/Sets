@@ -44,7 +44,7 @@ struct ActiveSuperset: View {
                             .frame(width: 24, height: 24)
                             .foregroundColor(.secondary)
                             .onTapGesture {
-                                print("Settings Tapped!")
+                                Log.logger.debug("Settings Tapped!")
                                 self.is_showing_settings_sheet.toggle()
                             }
                     }

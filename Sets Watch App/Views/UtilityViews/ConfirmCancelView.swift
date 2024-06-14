@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct ConfirmCancelView: View {
     
     @Environment(\.dismiss) var dismiss
@@ -54,11 +55,11 @@ struct ConfirmCancelView: View {
 #Preview {
     
     let myClosure: () -> Void = {
-        print("Hello, Lambda!")
+        Log.logger.debug("Hello, Lambda!")
     }
     
     let myClosure2: () -> Void = {
-        print("Hello, Cancel!")
+        Log.logger.debug("Hello, Cancel!")
     }
     
     return ConfirmCancelView(save_action: myClosure, discard_action: myClosure2)

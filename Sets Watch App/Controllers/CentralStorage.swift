@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 @Observable class CentralStorage: Codable
 {
     var workouts: [Workout] = []
@@ -23,7 +24,7 @@ import SwiftUI
     {
         Task
         {
-            print("CentralStorage init: Loading from device")
+            Log.logger.debug("CentralStorage init: Loading from device")
             LoadWorkoutsFromDevice()
         }
     }
@@ -32,7 +33,7 @@ import SwiftUI
     func AddWorkout(for new_workout: Workout)
     {
         self.workouts.append(new_workout)
-        print("added new workout to central storage: \(new_workout.name)")
+        Log.logger.debug("added new workout to central storage: \(new_workout.name)")
         Task {
             SaveWorkoutsToDevice()
         }
@@ -48,7 +49,7 @@ import SwiftUI
     
     func RemoveWorkout(for index_set: IndexSet)
     {
-        print("removing workouts for index: \(index_set)")
+        Log.logger.debug("removing workouts for index: \(index_set)")
         self.workouts.remove(atOffsets: index_set)
         Task {
             SaveWorkoutsToDevice()
@@ -61,7 +62,7 @@ import SwiftUI
         
 //        let encoder = JSONEncoder()
 //        guard let encoded = try? encoder.encode(workouts) else {
-//            print("Unable to encode workouts")
+//            Log.logger.debug("Unable to encode workouts")
 //            return
 //        }
 //
@@ -69,9 +70,9 @@ import SwiftUI
 //        let archiveURL = documentsDirectory.appendingPathComponent("stored_workouts.json")
 //        do {
 //            try encoded.write(to: archiveURL)
-//            print("saved workouts to stored_workouts.json success")
+//            Log.logger.debug("saved workouts to stored_workouts.json success")
 //        } catch {
-//            print("Failed to save data to file: \(error)")
+//            Log.logger.debug("Failed to save data to file: \(error)")
 //        }
     }
     
@@ -82,10 +83,10 @@ import SwiftUI
             let loaded: [Workout] = try save_utils.LoadFromDirectory(from: SaveDirectories.Workouts, filename: SaveFiles.Workouts)
                 DispatchQueue.main.async {
                     self.workouts = loaded
-                    print("Loaded data from device storage!")
+                    Log.logger.debug("Loaded data from device storage!")
                 }
         } catch {
-            print("Error loading workouts from device: \(error.localizedDescription)")
+            Log.logger.debug("Error loading workouts from device: \(error.localizedDescription)")
         }
 
 //        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -96,10 +97,10 @@ import SwiftUI
 //            if let loadedData = try? decoder.decode([Workout].self, from: data) {
 //                DispatchQueue.main.async {
 //                    self.workouts = loadedData
-//                    print("Loaded data from device storage!")
+//                    Log.logger.debug("Loaded data from device storage!")
 //                }
 //            } else {
-//                print("Unable to load fromd device!")
+//                Log.logger.debug("Unable to load fromd device!")
 //            }
 //        }
     }

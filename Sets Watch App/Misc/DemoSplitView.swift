@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
 
 struct WorkoutData: Identifiable, Hashable {
     let id = UUID()
@@ -32,7 +31,7 @@ struct ContentView: View {
         NavigationSplitView(sidebar: {
             List(workouts) { workout in
                 Button(action: {
-                    print("\(workout.name) selected!")
+                    Log.logger.debug("\(workout.name) selected!")
                     if isWorkoutActive {
                         pendingWorkout = workout
                         isShowingConfirmationDialog = true
@@ -66,7 +65,7 @@ struct ContentView: View {
 
     private func startNewWorkout(with workout: WorkoutData) {
         // Logic to start a new workout
-        print("Starting new workout: \(workout.name)")
+        Log.logger.debug("Starting new workout: \(workout.name)")
         selectedWorkout = workout
 //        navPath.append(workout)
         pendingWorkout = nil

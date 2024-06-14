@@ -9,7 +9,6 @@ import Foundation
 import UserNotifications
 import WidgetKit
 
-
 @Observable class WorkoutTimer: Codable {
     var time_remaining: TimeInterval
     var default_time_in_seconds: TimeInterval
@@ -50,7 +49,7 @@ import WidgetKit
     {
         self.time_remaining = TimeInterval(total_time_in_seconds)
         self.default_time_in_seconds = TimeInterval(total_time_in_seconds)
-        print("setup timer with new total time: \(total_time_in_seconds)")
+        Log.logger.debug("setup timer with new total time: \(total_time_in_seconds)")
     }
     
     func setup(total_time_in_seconds: TimeInterval)
@@ -71,11 +70,11 @@ import WidgetKit
         if self.timer == nil
         {
             let remaining = self.time_remaining < self.default_time_in_seconds ? self.time_remaining : self.default_time_in_seconds
-            print("Creating new timer! remaining: \(remaining)")
+            Log.logger.debug("Creating new timer! remaining: \(remaining)")
             if (remaining.isEqual(to: 0.0))
             {
                 // dont setup timer, we dont need it I dont think
-                print("not starting timer for no time remaining")
+                Log.logger.debug("not starting timer for no time remaining")
                 return
             }
             self.end_date = Date.now.addingTimeInterval(remaining)
@@ -100,12 +99,12 @@ import WidgetKit
                 ScheduleTimeBasedNotification()
             }
         } else {
-            print("Timer should already exist!")
+            Log.logger.debug("Timer should already exist!")
         }
     }
 
     func stop() {
-        print("TIMER - STOP")
+        Log.logger.debug("TIMER - STOP")
         // TODO: This needs to only get rid of the current notification for this timer, not all of them
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         timer?.invalidate()
@@ -116,7 +115,7 @@ import WidgetKit
     
     func reset()
     {
-        print("TIMER - Reset Timer")
+        Log.logger.debug("TIMER - Reset Timer")
         stop()
         ResetRemainingTime()
         self.is_complete = false
@@ -140,25 +139,26 @@ import WidgetKit
         {
             data.state = .paused
         }
-        print("setting timer state for widget to: \(data.state)")
+        Log.logger.debug("setting timer state for widget to: \(data.state)")
         data.endDate = self.end_date
         data.startDate = self.end_date.addingTimeInterval(-1 * self.default_time_in_seconds)
         SetsWidgetController.SetRestTimerData(for: data)
     }
     
+    
     func ScheduleTimeBasedNotification() {
         if (self.time_remaining < 1)
         {
-            print("not enought time for notification!")
+            Log.logger.debug("not enought time for notification!")
             return
         }
         
         // 1. Request permission to display alerts and play sounds.
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
             if granted {
-                print("Notification Permission granted")
+                Log.logger.debug("Notification Permission granted")
             } else if let error = error {
-                print(error.localizedDescription)
+                Log.logger.debug("\(error.localizedDescription)")
             }
         }
 
@@ -177,9 +177,9 @@ import WidgetKit
         // 5. Add the request to the notification center
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print(error.localizedDescription)
+                Log.logger.debug("\(error.localizedDescription)")
             } else {
-                print("Notification scheduled")
+                Log.logger.debug("Notification scheduled")
             }
         }
     }

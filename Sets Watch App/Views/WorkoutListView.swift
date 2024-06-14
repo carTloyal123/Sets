@@ -95,7 +95,7 @@ struct WorkoutListView: View {
             }
             Button("Go Back to Workouts") {
                 // do nothing I think?
-                print("selected go back!")
+                Log.logger.debug("selected go back!")
             }
         } message: {
             Text("Do you want to start a new workout or go back to the workout list?")
@@ -118,21 +118,21 @@ struct WorkoutListView: View {
         session_controller.selectedWorkout = .traditionalStrengthTraining
         selected_workout?.Start()
         app_storage.active_workout = selected_workout
-        print("Started brand new workout from list! \(String(describing: selected_workout?.name))")
+        Log.logger.debug("Started brand new workout from list! \(String(describing: selected_workout?.name))")
     }
     
     private func CheckStartWorkout()
     {
         // check if workout active
-        print("checking if we can start a new workout or if we need to warn")
-        print("Tapped: \(String(describing: tapped_workout?.name)):\(String(describing: tapped_workout?.id.uuidString))")
-        print("Active: \(String(describing: app_storage.active_workout?.name)):\(String(describing: app_storage.active_workout?.id.uuidString))")
+        Log.logger.debug("checking if we can start a new workout or if we need to warn")
+        Log.logger.debug("Tapped: \(String(describing: tapped_workout?.name)):\(String(describing: tapped_workout?.id.uuidString))")
+        Log.logger.debug("Active: \(String(describing: app_storage.active_workout?.name)):\(String(describing: app_storage.active_workout?.id.uuidString))")
         if app_storage.active_workout == nil {
             // take selected workout as good to go
-            print("active workout nil!")
+            Log.logger.debug("active workout nil!")
             StartNewWorkout()
         } else if app_storage.active_workout == tapped_workout {
-            print("Tapped existing workout!")
+            Log.logger.debug("Tapped existing workout!")
             selected_workout = tapped_workout
         } else {
             is_showing_warning.toggle()
@@ -141,10 +141,10 @@ struct WorkoutListView: View {
     
     private func deleteItems(for indexSet: IndexSet)
     {
-        print("should delete: \(indexSet)")
+        Log.logger.debug("should delete: \(indexSet)")
         for idx in indexSet
         {
-            print("\(idx)")
+            Log.logger.debug("\(idx)")
         }
         app_storage.RemoveWorkout(for: indexSet)
     }

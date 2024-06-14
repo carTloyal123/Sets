@@ -75,12 +75,21 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
+            BlueprintIdentifier = "33ADA42E2C14300000858AD6"
+            BuildableName = "Sets WidgetExtension.appex"
+            BlueprintName = "Sets WidgetExtension"
+            ReferencedContainer = "container:Sets.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
             BlueprintIdentifier = "333502EA2BD425170068076C"
             BuildableName = "Sets Watch App.app"
             BlueprintName = "Sets Watch App"
             ReferencedContainer = "container:Sets.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "_XCWidgetKind"

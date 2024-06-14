@@ -67,7 +67,7 @@ struct TimerView: View {
     @State var remaining_time: TimeInterval = TimeInterval()
     
     let ac: (() -> Void) = {
-        print("testing ac")
+        Log.logger.debug("testing ac")
     }
     
     return TimerView(rest_timer: example_workout.supersets.first!.rest_timer, skip_action: ac)

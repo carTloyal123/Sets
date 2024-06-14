@@ -24,7 +24,7 @@ struct NewExerciseListView: View {
                         Text(exercise.name)
                     }
                     .onDelete(perform: { indexSet in
-                        print("should delete hehe")
+                        Log.logger.debug("should delete hehe")
                         withAnimation {
                             app_storage.in_progress_workout.RemoveExercise(at: indexSet)
                         }

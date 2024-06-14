@@ -26,11 +26,13 @@ struct Provider: TimelineProvider {
             let entry = RestTimerEntry(date: restData.endDate, emoji: "running", timerData: restData)
             entries.append(entry)
         } else {
-            print("Rest date is nil!")
+            Log.logger.debug("REST DATE IS NIL")
+            Log.logger.debug("Rest date is nil!")
             let single = RestTimerEntry(date: Date.now, emoji: "nil")
             entries.append(single)
         }
-        print("Sending new timeline with \(entries.count) updates!")
+        Log.logger.info("Sending enw timeline with \(entries.count)!")
+        Log.logger.debug("Sending new timeline with \(entries.count) updates!")
         let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
     }
@@ -61,7 +63,7 @@ struct Sets_WidgetAccessoryCircularView: View {
                 ProgressView(timerInterval: data.startDate...data.endDate, countsDown: true)
                     .progressViewStyle(.circular)
             case .preview:
-                Image(systemName: "dumbbell")
+                Image(systemName: "dumbbell.fill")
             case .done:
                 ProgressView(value: 1, total: 1) {
                     Text("Rest timer label")

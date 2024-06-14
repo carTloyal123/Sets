@@ -33,7 +33,7 @@ struct ActiveWorkoutSupersetTabView: View {
             }
         })
         .onChange(of: scroll_id) { oldValue, newValue in
-            print("Scroll Id Change: \(oldValue), \(newValue)")
+            Log.logger.debug("Scroll Id Change: \(oldValue), \(newValue)")
             // alert workout we changed active ss
             current_workout.UpdateSuperSet(for: newValue)
         }

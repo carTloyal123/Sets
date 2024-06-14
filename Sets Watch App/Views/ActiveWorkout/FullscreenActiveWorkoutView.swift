@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 import WatchKit
 
+
 struct FullscreenActiveWorkoutView: View {
     @EnvironmentObject var settings: SettingsController
     @Environment(\.dismiss) private var dismiss
@@ -39,13 +40,13 @@ struct FullscreenActiveWorkoutView: View {
             .tabViewStyle(.verticalPage(transitionStyle: .blur))
         }
         .onChange(of: current_workout.active_superset, { oldValue, newValue in
-            print("Changed active superset")
+            Log.logger.debug("Changed active superset")
             guard let _ = oldValue else { return }
             guard let n = newValue else { return }
             selected_ss = n.id
         })
         .onChange(of: selected_ss, { oldValue, newValue in
-            print("workout superset change \(oldValue.uuidString), \(newValue.uuidString)")
+            Log.logger.debug("workout superset change \(oldValue.uuidString), \(newValue.uuidString)")
             current_workout.UpdateSuperSet(for: newValue)
         })
         .sheet(isPresented: $is_showing_timer, content: {
@@ -160,7 +161,7 @@ struct ActiveWorkoutTimelineView: TimelineSchedule {
     
     return NavigationSplitView(sidebar: {
         Button(action: {
-            print("tapped previews!")
+            Log.logger.debug("tapped previews!")
         }, label: {
             Text("Workout!")
         })

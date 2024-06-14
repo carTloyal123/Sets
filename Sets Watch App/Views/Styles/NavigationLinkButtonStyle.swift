@@ -10,7 +10,7 @@ import SwiftUI
 struct NavigationLinkButtonStyle: View {
     var body: some View {
         Button {
-            print("test button")
+            Log.logger.debug("test button")
         } label: {
             Text("Testing!")
         }
