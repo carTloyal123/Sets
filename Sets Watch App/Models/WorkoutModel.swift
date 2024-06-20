@@ -78,7 +78,7 @@ extension Array {
     func Start()
     {
         self.started_at = Date.now
-        print("Starting workout \(name) at \(self.started_at ?? Date.now)")
+        print("Starting workout \(self.name) at \(self.started_at ?? Date.now)")
         self.workout_timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
             if let started_time = self?.started_at
             {

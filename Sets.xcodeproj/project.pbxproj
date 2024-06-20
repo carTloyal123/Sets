@@ -20,6 +20,8 @@
 		3309419D2BF12587002C1719 /* ExerciseListDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309419C2BF12587002C1719 /* ExerciseListDatabaseView.swift */; };
 		330941A02BF12B6C002C1719 /* NewWorkoutSupersetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309419F2BF12B6C002C1719 /* NewWorkoutSupersetListView.swift */; };
 		330941A22BF1368C002C1719 /* SupersetCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330941A12BF1368C002C1719 /* SupersetCreationView.swift */; };
+		33240BC42C1BA306000B5589 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240BC32C1BA306000B5589 /* Logger.swift */; };
+		33240BC52C1BA4EE000B5589 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240BC32C1BA306000B5589 /* Logger.swift */; };
 		33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33254A2D2BDC118B004001DE /* SingleSupersetView.swift */; };
 		332A38452BF51AA70000C4C1 /* EditSupersetRestTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A38442BF51AA70000C4C1 /* EditSupersetRestTimerView.swift */; };
 		332A9BBE2C09BF7800AE77CF /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A9BBD2C09BF7800AE77CF /* HistoryDetailView.swift */; };
@@ -151,6 +153,7 @@
 		3309419C2BF12587002C1719 /* ExerciseListDatabaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListDatabaseView.swift; sourceTree = "<group>"; };
 		3309419F2BF12B6C002C1719 /* NewWorkoutSupersetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutSupersetListView.swift; sourceTree = "<group>"; };
 		330941A12BF1368C002C1719 /* SupersetCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetCreationView.swift; sourceTree = "<group>"; };
+		33240BC32C1BA306000B5589 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		33254A2D2BDC118B004001DE /* SingleSupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSupersetView.swift; sourceTree = "<group>"; };
 		332A38442BF51AA70000C4C1 /* EditSupersetRestTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSupersetRestTimerView.swift; sourceTree = "<group>"; };
 		332A9BBD2C09BF7800AE77CF /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
@@ -299,6 +302,14 @@
 				332A38442BF51AA70000C4C1 /* EditSupersetRestTimerView.swift */,
 			);
 			path = SuperSetCreation;
+			sourceTree = "<group>";
+		};
+		33240BC22C1BA2FE000B5589 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				33240BC32C1BA306000B5589 /* Logger.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		333502DE2BD425170068076C = {
@@ -524,6 +535,7 @@
 		33ADA4602C14499B00858AD6 /* Sets Shared */ = {
 			isa = PBXGroup;
 			children = (
+				33240BC22C1BA2FE000B5589 /* Utils */,
 				33ADA4612C1449A900858AD6 /* Controllers */,
 			);
 			path = "Sets Shared";
@@ -791,6 +803,7 @@
 				33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */,
 				3335033B2BD456C90068076C /* WorkoutView.swift in Sources */,
 				33B9C2B82BED92430056E45F /* EntryLayerView.swift in Sources */,
+				33240BC42C1BA306000B5589 /* Logger.swift in Sources */,
 				3335BE3F2C100BBC008A43B1 /* ElapsedTimeView.swift in Sources */,
 				333503272BD427770068076C /* ExerciseModel.swift in Sources */,
 				332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */,
@@ -820,6 +833,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33ADA4642C144D0300858AD6 /* SetsWidgetController.swift in Sources */,
+				33240BC52C1BA4EE000B5589 /* Logger.swift in Sources */,
 				33ADA4342C14300000858AD6 /* Sets_Widget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

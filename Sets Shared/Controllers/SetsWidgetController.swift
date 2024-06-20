@@ -7,6 +7,8 @@
 
 import Foundation
 import WidgetKit
+import WatchKit
+
 
 struct RestTimerEntry: TimelineEntry {
     let date: Date
@@ -41,6 +43,7 @@ struct RestTimerData: Codable {
 }
 
 class SetsWidgetController {
+    static let BG_REFRESH_KEY = "complication_state_refresh"
     static let TEST_KEY = "test_key"
     static let REST_END_KEY = "rest_timer_end_date"
     static let REST_TIMER_DATA = "rest_timer_data"
@@ -87,5 +90,24 @@ class SetsWidgetController {
         }
         print("Got rest timer data from store: \(rv.endDate)")
         return rv
+    }
+    
+    static func HandleBackgroundRefresh()
+    {
+        // always just set it to preview?
+    }
+    
+    static func ScheduleBackgroundRefresh()
+    {
+        WKApplication.shared()
+            .scheduleBackgroundRefresh(
+                withPreferredDate: Date.init(timeIntervalSinceNow: 15.0 * 60.0),
+                userInfo: BG_REFRESH_KEY as NSSecureCoding & NSObjectProtocol) { error in
+                    if error != nil {
+                        // Handle the scheduling error.
+                        fatalError("*** An error occurred while scheduling the background refresh task. ***")
+                    }
+                    print("*** Scheduled! ***")
+                }
     }
 }

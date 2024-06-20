@@ -42,15 +42,17 @@ struct SignInWithAppleView: View {
         
         private func handleSuccessfulLogin(with authorization: ASAuthorization) {
             if let userCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-                print(userCredential.user)
+                var str = ""
+                print("\(userCredential.user)")
                 
                 if userCredential.authorizedScopes.contains(.fullName) {
-                    print(userCredential.fullName?.givenName ?? "No given name")
+                    str = userCredential.fullName?.givenName ?? "No given name"
                 }
                 
                 if userCredential.authorizedScopes.contains(.email) {
-                    print(userCredential.email ?? "No email")
+                    str = userCredential.email ?? "No email"
                 }
+                print("\(str)")
             }
         }
         

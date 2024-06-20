@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 import WatchKit
 
+
 struct FullscreenActiveWorkoutView: View {
     @EnvironmentObject var settings: SettingsController
     @Environment(\.dismiss) private var dismiss

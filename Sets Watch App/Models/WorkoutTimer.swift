@@ -9,7 +9,6 @@ import Foundation
 import UserNotifications
 import WidgetKit
 
-
 @Observable class WorkoutTimer: Codable {
     var time_remaining: TimeInterval
     var default_time_in_seconds: TimeInterval
@@ -140,11 +139,13 @@ import WidgetKit
         {
             data.state = .paused
         }
-        print("setting timer state for widget to: \(data.state)")
+        let s = "setting timer state for widget to: \(data.state)"
+        print("\(s)")
         data.endDate = self.end_date
         data.startDate = self.end_date.addingTimeInterval(-1 * self.default_time_in_seconds)
         SetsWidgetController.SetRestTimerData(for: data)
     }
+    
     
     func ScheduleTimeBasedNotification() {
         if (self.time_remaining < 1)
@@ -158,7 +159,7 @@ import WidgetKit
             if granted {
                 print("Notification Permission granted")
             } else if let error = error {
-                print(error.localizedDescription)
+                print("\(error.localizedDescription)")
             }
         }
 
@@ -177,7 +178,7 @@ import WidgetKit
         // 5. Add the request to the notification center
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print(error.localizedDescription)
+                print("\(error.localizedDescription)")
             } else {
                 print("Notification scheduled")
             }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 @Observable class CentralStorage: Codable
 {
     var workouts: [Workout] = []

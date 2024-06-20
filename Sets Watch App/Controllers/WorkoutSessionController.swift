@@ -178,8 +178,9 @@ extension WorkoutSessionController: HKWorkoutSessionDelegate {
     
     func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState,
                         from fromState: HKWorkoutSessionState, date: Date) {
-        print("Session CHANGE STATE activity: \(fromState) -> \(toState)")
-
+        
+        let str = "Changed workout state from \(fromState) -> \(toState)"
+        print("\(str.description)")
         DispatchQueue.main.async {
             self.running = toState == .running
         }

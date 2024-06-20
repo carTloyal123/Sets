@@ -34,5 +34,8 @@ struct Sets_Watch_AppApp: App {
                     print("scene phase: \(oldValue) -> \(newValue)")
                 }
         }
+        .backgroundTask(.appRefresh(SetsWidgetController.BG_REFRESH_KEY)) { item in
+            print("Should update complication!")
+        }
     }
 }

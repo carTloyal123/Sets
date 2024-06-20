@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class SaveUtils {
     
     static let shared = SaveUtils()
