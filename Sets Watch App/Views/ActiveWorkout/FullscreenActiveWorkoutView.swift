@@ -7,6 +7,8 @@
 
 import SwiftUI
 import SwiftData
+import WatchKit
+
 
 struct FullscreenActiveWorkoutView: View {
     @EnvironmentObject var settings: SettingsController
@@ -16,25 +18,27 @@ struct FullscreenActiveWorkoutView: View {
     @Environment(Workout.self) var current_workout
     @Environment(\.modelContext) private var modelContext
     
-    @State private var is_showing_overview: Bool = false
-    @State private var is_showing_timer: Bool = false
+    @Environment(WorkoutSessionController.self) private var session
+    
     @State private var selected_ss: UUID = UUID()
+    @State private var is_showing_timer: Bool = false
+    @State private var is_showing_overview: Bool = false
     
     var body: some View {
-        TabView(selection: $selected_ss, content:  {
-            ForEach(current_workout.supersets) { superset in
-                FullscreenSupersetView(single_superset: superset)
-                    .background(content: {
-                        superset.color
-                            .opacity(0.7)
-                            .frame(width: 400, height: 400)
-                    })
-                    .tag(superset.id)
-            }
-        })
-        .onAppear(perform: {
-            current_workout.Start()
-        })
+        TimelineView(ActiveWorkoutTimelineView(from: session.builder?.startDate ?? Date(), isPaused: session.session?.state == .paused)) { context in
+            TabView(selection: $selected_ss, content:  {
+                ForEach(current_workout.supersets) { superset in
+                    FullscreenSupersetView(single_superset: superset, context: context)
+                        .background(content: {
+                            superset.color
+                                .opacity(0.7)
+                                .frame(width: 600, height: 600)
+                        })
+                        .tag(superset.id)
+                }
+            })
+            .tabViewStyle(.verticalPage(transitionStyle: .blur))
+        }
         .onChange(of: current_workout.active_superset, { oldValue, newValue in
             print("Changed active superset")
             guard let _ = oldValue else { return }
@@ -45,11 +49,6 @@ struct FullscreenActiveWorkoutView: View {
             print("workout superset change \(oldValue.uuidString), \(newValue.uuidString)")
             current_workout.UpdateSuperSet(for: newValue)
         })
-        .tabViewStyle(.carousel)
-        .sheet(isPresented: $is_showing_overview, content: {
-            WorkoutOverview()
-                .environment(current_workout)
-        })
         .sheet(isPresented: $is_showing_timer, content: {
             if let active_ss = current_workout.active_superset
             {
@@ -58,28 +57,30 @@ struct FullscreenActiveWorkoutView: View {
                 Text("No superset :(")
             }
         })
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                HStack {
-                    Button {
-                        EndWorkout()
-                        dismiss()
-                    } label: {
-                        Image(systemName: "stop")
-                    }
-                    Button {
-                        is_showing_overview.toggle()
-                    } label: {
-                        Image(systemName: "list.number")
-                    }
-                }
-            }
-            ToolbarItem(placement: .bottomBar) {
+        .sheet(isPresented: $is_showing_overview, content: {
+            WorkoutOverview()
+                .environment(current_workout)
+        })
+        .toolbar(content: {
+            ToolbarItemGroup(placement: .bottomBar, content: {
                 HStack {
                     Button {
                         is_showing_timer.toggle()
                     } label: {
-                        Image(systemName: "timer")
+                        HStack {
+                            Image(systemName: "timer")
+                            if let active_ss = current_workout.active_superset {
+                                if (active_ss.rest_timer.is_running) {
+                                    ElapsedTimeView(elapsedTime: active_ss.rest_timer.time_remaining, showSubseconds: false)
+                                }
+                            }
+                        }
+                    }
+                    Spacer()
+                    Button {
+                        is_showing_overview.toggle()
+                    } label: {
+                        Image(systemName: "list.clipboard.fill")
                     }
                     Spacer()
                     Button {
@@ -88,15 +89,16 @@ struct FullscreenActiveWorkoutView: View {
                         Image(systemName: "checkmark")
                     }
                 }
-            }
-        }
+                
+            })
+        })
     }
     
-    private func EndWorkout()
+    private func SkipRestTimer()
     {
-        let history_entry = HistoryEntry(workout_completed_at: Date.now, workout_name: current_workout.name, exercises: current_workout.exercises, supersets: current_workout.supersets)
-        modelContext.insert(history_entry)
-        print("saved workout to history: \(current_workout.name)")
+        withAnimation {
+            current_workout.SkipRestTimer()
+        }
     }
     
     private func UpdateSuperset()
@@ -116,20 +118,87 @@ struct FullscreenActiveWorkoutView: View {
             }
         }
     }
-    
-    private func SkipRestTimer()
-    {
-        withAnimation {
-            current_workout.SkipRestTimer()
+}
+
+struct ActiveWorkoutTimelineView: TimelineSchedule {
+    var startDate: Date
+    var isPaused: Bool
+
+    init(from startDate: Date, isPaused: Bool) {
+        self.startDate = startDate
+        self.isPaused = isPaused
+    }
+
+    func entries(from startDate: Date, mode: TimelineScheduleMode) -> AnyIterator<Date> {
+        var baseSchedule = PeriodicTimelineSchedule(from: self.startDate,
+                                                    by: (mode == .lowFrequency ? 1.0 : 1.0 / 30.0))
+            .entries(from: startDate, mode: mode)
+        
+        return AnyIterator<Date> {
+            guard !isPaused else { return nil }
+            return baseSchedule.next()
         }
     }
 }
 
 #Preview {
+    @State var settings_controller: SettingsController = SettingsController()
+    @State var selected_workout: Workout? = ExampleData().GetExampleStrengthWorkout()
+
+    @State var app_storage: CentralStorage = CentralStorage()
+    @State var history_storage: HistoryController = HistoryController()
+    @State var fitness_db: FitnessDatabase = FitnessDatabase()
+
     let example_data = ExampleData()
-    @State var example_workout = example_data.GetExerciseOnlyWorkout()
-    return FullscreenActiveWorkoutView()
-        .environmentObject(SettingsController())
-        .environment(example_workout)
-        .modelContainer(for: [HistoryEntry.self])
+    app_storage.workouts.append(example_data.GetExampleStrengthWorkout())
+    app_storage.workouts.append(example_data.GetExampleWorkout())
+    app_storage.workouts.append(example_data.GetSupersetWorkout())
+
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: HistoryEntry.self, configurations: config)
+    
+    @State var session_controller = WorkoutSessionController()
+    
+    return NavigationSplitView(sidebar: {
+        Button(action: {
+            print("tapped previews!")
+        }, label: {
+            Text("Workout!")
+        })
+        .navigationDestination(item: $selected_workout) { wk in
+            WorkoutView(current_workout: wk)
+                .navigationBarBackButtonHidden(true)
+        }
+    }, detail: {
+        Text("Hi")
+    })
+    .environmentObject(settings_controller)
+    .environment(app_storage)
+    .environment(selected_workout)
+    .environment(history_storage)
+    .environment(session_controller)
+    .environment(fitness_db)
+    .modelContainer(container)
+}
+
+
+#Preview {
+    let example_data = ExampleData()
+    @State var example_workout = example_data.GetSupersetWorkout()
+    return NavigationSplitView(sidebar: {
+        NavigationLink(value: example_workout) {
+            Text("Workout")
+        }
+        .navigationDestination(for: Workout.self) { wk in
+            FullscreenActiveWorkoutView()
+                .navigationBarBackButtonHidden()
+        }
+    }, detail: {
+        EmptyView()
+    })
+//    return FullscreenActiveWorkoutView()
+    .environment(WorkoutSessionController())
+    .environmentObject(SettingsController())
+    .environment(example_workout)
+    .modelContainer(for: [HistoryEntry.self])
 }

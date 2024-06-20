@@ -37,7 +37,7 @@ struct SettingsView: View {
             } header: {
                 Text("Rest Timer")
             }
-
+            
             Section {
                 Toggle(isOn: $settings.should_show_welcome, label: {
                         Text("Show Welcome")

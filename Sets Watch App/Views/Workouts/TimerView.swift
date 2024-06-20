@@ -66,7 +66,7 @@ struct TimerView: View {
     @State var example_workout = example_data.GetSupersetWorkout()
     @State var remaining_time: TimeInterval = TimeInterval()
     
-    var ac: (() -> Void) = {
+    let ac: (() -> Void) = {
         print("testing ac")
     }
     

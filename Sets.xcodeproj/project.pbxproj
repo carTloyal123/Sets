@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		330361F92BD893F90014CD3C /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330361F82BD893F90014CD3C /* ActiveWorkoutView.swift */; };
 		330361FD2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330361FC2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift */; };
 		330362002BD935B60014CD3C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330361FF2BD935B60014CD3C /* SettingsView.swift */; };
 		330362022BD9363A0014CD3C /* WorkoutOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362012BD9363A0014CD3C /* WorkoutOverview.swift */; };
@@ -15,13 +14,17 @@
 		330362062BD9389E0014CD3C /* CentralStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362052BD9389E0014CD3C /* CentralStorage.swift */; };
 		330362092BD93B070014CD3C /* PublishedExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330362082BD93B070014CD3C /* PublishedExt.swift */; };
 		3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303620A2BD93D0C0014CD3C /* CodableColor.swift */; };
+		3303BD612C1294AF00BB68A4 /* DemoSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303BD602C1294AF00BB68A4 /* DemoSplitView.swift */; };
 		330941982BF12146002C1719 /* FitnessDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330941972BF12146002C1719 /* FitnessDatabase.swift */; };
 		3309419A2BF12418002C1719 /* NewExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330941992BF12418002C1719 /* NewExerciseListView.swift */; };
 		3309419D2BF12587002C1719 /* ExerciseListDatabaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309419C2BF12587002C1719 /* ExerciseListDatabaseView.swift */; };
 		330941A02BF12B6C002C1719 /* NewWorkoutSupersetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3309419F2BF12B6C002C1719 /* NewWorkoutSupersetListView.swift */; };
 		330941A22BF1368C002C1719 /* SupersetCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330941A12BF1368C002C1719 /* SupersetCreationView.swift */; };
+		33240BC42C1BA306000B5589 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240BC32C1BA306000B5589 /* Logger.swift */; };
+		33240BC52C1BA4EE000B5589 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33240BC32C1BA306000B5589 /* Logger.swift */; };
 		33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33254A2D2BDC118B004001DE /* SingleSupersetView.swift */; };
 		332A38452BF51AA70000C4C1 /* EditSupersetRestTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A38442BF51AA70000C4C1 /* EditSupersetRestTimerView.swift */; };
+		332A9BBE2C09BF7800AE77CF /* HistoryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332A9BBD2C09BF7800AE77CF /* HistoryDetailView.swift */; };
 		332E82712BD9439D008FE9B4 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82702BD9439D008FE9B4 /* TimerView.swift */; };
 		332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */; };
 		333502EC2BD425170068076C /* Sets Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 333502EB2BD425170068076C /* Sets Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -42,6 +45,7 @@
 		333503372BD441310068076C /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333503362BD441310068076C /* ExerciseView.swift */; };
 		3335033B2BD456C90068076C /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033A2BD456C90068076C /* WorkoutView.swift */; };
 		3335033F2BD583B40068076C /* SupersetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335033E2BD583B40068076C /* SupersetView.swift */; };
+		3335BE3F2C100BBC008A43B1 /* ElapsedTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335BE3E2C100BBC008A43B1 /* ElapsedTimeView.swift */; };
 		333CB4702BF2C2FF000ABA0F /* EditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333CB46F2BF2C2FF000ABA0F /* EditExerciseView.swift */; };
 		334944622BF5B2E000CF5A06 /* MainHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944612BF5B2E000CF5A06 /* MainHistoryView.swift */; };
 		334944642BF5B41500CF5A06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944632BF5B41500CF5A06 /* Constants.swift */; };
@@ -49,7 +53,6 @@
 		334944682BF69F4900CF5A06 /* HistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944672BF69F4900CF5A06 /* HistoryController.swift */; };
 		3349446A2BF6AA0F00CF5A06 /* NewExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334944692BF6AA0F00CF5A06 /* NewExerciseView.swift */; };
 		3357F2582BD9656E0037D35C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3357F2572BD9656E0037D35C /* Utils.swift */; };
-		33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */; };
 		33831C012BE3D30C00C3D3A4 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */; };
 		33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */; };
 		33831C0B2BE453E500C3D3A4 /* SetsNotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */; };
@@ -58,15 +61,25 @@
 		3397515B2BF26CDF006CD8C3 /* ConfirmCancelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397515A2BF26CDF006CD8C3 /* ConfirmCancelView.swift */; };
 		3397515D2BF27920006CD8C3 /* EditExerciseSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3397515C2BF27920006CD8C3 /* EditExerciseSetView.swift */; };
 		33975CE12BF8BD6B004CFD75 /* HistoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33975CE02BF8BD6B004CFD75 /* HistoryModels.swift */; };
-		339798F72BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */; };
 		339798F92BF05DFA0009D4CA /* SupersetOptionsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */; };
 		339798FC2BF11A270009D4CA /* NewWorkoutMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339798FB2BF11A270009D4CA /* NewWorkoutMainView.swift */; };
 		33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E28B2BD976EB009EC780 /* SettingsController.swift */; };
-		33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */; };
+		33ADA4302C14300000858AD6 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33ADA41A2C142DC500858AD6 /* WidgetKit.framework */; };
+		33ADA4312C14300000858AD6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33ADA41C2C142DC500858AD6 /* SwiftUI.framework */; };
+		33ADA4342C14300000858AD6 /* Sets_Widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ADA4332C14300000858AD6 /* Sets_Widget.swift */; };
+		33ADA4362C14300100858AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33ADA4352C14300100858AD6 /* Assets.xcassets */; };
+		33ADA43A2C14300100858AD6 /* Sets WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 33ADA42F2C14300000858AD6 /* Sets WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		33ADA4632C1449BC00858AD6 /* SetsWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ADA4622C1449BC00858AD6 /* SetsWidgetController.swift */; };
+		33ADA4642C144D0300858AD6 /* SetsWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ADA4622C1449BC00858AD6 /* SetsWidgetController.swift */; };
 		33B9C2B22BED8BF80056E45F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */; };
 		33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B32BED8C060056E45F /* WelcomeView.swift */; };
 		33B9C2B82BED92430056E45F /* EntryLayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B9C2B72BED92430056E45F /* EntryLayerView.swift */; };
 		33C73F322BF25AB100148110 /* SetsAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33C73F312BF25AB100148110 /* SetsAssets.xcassets */; };
+		33C8C9F52C0D1723003E3A3D /* ActiveWorkoutControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8C9F42C0D1723003E3A3D /* ActiveWorkoutControlsView.swift */; };
+		33C8C9F72C0D1B08003E3A3D /* WorkoutSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8C9F62C0D1B08003E3A3D /* WorkoutSessionController.swift */; };
+		33C8C9F92C0D697D003E3A3D /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8C9F82C0D697D003E3A3D /* SummaryView.swift */; };
+		33C8C9FB2C0D6A8B003E3A3D /* ActivityRingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8C9FA2C0D6A8B003E3A3D /* ActivityRingsView.swift */; };
+		33C8C9FD2C0D79F1003E3A3D /* HealthKitExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C8C9FC2C0D79F1003E3A3D /* HealthKitExt.swift */; };
 		33CB45762BDE01D8000390CB /* ExerciseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +105,13 @@
 			remoteGlobalIDString = 333502EA2BD425170068076C;
 			remoteInfo = "Sets Watch App";
 		};
+		33ADA4382C14300100858AD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 333502DF2BD425170068076C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33ADA42E2C14300000858AD6;
+			remoteInfo = "Sets WidgetExtension";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,10 +126,20 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33ADA4272C142DC600858AD6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				33ADA43A2C14300100858AD6 /* Sets WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		330361F82BD893F90014CD3C /* ActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutView.swift; sourceTree = "<group>"; };
 		330361FC2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetSettingsSheetView.swift; sourceTree = "<group>"; };
 		330361FF2BD935B60014CD3C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		330362012BD9363A0014CD3C /* WorkoutOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutOverview.swift; sourceTree = "<group>"; };
@@ -117,13 +147,16 @@
 		330362052BD9389E0014CD3C /* CentralStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralStorage.swift; sourceTree = "<group>"; };
 		330362082BD93B070014CD3C /* PublishedExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedExt.swift; sourceTree = "<group>"; };
 		3303620A2BD93D0C0014CD3C /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
+		3303BD602C1294AF00BB68A4 /* DemoSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSplitView.swift; sourceTree = "<group>"; };
 		330941972BF12146002C1719 /* FitnessDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessDatabase.swift; sourceTree = "<group>"; };
 		330941992BF12418002C1719 /* NewExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseListView.swift; sourceTree = "<group>"; };
 		3309419C2BF12587002C1719 /* ExerciseListDatabaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListDatabaseView.swift; sourceTree = "<group>"; };
 		3309419F2BF12B6C002C1719 /* NewWorkoutSupersetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutSupersetListView.swift; sourceTree = "<group>"; };
 		330941A12BF1368C002C1719 /* SupersetCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetCreationView.swift; sourceTree = "<group>"; };
+		33240BC32C1BA306000B5589 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		33254A2D2BDC118B004001DE /* SingleSupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSupersetView.swift; sourceTree = "<group>"; };
 		332A38442BF51AA70000C4C1 /* EditSupersetRestTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSupersetRestTimerView.swift; sourceTree = "<group>"; };
+		332A9BBD2C09BF7800AE77CF /* HistoryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDetailView.swift; sourceTree = "<group>"; };
 		332E82702BD9439D008FE9B4 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		332E82742BD944FC008FE9B4 /* WorkoutTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimer.swift; sourceTree = "<group>"; };
 		333502E52BD425170068076C /* Sets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +180,7 @@
 		333503362BD441310068076C /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		3335033A2BD456C90068076C /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		3335033E2BD583B40068076C /* SupersetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetView.swift; sourceTree = "<group>"; };
+		3335BE3E2C100BBC008A43B1 /* ElapsedTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElapsedTimeView.swift; sourceTree = "<group>"; };
 		333CB46F2BF2C2FF000ABA0F /* EditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseView.swift; sourceTree = "<group>"; };
 		334944612BF5B2E000CF5A06 /* MainHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHistoryView.swift; sourceTree = "<group>"; };
 		334944632BF5B41500CF5A06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -154,7 +188,6 @@
 		334944672BF69F4900CF5A06 /* HistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryController.swift; sourceTree = "<group>"; };
 		334944692BF6AA0F00CF5A06 /* NewExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewExerciseView.swift; sourceTree = "<group>"; };
 		3357F2572BD9656E0037D35C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutBackendController.swift; sourceTree = "<group>"; };
 		33831C002BE3D30C00C3D3A4 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
 		33831C022BE3D70400C3D3A4 /* Sets Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sets Watch App.entitlements"; sourceTree = "<group>"; };
 		33831C042BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationLinkButtonStyle.swift; sourceTree = "<group>"; };
@@ -164,17 +197,29 @@
 		3397515A2BF26CDF006CD8C3 /* ConfirmCancelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmCancelView.swift; sourceTree = "<group>"; };
 		3397515C2BF27920006CD8C3 /* EditExerciseSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseSetView.swift; sourceTree = "<group>"; };
 		33975CE02BF8BD6B004CFD75 /* HistoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModels.swift; sourceTree = "<group>"; };
-		339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutSupersetTabView.swift; sourceTree = "<group>"; };
 		339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupersetOptionsSheetView.swift; sourceTree = "<group>"; };
 		339798FB2BF11A270009D4CA /* NewWorkoutMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutMainView.swift; sourceTree = "<group>"; };
 		33A5E28B2BD976EB009EC780 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		33A5E2962BDAB33D009EC780 /* Sets-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Sets-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
-		33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSupersetScrollView.swift; sourceTree = "<group>"; };
+		33ADA41A2C142DC500858AD6 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		33ADA41C2C142DC500858AD6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		33ADA42F2C14300000858AD6 /* Sets WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Sets WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33ADA4332C14300000858AD6 /* Sets_Widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets_Widget.swift; sourceTree = "<group>"; };
+		33ADA4352C14300100858AD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33ADA4372C14300100858AD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33ADA4622C1449BC00858AD6 /* SetsWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsWidgetController.swift; sourceTree = "<group>"; };
+		33ADA4652C147F6200858AD6 /* Sets WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sets WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		33B9C2B12BED8BF80056E45F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		33B9C2B32BED8C060056E45F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		33B9C2B72BED92430056E45F /* EntryLayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryLayerView.swift; sourceTree = "<group>"; };
 		33C73F312BF25AB100148110 /* SetsAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SetsAssets.xcassets; sourceTree = "<group>"; };
+		33C8C9F42C0D1723003E3A3D /* ActiveWorkoutControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutControlsView.swift; sourceTree = "<group>"; };
+		33C8C9F62C0D1B08003E3A3D /* WorkoutSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSessionController.swift; sourceTree = "<group>"; };
+		33C8C9F82C0D697D003E3A3D /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		33C8C9FA2C0D6A8B003E3A3D /* ActivityRingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityRingsView.swift; sourceTree = "<group>"; };
+		33C8C9FC2C0D79F1003E3A3D /* HealthKitExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitExt.swift; sourceTree = "<group>"; };
 		33CB45752BDE01D8000390CB /* ExerciseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHeaderView.swift; sourceTree = "<group>"; };
+		33F58BCE2C17E5FF00D42768 /* DatePlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DatePlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,18 +244,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33ADA42C2C14300000858AD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33ADA4312C14300000858AD6 /* SwiftUI.framework in Frameworks */,
+				33ADA4302C14300000858AD6 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		330361F72BD893E50014CD3C /* ActiveWorkout */ = {
 			isa = PBXGroup;
 			children = (
-				330361F82BD893F90014CD3C /* ActiveWorkoutView.swift */,
-				33A5E2992BDC0A41009EC780 /* ActiveSupersetScrollView.swift */,
-				339798F62BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift */,
 				339798F82BF05DFA0009D4CA /* SupersetOptionsSheetView.swift */,
 				338AE3732BF72C26001EA193 /* FullscreenActiveWorkoutView.swift */,
 				338AE3752BF745B5001EA193 /* FullscreenSupersetView.swift */,
+				33C8C9F42C0D1723003E3A3D /* ActiveWorkoutControlsView.swift */,
+				33C8C9F82C0D697D003E3A3D /* SummaryView.swift */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
@@ -228,6 +281,7 @@
 			children = (
 				330362082BD93B070014CD3C /* PublishedExt.swift */,
 				3303620A2BD93D0C0014CD3C /* CodableColor.swift */,
+				33C8C9FC2C0D79F1003E3A3D /* HealthKitExt.swift */,
 			);
 			path = Exts;
 			sourceTree = "<group>";
@@ -250,12 +304,24 @@
 			path = SuperSetCreation;
 			sourceTree = "<group>";
 		};
+		33240BC22C1BA2FE000B5589 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				33240BC32C1BA306000B5589 /* Logger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		333502DE2BD425170068076C = {
 			isa = PBXGroup;
 			children = (
+				33ADA4652C147F6200858AD6 /* Sets WidgetExtension.entitlements */,
+				33ADA4602C14499B00858AD6 /* Sets Shared */,
 				333502EF2BD425170068076C /* Sets Watch App */,
 				333503002BD425180068076C /* Sets Watch AppTests */,
 				3335030A2BD425180068076C /* Sets Watch AppUITests */,
+				33ADA4322C14300000858AD6 /* Sets Widget */,
+				33ADA4192C142DC500858AD6 /* Frameworks */,
 				333502E62BD425170068076C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -267,6 +333,7 @@
 				333502EB2BD425170068076C /* Sets Watch App.app */,
 				333502FD2BD425180068076C /* Sets Watch AppTests.xctest */,
 				333503072BD425180068076C /* Sets Watch AppUITests.xctest */,
+				33ADA42F2C14300000858AD6 /* Sets WidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -352,9 +419,9 @@
 			children = (
 				330362052BD9389E0014CD3C /* CentralStorage.swift */,
 				33A5E28B2BD976EB009EC780 /* SettingsController.swift */,
-				33831BFD2BE3CEA900C3D3A4 /* WorkoutBackendController.swift */,
 				330941972BF12146002C1719 /* FitnessDatabase.swift */,
 				334944672BF69F4900CF5A06 /* HistoryController.swift */,
+				33C8C9F62C0D1B08003E3A3D /* WorkoutSessionController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -367,6 +434,8 @@
 				33831C0A2BE453E500C3D3A4 /* SetsNotificationDelegate.swift */,
 				334944632BF5B41500CF5A06 /* Constants.swift */,
 				334944652BF684D000CF5A06 /* SaveUtils.swift */,
+				3303BD602C1294AF00BB68A4 /* DemoSplitView.swift */,
+				33F58BCE2C17E5FF00D42768 /* DatePlayground.playground */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -402,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				334944612BF5B2E000CF5A06 /* MainHistoryView.swift */,
+				332A9BBD2C09BF7800AE77CF /* HistoryDetailView.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -426,6 +496,8 @@
 			isa = PBXGroup;
 			children = (
 				3397515A2BF26CDF006CD8C3 /* ConfirmCancelView.swift */,
+				33C8C9FA2C0D6A8B003E3A3D /* ActivityRingsView.swift */,
+				3335BE3E2C100BBC008A43B1 /* ElapsedTimeView.swift */,
 			);
 			path = UtilityViews;
 			sourceTree = "<group>";
@@ -439,6 +511,42 @@
 				330941992BF12418002C1719 /* NewExerciseListView.swift */,
 			);
 			path = NewWorkouts;
+			sourceTree = "<group>";
+		};
+		33ADA4192C142DC500858AD6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33ADA41A2C142DC500858AD6 /* WidgetKit.framework */,
+				33ADA41C2C142DC500858AD6 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33ADA4322C14300000858AD6 /* Sets Widget */ = {
+			isa = PBXGroup;
+			children = (
+				33ADA4332C14300000858AD6 /* Sets_Widget.swift */,
+				33ADA4352C14300100858AD6 /* Assets.xcassets */,
+				33ADA4372C14300100858AD6 /* Info.plist */,
+			);
+			path = "Sets Widget";
+			sourceTree = "<group>";
+		};
+		33ADA4602C14499B00858AD6 /* Sets Shared */ = {
+			isa = PBXGroup;
+			children = (
+				33240BC22C1BA2FE000B5589 /* Utils */,
+				33ADA4612C1449A900858AD6 /* Controllers */,
+			);
+			path = "Sets Shared";
+			sourceTree = "<group>";
+		};
+		33ADA4612C1449A900858AD6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				33ADA4622C1449BC00858AD6 /* SetsWidgetController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		33B9C2B02BED8BDF0056E45F /* Introduction */ = {
@@ -477,10 +585,12 @@
 				333502E72BD425170068076C /* Sources */,
 				333502E82BD425170068076C /* Frameworks */,
 				333502E92BD425170068076C /* Resources */,
+				33ADA4272C142DC600858AD6 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				33ADA4392C14300100858AD6 /* PBXTargetDependency */,
 			);
 			name = "Sets Watch App";
 			productName = "Sets Watch App";
@@ -523,6 +633,23 @@
 			productReference = 333503072BD425180068076C /* Sets Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		33ADA42E2C14300000858AD6 /* Sets WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33ADA43B2C14300100858AD6 /* Build configuration list for PBXNativeTarget "Sets WidgetExtension" */;
+			buildPhases = (
+				33ADA42B2C14300000858AD6 /* Sources */,
+				33ADA42C2C14300000858AD6 /* Frameworks */,
+				33ADA42D2C14300000858AD6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Sets WidgetExtension";
+			productName = "Sets WidgetExtension";
+			productReference = 33ADA42F2C14300000858AD6 /* Sets WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -530,7 +657,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1530;
+				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					333502E42BD425170068076C = {
@@ -546,6 +673,9 @@
 					333503062BD425180068076C = {
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = 333502EA2BD425170068076C;
+					};
+					33ADA42E2C14300000858AD6 = {
+						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
@@ -566,6 +696,7 @@
 				333502EA2BD425170068076C /* Sets Watch App */,
 				333502FC2BD425180068076C /* Sets Watch AppTests */,
 				333503062BD425180068076C /* Sets Watch AppUITests */,
+				33ADA42E2C14300000858AD6 /* Sets WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -602,6 +733,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33ADA42D2C14300000858AD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33ADA4362C14300100858AD6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -612,18 +751,19 @@
 				330362062BD9389E0014CD3C /* CentralStorage.swift in Sources */,
 				33CB45762BDE01D8000390CB /* ExerciseHeaderView.swift in Sources */,
 				330362022BD9363A0014CD3C /* WorkoutOverview.swift in Sources */,
-				33831BFE2BE3CEA900C3D3A4 /* WorkoutBackendController.swift in Sources */,
+				3303BD612C1294AF00BB68A4 /* DemoSplitView.swift in Sources */,
 				330362092BD93B070014CD3C /* PublishedExt.swift in Sources */,
 				3397515D2BF27920006CD8C3 /* EditExerciseSetView.swift in Sources */,
 				33975CE12BF8BD6B004CFD75 /* HistoryModels.swift in Sources */,
+				33ADA4632C1449BC00858AD6 /* SetsWidgetController.swift in Sources */,
 				3309419D2BF12587002C1719 /* ExerciseListDatabaseView.swift in Sources */,
 				33B9C2B42BED8C060056E45F /* WelcomeView.swift in Sources */,
 				3335032A2BD428F10068076C /* WorkoutModel.swift in Sources */,
 				33831C052BE40F2E00C3D3A4 /* NavigationLinkButtonStyle.swift in Sources */,
 				3335032F2BD42D090068076C /* ExampleData.swift in Sources */,
 				3357F2582BD9656E0037D35C /* Utils.swift in Sources */,
-				339798F72BF02A140009D4CA /* ActiveWorkoutSupersetTabView.swift in Sources */,
 				330941982BF12146002C1719 /* FitnessDatabase.swift in Sources */,
+				33C8C9F52C0D1723003E3A3D /* ActiveWorkoutControlsView.swift in Sources */,
 				333503252BD4270D0068076C /* HelperModels.swift in Sources */,
 				330941A02BF12B6C002C1719 /* NewWorkoutSupersetListView.swift in Sources */,
 				339798F92BF05DFA0009D4CA /* SupersetOptionsSheetView.swift in Sources */,
@@ -641,15 +781,17 @@
 				33A5E28C2BD976EB009EC780 /* SettingsController.swift in Sources */,
 				332A38452BF51AA70000C4C1 /* EditSupersetRestTimerView.swift in Sources */,
 				330941A22BF1368C002C1719 /* SupersetCreationView.swift in Sources */,
+				33C8C9F92C0D697D003E3A3D /* SummaryView.swift in Sources */,
 				330362002BD935B60014CD3C /* SettingsView.swift in Sources */,
 				330361FD2BD8B4F80014CD3C /* SupersetSettingsSheetView.swift in Sources */,
-				330361F92BD893F90014CD3C /* ActiveWorkoutView.swift in Sources */,
 				334944662BF684D000CF5A06 /* SaveUtils.swift in Sources */,
-				33A5E29A2BDC0A41009EC780 /* ActiveSupersetScrollView.swift in Sources */,
+				332A9BBE2C09BF7800AE77CF /* HistoryDetailView.swift in Sources */,
+				33C8C9FB2C0D6A8B003E3A3D /* ActivityRingsView.swift in Sources */,
 				3397515B2BF26CDF006CD8C3 /* ConfirmCancelView.swift in Sources */,
 				3309419A2BF12418002C1719 /* NewExerciseListView.swift in Sources */,
 				333503332BD4326A0068076C /* ExerciseSetView.swift in Sources */,
 				330362042BD9386B0014CD3C /* WorkoutListView.swift in Sources */,
+				33C8C9F72C0D1B08003E3A3D /* WorkoutSessionController.swift in Sources */,
 				338AE3742BF72C26001EA193 /* FullscreenActiveWorkoutView.swift in Sources */,
 				3303620B2BD93D0C0014CD3C /* CodableColor.swift in Sources */,
 				339798FC2BF11A270009D4CA /* NewWorkoutMainView.swift in Sources */,
@@ -661,8 +803,11 @@
 				33254A2E2BDC118B004001DE /* SingleSupersetView.swift in Sources */,
 				3335033B2BD456C90068076C /* WorkoutView.swift in Sources */,
 				33B9C2B82BED92430056E45F /* EntryLayerView.swift in Sources */,
+				33240BC42C1BA306000B5589 /* Logger.swift in Sources */,
+				3335BE3F2C100BBC008A43B1 /* ElapsedTimeView.swift in Sources */,
 				333503272BD427770068076C /* ExerciseModel.swift in Sources */,
 				332E82752BD944FC008FE9B4 /* WorkoutTimer.swift in Sources */,
+				33C8C9FD2C0D79F1003E3A3D /* HealthKitExt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +828,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33ADA42B2C14300000858AD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33ADA4642C144D0300858AD6 /* SetsWidgetController.swift in Sources */,
+				33240BC52C1BA4EE000B5589 /* Logger.swift in Sources */,
+				33ADA4342C14300000858AD6 /* Sets_Widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -700,6 +855,11 @@
 			isa = PBXTargetDependency;
 			target = 333502EA2BD425170068076C /* Sets Watch App */;
 			targetProxy = 333503082BD425180068076C /* PBXContainerItemProxy */;
+		};
+		33ADA4392C14300100858AD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33ADA42E2C14300000858AD6 /* Sets WidgetExtension */;
+			targetProxy = 33ADA4382C14300100858AD6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -833,24 +993,27 @@
 		333503122BD425180068076C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout related data will be used to display your saved workouts in Sets.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked by Sets wil be saved to HealthKit.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -865,24 +1028,27 @@
 		333503132BD425180068076C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Sets Watch App/Sets Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sets Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Your workout related data will be used to display your saved workouts in Sets.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Workouts tracked by Sets wil be saved to HealthKit.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -900,12 +1066,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				"INFOPLIST_FILE[sdk=*]" = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -918,12 +1084,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				"INFOPLIST_FILE[sdk=*]" = "Sets-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sets;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.clengineering.Sets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -938,10 +1104,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -959,10 +1125,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets-Watch-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -980,10 +1146,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets-Watch-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1000,10 +1166,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.1;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
 				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets-Watch-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1013,6 +1179,73 @@
 				TEST_TARGET_NAME = "Sets Watch App";
 				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.4;
+			};
+			name = Release;
+		};
+		33ADA43C2C14300100858AD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Sets WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Sets Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sets Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets.watchkitapp.Sets-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		33ADA43D2C14300100858AD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "Sets WidgetExtension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2Z9BCQBJN;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Sets Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sets Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.clengineering.Sets.watchkitapp.Sets-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
 			};
 			name = Release;
 		};
@@ -1060,6 +1293,15 @@
 			buildConfigurations = (
 				3335031C2BD425180068076C /* Debug */,
 				3335031D2BD425180068076C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33ADA43B2C14300100858AD6 /* Build configuration list for PBXNativeTarget "Sets WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33ADA43C2C14300100858AD6 /* Debug */,
+				33ADA43D2C14300100858AD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct EntryLayerView: View {
     @EnvironmentObject private var settings_controller: SettingsController
+    @Environment(WorkoutSessionController.self) private var session_controller: WorkoutSessionController
     @State private var is_showing_welcome: Bool = false
-        
+    @State private var is_showing_summary: Bool = false
+
     var body: some View {
 
         NavigationStack
@@ -67,15 +70,25 @@ struct EntryLayerView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                ShowWelcome()
-                print("fired welcome timer")
-            }
-        })
+        .task {
+            SetupWidget()
+            ShowWelcome()
+        }
         .sheet(isPresented: $is_showing_welcome, content: {
             WelcomeView()
         })
+        .sheet(isPresented: $is_showing_summary, content: {
+            SummaryView()
+        })
+        .onChange(of: session_controller.showingSummaryView) { oldValue, newValue in
+            is_showing_summary = newValue
+        }
+    }
+    
+    private func SetupWidget()
+    {
+        print("should set timer to idle")
+        SetsWidgetController.SetTimerIdle()
     }
     
     private func ShowWelcome()
@@ -83,9 +96,11 @@ struct EntryLayerView: View {
         print("Will show welcome: \(settings_controller.should_show_welcome)")
         if (settings_controller.should_show_welcome)
         {
-            withAnimation {
-                is_showing_welcome.toggle()
-                settings_controller.should_show_welcome = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation {
+                    is_showing_welcome.toggle()
+                    settings_controller.should_show_welcome = false
+                }
             }
         }
 
@@ -100,7 +115,23 @@ struct EntryLayerView: View {
     app_storage.workouts.append(example_data.GetExampleWorkout())
     app_storage.workouts.append(example_data.GetSupersetWorkout())
     
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: HistoryEntry.self, configurations: config)
+
+    @State var history_storage: HistoryController = HistoryController()
+    history_storage.workouts.append(example_data.GetExampleStrengthWorkout())
+    history_storage.workouts.append(example_data.GetExampleWorkout())
+    history_storage.workouts.append(example_data.GetSupersetWorkout())
+    for workout in history_storage.workouts {
+        container.mainContext.insert(HistoryEntry(workout_completed_at: Date.now, workout_name: workout.name, exercises: workout.exercises, supersets: workout.supersets))
+    }
+    
+    @State var workout_session: WorkoutSessionController = WorkoutSessionController()
+    
     return EntryLayerView()
         .environment(app_storage)
+        .environment(history_storage)
         .environmentObject(settings_controller)
+        .environment(workout_session)
+        .modelContainer(container)
 }

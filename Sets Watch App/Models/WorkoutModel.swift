@@ -78,7 +78,7 @@ extension Array {
     func Start()
     {
         self.started_at = Date.now
-        print("Starting workout \(name) at \(self.started_at ?? Date.now)")
+        print("Starting workout \(self.name) at \(self.started_at ?? Date.now)")
         self.workout_timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
             if let started_time = self?.started_at
             {
@@ -187,6 +187,7 @@ extension Array {
     
     func Reset()
     {
+        SetsWidgetController.SetTimerIdle()
         self.workout_timer?.invalidate()
         self.started_at = nil
         self.completed_at = nil
@@ -271,7 +272,13 @@ extension Array {
             // pass update to timer, otherwise normal
             print("Sending superset update to timer!")
             current_ss.rest_timer.SetCallback {
-                self.NextSuperset()
+                if current_ss.is_ss_complete
+                {
+                    print("Next superset from TIMER being called")
+                    self.NextSuperset()
+                } else {
+                    print("NOT popping next superset from timer since ss not complete")
+                }
             }
             return true
         } else {

@@ -24,7 +24,8 @@ struct ExerciseSetCheckButtonView: View {
     mutating func setChecked()
     {
         current_set.set_data.is_complete.toggle()
-        print("Set is complete: \(current_set.set_data.is_complete)")
+        let is_complete = current_set.set_data.is_complete
+        print("Set is complete: \(is_complete)")
     }
 }
 

@@ -135,11 +135,11 @@ class ExampleData {
         let four_exercise = Exercise(name: "Sauna", sets: [four_set_one], exercise_type: .duration, exercise_target_area: .full_body)
 
         let superset_warmup = Superset(name: "Warmup", rest_time_seconds: 60*10)
-        superset_warmup.AddExercise(exercise: warmup_one)
+//        superset_warmup.AddExercise(exercise: warmup_one)
         
         let superset_one = Superset(name: "Leg Set", rest_time_seconds: 3*60)
-        superset_one.AddExercise(exercise: two_exercise)
-        superset_one.AddExercise(exercise: three_exercise)
+//        superset_one.AddExercise(exercise: two_exercise)
+//        superset_one.AddExercise(exercise: three_exercise)
         
         let superset_two = Superset(name: "Aux Set", rest_time_seconds: 5*60)
         superset_two.AddExercise(exercise: four_exercise)
@@ -181,10 +181,9 @@ class ExampleData {
         let three_set_three = GetExampleExerciseSet(set_number: 3, type: .duration, reps: 100, volume: 180)
         let three_exercise = Exercise(name: "Ab Tobata", sets: [three_set_one, three_set_two, three_set_three], exercise_type: .duration, exercise_target_area: .abdomen)
         
-        let five_set_one = GetExampleExerciseSet(set_number: 1, type: .duration, reps: 100, volume: 180)
-        let five_set_two = GetExampleExerciseSet(set_number: 2, type: .duration, reps: 100, volume: 180)
-        let five_set_three = GetExampleExerciseSet(set_number: 3, type: .duration, reps: 100, volume: 180)
-        let five_exercise = Exercise(name: "Ab Tobata", sets: [five_set_one, five_set_two, five_set_three], exercise_type: .duration, exercise_target_area: .abdomen)
+//        let five_set_one = GetExampleExerciseSet(set_number: 1, type: .duration, reps: 100, volume: 180)
+//        let five_set_two = GetExampleExerciseSet(set_number: 2, type: .duration, reps: 100, volume: 180)
+//        let five_set_three = GetExampleExerciseSet(set_number: 3, type: .duration, reps: 100, volume: 180)
         
         let four_set_one = GetExampleExerciseSet(set_number: 1, type: .duration, reps: 100, volume: 60*10)
         let four_exercise = Exercise(name: "Sauna", sets: [four_set_one], exercise_type: .duration, exercise_target_area: .full_body)

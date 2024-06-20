@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+
 @Observable class Exercise: NSObject, NSCopying, Identifiable, Codable {
     func copy(with zone: NSZone? = nil) -> Any {
         let copy = Exercise(name: name, sets: sets, exercise_type: exercise_type, exercise_target_area: exercise_target_area)

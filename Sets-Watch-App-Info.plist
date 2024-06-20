@@ -20,5 +20,13 @@
 	<array>
 		<string>remote-notification</string>
 	</array>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>complication_state_refresh</string>
+	</array>
 </dict>
 </plist>

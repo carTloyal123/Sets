@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct EditExerciseView: View {
     @Environment(\.dismiss) private var dismiss
     var exercise: Exercise
