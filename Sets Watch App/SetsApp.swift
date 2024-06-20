@@ -13,7 +13,7 @@ import SwiftData
 @main
 struct Sets_Watch_AppApp: App {    
     @Environment(\.scenePhase) private var scenePhase
-    
+        
     // This is the main entry for the app
     @State var settings_controller: SettingsController = SettingsController()
     @State var app_storage: CentralStorage = CentralStorage()
