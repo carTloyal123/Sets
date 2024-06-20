@@ -8,6 +8,7 @@
 import Foundation
 import UserNotifications
 import WidgetKit
+import WatchKit
 
 @Observable class WorkoutTimer: Codable {
     var time_remaining: TimeInterval
@@ -86,10 +87,7 @@ import WidgetKit
                 self.time_remaining = new_time_remaining < 0 ? 0 : new_time_remaining
                 
                 if self.time_remaining < 1 {
-                    self.time_remaining = 0
-                    self.is_complete = true
-                    self.stop()
-                    self.callback?()
+                    self.FinishTimer()
                 }
             }
             
@@ -101,6 +99,15 @@ import WidgetKit
         } else {
             print("Timer should already exist!")
         }
+    }
+    
+    func FinishTimer()
+    {
+        self.time_remaining = 0
+        self.is_complete = true
+        self.PlayCompleteHaptic()
+        self.stop()
+        self.callback?()
     }
 
     func stop() {
@@ -146,6 +153,11 @@ import WidgetKit
         SetsWidgetController.SetRestTimerData(for: data)
     }
     
+    func PlayCompleteHaptic()
+    {
+        print("Playing stop haptic!")
+        WKInterfaceDevice.current().play(.stop)
+    }
     
     func ScheduleTimeBasedNotification() {
         if (self.time_remaining < 1)
