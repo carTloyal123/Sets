@@ -16,12 +16,12 @@ struct ElapsedTimeView: View {
         Text(NSNumber(value: elapsedTime), formatter: timeFormatter)
             .onChange(of: showSubseconds, { oldValue, newValue in
                 timeFormatter.showSubseconds = newValue
-                Log.logger.debug("show sub changed: \(newValue)")
+                print("show sub changed: \(newValue)")
 
             })
             .onAppear(perform: {
                 timeFormatter.showSubseconds = showSubseconds
-                Log.logger.debug("show sub: \(showSubseconds)")
+                print("show sub: \(showSubseconds)")
             })
     }
 }

@@ -34,7 +34,7 @@ struct ExerciseView: View {
                     RemoveSet(for: indexSet)
                 })
                 .onMove(perform: { indices, newOffset in
-                    Log.logger.debug("should move stuff?")
+                    print("should move stuff?")
                 })
             }
             

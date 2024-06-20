@@ -55,11 +55,11 @@ struct ConfirmCancelView: View {
 #Preview {
     
     let myClosure: () -> Void = {
-        Log.logger.debug("Hello, Lambda!")
+        print("Hello, Lambda!")
     }
     
     let myClosure2: () -> Void = {
-        Log.logger.debug("Hello, Cancel!")
+        print("Hello, Cancel!")
     }
     
     return ConfirmCancelView(save_action: myClosure, discard_action: myClosure2)

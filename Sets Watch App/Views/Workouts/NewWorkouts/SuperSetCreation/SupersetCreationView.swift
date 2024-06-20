@@ -43,7 +43,7 @@ struct SupersetCreationView: View {
                 Section {
                     ForEach(superset_to_edit.exercise_list) { exercise  in
                         Button {
-                            Log.logger.debug("selected included exercise: \(exercise.name)")
+                            print("selected included exercise: \(exercise.name)")
                             RemoveIncludedItem(for: exercise)
                         } label: {
                             Text(exercise.name)
@@ -82,7 +82,7 @@ struct SupersetCreationView: View {
                         if (is_new && !superset_to_edit.name.isEmpty)
                         {
                             app_storage.in_progress_workout.supersets.append(superset_to_edit)
-                            Log.logger.debug("saved new superset to in progress workout: \(superset_to_edit.name)")
+                            print("saved new superset to in progress workout: \(superset_to_edit.name)")
                         }
                         dismiss()
                     } label: {
@@ -100,7 +100,7 @@ struct SupersetCreationView: View {
     
     private func move(from source: IndexSet, to destination: Int) {
         // move the data here
-        Log.logger.debug("moving items! \(source) to \(destination)")
+        print("moving items! \(source) to \(destination)")
         superset_to_edit.MoveExercises(from: source, to: destination)
     }
     

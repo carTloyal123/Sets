@@ -10,5 +10,5 @@ import os
 
 
 class Log {
-    var logger = Logger(subsystem: "SetsApp", category: "Main")
+    static var logger = Logger(subsystem: "SetsApp", category: "Main")
 }

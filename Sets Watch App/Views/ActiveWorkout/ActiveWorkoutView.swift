@@ -52,7 +52,7 @@ struct ActiveWorkoutView: View {
             buttonView
         }
         .onChange(of: current_workout.is_showing_superset_overview, { oldValue, newValue in
-            Log.logger.debug("is showing overview from: \(oldValue) to \(newValue)")
+            print("is showing overview from: \(oldValue) to \(newValue)")
             withAnimation {
                 is_showing_superset_options = true
             }
@@ -61,7 +61,7 @@ struct ActiveWorkoutView: View {
             SupersetOptionsSheetView()
         })
         .onChange(of: current_workout.is_showing_superset_settings, { oldValue, newValue in
-            Log.logger.debug("is showing settings from: \(oldValue) to \(newValue)")
+            print("is showing settings from: \(oldValue) to \(newValue)")
             withAnimation {
                 is_showing_superset_settings = true
             }
@@ -74,7 +74,7 @@ struct ActiveWorkoutView: View {
             if let active_superset_info = current_workout.active_superset
             {
                 TimerView(rest_timer: active_superset_info.rest_timer, skip_action: {
-                    Log.logger.debug("should skip!")
+                    print("should skip!")
                 })
             } else {
                 Text("No active ss")

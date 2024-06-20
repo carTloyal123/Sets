@@ -30,10 +30,10 @@ struct ActiveSupersetScrollView: View {
             selected_tag_idx = newValue
         })
         .onChange(of: selected_tag_idx) { oldValue, newValue in
-            Log.logger.debug("Scroll Id Change: \(oldValue), \(newValue)")
+            print("Scroll Id Change: \(oldValue), \(newValue)")
             if (newValue == current_workout.active_superset_idx)
             {
-                Log.logger.debug("Same as active id, no change")
+                print("Same as active id, no change")
                 return
             }
             current_workout.UpdateSuperSetIndex(index: newValue)

@@ -18,7 +18,7 @@ struct EditExerciseView: View {
             Section {
                 ForEach(ExerciseSetType.allCases, id: \.self) { c in
                     Button(action: {
-                        Log.logger.debug("Presesd \(c.rawValue)")
+                        print("Presesd \(c.rawValue)")
                         exercise.ChangeSetType(set_type: c)
                         dismiss()
                     }, label: {

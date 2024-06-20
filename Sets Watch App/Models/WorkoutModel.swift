@@ -68,7 +68,7 @@ extension Array {
     
     deinit {
         workout_timer?.invalidate()
-        Log.logger.debug("workout destoryed!")
+        print("workout destoryed!")
     }
     
     func hash(into hasher: inout Hasher) {
@@ -78,7 +78,7 @@ extension Array {
     func Start()
     {
         self.started_at = Date.now
-        Log.logger.debug("Starting workout \(self.name) at \(self.started_at ?? Date.now)")
+        print("Starting workout \(self.name) at \(self.started_at ?? Date.now)")
         self.workout_timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] _ in
             if let started_time = self?.started_at
             {
@@ -98,7 +98,7 @@ extension Array {
             if self.active_superset == nil
             {
                 self.active_superset = first_ss
-                Log.logger.debug("set first superset as active for workout start")
+                print("set first superset as active for workout start")
             }
         }
     }
@@ -114,13 +114,13 @@ extension Array {
     {
         let new_exercise = exercise.copy() as! Exercise
         new_exercise.id = UUID()
-        Log.logger.debug("adding new exercise to workout \(new_exercise.name) with id: \(new_exercise.id.uuidString)")
+        print("adding new exercise to workout \(new_exercise.name) with id: \(new_exercise.id.uuidString)")
         self.exercises.append(new_exercise)
     }
     
     func MoveExercise(at indices: IndexSet, to newOffset: Int)
     {
-        Log.logger.debug("Moving exercises: \(indices) to offset: \(newOffset)")
+        print("Moving exercises: \(indices) to offset: \(newOffset)")
         // Get the items to move
         let items = indices.map { self.exercises[$0] }
         
@@ -159,7 +159,7 @@ extension Array {
     
     func RemoveSuperset(at index: IndexSet)
     {
-        Log.logger.debug("removing supersets at index set: \(index)")
+        print("removing supersets at index set: \(index)")
         self.supersets.remove(atOffsets: index)
     }
     
@@ -167,14 +167,14 @@ extension Array {
     {
         self.supersets.removeAll { ss in
             let check = ss.id == id
-            if (check) { Log.logger.debug("Removing \(ss.name)")}
+            if (check) { print("Removing \(ss.name)")}
             return check
         }
     }
     
     func MoveSuperset(in indexSet: IndexSet, for offset: Int)
     {
-        Log.logger.debug("Moving \(indexSet) to offset: \(offset)")
+        print("Moving \(indexSet) to offset: \(offset)")
         let items_to_move = indexSet.map { idx in
             self.supersets[idx]
         }
@@ -209,7 +209,7 @@ extension Array {
     
     func PreviousSuperset()
     {
-        Log.logger.debug("Getting previous SS")
+        print("Getting previous SS")
         var new_idx = self.active_superset_idx - 1
         if (new_idx < 0)
         {
@@ -218,11 +218,11 @@ extension Array {
         
         if let new_ss = self.supersets[safe: new_idx]
         {
-            Log.logger.debug("Popped previous superset: \(new_ss.name)")
+            print("Popped previous superset: \(new_ss.name)")
             self.active_superset = new_ss
             self.active_superset_idx = new_idx
         } else {
-            Log.logger.debug("Unable to get previous ss at idx: \(new_idx)")
+            print("Unable to get previous ss at idx: \(new_idx)")
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
         }
@@ -230,7 +230,7 @@ extension Array {
     
     func NextSuperset()
     {
-        Log.logger.debug("Getting next SS")
+        print("Getting next SS")
         var new_idx = self.active_superset_idx + 1
         if (new_idx > (self.supersets.count - 1))
         {
@@ -239,11 +239,11 @@ extension Array {
         
         if let new_ss = self.supersets[safe: new_idx]
         {
-            Log.logger.debug("Popped next superset: \(new_ss.name)")
+            print("Popped next superset: \(new_ss.name)")
             self.active_superset = new_ss
             self.active_superset_idx = new_idx
         } else {
-            Log.logger.debug("Unable to get next ss at idx: \(new_idx)")
+            print("Unable to get next ss at idx: \(new_idx)")
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
         }
@@ -252,13 +252,13 @@ extension Array {
     func UpdateSuperset() -> Bool
     {
         // this should set the current set complete, and activate the timer for the set
-        Log.logger.debug("Updating super set \(self.name)")
+        print("Updating super set \(self.name)")
         if let current_ss = self.active_superset
         {
             current_ss.MarkNextSetComplete()
             return HandleLastRestTimer(for: current_ss)
         } else {
-            Log.logger.debug("SS not active, getting from store!")
+            print("SS not active, getting from store!")
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
             return false
@@ -270,14 +270,14 @@ extension Array {
         if current_ss.is_ss_complete
         {
             // pass update to timer, otherwise normal
-            Log.logger.debug("Sending superset update to timer!")
+            print("Sending superset update to timer!")
             current_ss.rest_timer.SetCallback {
                 if current_ss.is_ss_complete
                 {
-                    Log.logger.debug("Next superset from TIMER being called")
+                    print("Next superset from TIMER being called")
                     self.NextSuperset()
                 } else {
-                    Log.logger.debug("NOT popping next superset from timer since ss not complete")
+                    print("NOT popping next superset from timer since ss not complete")
                 }
             }
             return true
@@ -293,18 +293,18 @@ extension Array {
         {
             if current_ss.is_ss_complete
             {
-                Log.logger.debug("skipped rest timer, cancelling callback!")
+                print("skipped rest timer, cancelling callback!")
                 current_ss.rest_timer.callback = nil
                 self.NextSuperset()
             } else {
-                Log.logger.debug("skipped rest timer, ss not complete")
+                print("skipped rest timer, ss not complete")
             }
         }
     }
     
     func UpdateSuperSetIndex(index: Int)
     {
-        Log.logger.debug("Getting next SS")
+        print("Getting next SS")
         var new_idx = index
         if (new_idx > (self.supersets.count - 1))
         {
@@ -318,11 +318,11 @@ extension Array {
 
         if let new_ss = self.supersets[safe: new_idx]
         {
-            Log.logger.debug("Got superset: \(new_ss.name)")
+            print("Got superset: \(new_ss.name)")
             self.active_superset = new_ss
             self.active_superset_idx = new_idx
         } else {
-            Log.logger.debug("Unable to get next ss at idx: \(new_idx)")
+            print("Unable to get next ss at idx: \(new_idx)")
             self.active_superset = self.supersets.first
             self.active_superset_idx = 0
         }
@@ -338,9 +338,9 @@ extension Array {
         {
             active_superset_idx = new_idx
             active_superset = supersets[new_idx]
-            Log.logger.debug("Set superset by UUID to: \(uuid.uuidString)")
+            print("Set superset by UUID to: \(uuid.uuidString)")
         } else {
-            Log.logger.debug("UNABLE TO UPDATE SUPERSET for UUID")
+            print("UNABLE TO UPDATE SUPERSET for UUID")
         }
     }
     

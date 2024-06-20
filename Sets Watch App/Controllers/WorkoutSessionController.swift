@@ -13,7 +13,7 @@ import HealthKit
     var selectedWorkout: HKWorkoutActivityType? {
         didSet {
             guard let selectedWorkout = selectedWorkout else { return }
-            Log.logger.debug("DidSet workout type to \(selectedWorkout.name)!")
+            print("DidSet workout type to \(selectedWorkout.name)!")
             startWorkout(workoutType: selectedWorkout)
         }
     }
@@ -41,17 +41,17 @@ import HealthKit
             session = try HKWorkoutSession(healthStore: healthStore, configuration: configuration)
             builder = session?.associatedWorkoutBuilder()
         } catch {
-            Log.logger.debug("UNABLE to create workout session")
+            print("UNABLE to create workout session")
             return
         }
         
         guard let session = session else {
-            Log.logger.debug("NO SESSION")
+            print("NO SESSION")
             return
         }
         
         guard let builder = builder else {
-            Log.logger.debug("NO BUILDER")
+            print("NO BUILDER")
             return
         }
 
@@ -69,14 +69,14 @@ import HealthKit
         builder.beginCollection(withStart: startDate) { (success, error) in
             guard success else {
                 // Handle errors.
-                Log.logger.debug("ERROR IN BEGIN COLLECTION")
+                print("ERROR IN BEGIN COLLECTION")
                 return
             }
-            Log.logger.debug("BEGIN COLLECTION GOOD")
+            print("BEGIN COLLECTION GOOD")
             // Indicate that the session has started.
         }
         
-        Log.logger.debug("Started workout of type \(workoutType.rawValue)")
+        print("Started workout of type \(workoutType.rawValue)")
     }
 
     // Request authorization to access HealthKit.
@@ -98,11 +98,11 @@ import HealthKit
         // Request authorization for those quantity types.
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { (success, error) in
             if success {
-                Log.logger.debug("Health is GOOD")
+                print("Health is GOOD")
             }
             
             if let error = error {
-                Log.logger.debug("HEALTH IS ERROR: \(error.localizedDescription)")
+                print("HEALTH IS ERROR: \(error.localizedDescription)")
             }
         }
     }
@@ -180,17 +180,17 @@ extension WorkoutSessionController: HKWorkoutSessionDelegate {
                         from fromState: HKWorkoutSessionState, date: Date) {
         
         let str = "Changed workout state from \(fromState) -> \(toState)"
-        Log.logger.debug("\(str.description)")
+        print("\(str.description)")
         DispatchQueue.main.async {
             self.running = toState == .running
         }
 
         // Wait for the session to transition states before ending the builder.
         if toState == .ended {
-            Log.logger.debug("ENDED WORKOUT")
+            print("ENDED WORKOUT")
             builder?.endCollection(withEnd: date) { (success, error) in
                 self.builder?.finishWorkout { (workout, error) in
-                    Log.logger.debug("Finished workout!")
+                    print("Finished workout!")
                     DispatchQueue.main.async {
                         self.workout = workout
                     }
@@ -200,14 +200,14 @@ extension WorkoutSessionController: HKWorkoutSessionDelegate {
     }
 
     func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {
-//        Log.logger.debug("WORKOUT SESSION FAILED: \(error.localizedDescription)")
+//        print("WORKOUT SESSION FAILED: \(error.localizedDescription)")
     }
 }
 
 // MARK: - HKLiveWorkoutBuilderDelegate
 extension WorkoutSessionController: HKLiveWorkoutBuilderDelegate {
     func workoutBuilderDidCollectEvent(_ workoutBuilder: HKLiveWorkoutBuilder) {
-        Log.logger.debug("Builder collection event!")
+        print("Builder collection event!")
     }
 
     func workoutBuilder(_ workoutBuilder: HKLiveWorkoutBuilder, didCollectDataOf collectedTypes: Set<HKSampleType>) {

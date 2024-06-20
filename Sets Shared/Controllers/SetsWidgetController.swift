@@ -51,7 +51,7 @@ class SetsWidgetController {
     static let APP_GROUP = "group.sets_workout_app"
     
     static func SetTimerIdle() {
-        Log.logger.debug("setting timer to preview")
+        print("setting timer to preview")
         var initialData = RestTimerData()
         initialData.state = .preview
         SetsWidgetController.SetRestTimerData(for: initialData)
@@ -60,7 +60,7 @@ class SetsWidgetController {
     static func SetRestTimerData(for restData: RestTimerData)
     {
         guard let ud = UserDefaults(suiteName: APP_GROUP) else {
-            Log.logger.debug("NO USER DEFAULTS for rest data")
+            print("NO USER DEFAULTS for rest data")
             return
         }
         // encode rest data first
@@ -69,26 +69,26 @@ class SetsWidgetController {
         if let data = data {
             ud.set(data, forKey: REST_TIMER_DATA)
         }
-        Log.logger.debug("Set rest timer Data!: \(restData.startDate) -> \(restData.endDate)")
+        print("Set rest timer Data!: \(restData.startDate) -> \(restData.endDate)")
         WidgetCenter.shared.reloadTimelines(ofKind: WIDGET_KIND)
     }
     
     static func GetRestTimerData() -> RestTimerData?
     {
         guard let ud = UserDefaults(suiteName: APP_GROUP) else {
-            Log.logger.debug("NO USER DEFAULTS")
+            print("NO USER DEFAULTS")
             return nil
         }
         guard let data = ud.data(forKey: REST_TIMER_DATA) else {
-            Log.logger.debug("no rest timer data")
+            print("no rest timer data")
             return nil
         }
         let decoder = JSONDecoder()
         guard let rv = try? decoder.decode(RestTimerData.self, from: data) else {
-            Log.logger.debug("cannot parse rest timer date from user defaults")
+            print("cannot parse rest timer date from user defaults")
             return nil
         }
-        Log.logger.debug("Got rest timer data from store: \(rv.endDate)")
+        print("Got rest timer data from store: \(rv.endDate)")
         return rv
     }
     
@@ -107,7 +107,7 @@ class SetsWidgetController {
                         // Handle the scheduling error.
                         fatalError("*** An error occurred while scheduling the background refresh task. ***")
                     }
-                    Log.logger.debug("*** Scheduled! ***")
+                    print("*** Scheduled! ***")
                 }
     }
 }

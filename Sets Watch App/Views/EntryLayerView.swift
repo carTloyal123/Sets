@@ -87,13 +87,13 @@ struct EntryLayerView: View {
     
     private func SetupWidget()
     {
-        Log.logger.debug("should set timer to idle")
+        print("should set timer to idle")
         SetsWidgetController.SetTimerIdle()
     }
     
     private func ShowWelcome()
     {
-        Log.logger.debug("Will show welcome: \(settings_controller.should_show_welcome)")
+        print("Will show welcome: \(settings_controller.should_show_welcome)")
         if (settings_controller.should_show_welcome)
         {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {

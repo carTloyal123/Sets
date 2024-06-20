@@ -112,7 +112,7 @@ struct ActiveWorkoutControlsView: View {
         modelContext.insert(history_entry)
         app_storage.active_workout?.Reset()
         app_storage.active_workout = nil
-        Log.logger.debug("saved workout to history: \(current_workout.name)")
+        print("saved workout to history: \(current_workout.name)")
     }
     
     func PauseAction()

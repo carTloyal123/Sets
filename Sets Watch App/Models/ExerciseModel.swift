@@ -75,7 +75,7 @@ import Combine
     
     func AddSet(for exercise_set: ExerciseSet)
     {
-        Log.logger.debug("adding new set for id: \(exercise_set.id.uuidString)")
+        print("adding new set for id: \(exercise_set.id.uuidString)")
         if (exercise_set.set_data.set_number > 0)
         {
             exercise_set.set_data.set_number = self.working_set_count + 1
@@ -86,7 +86,7 @@ import Combine
     
     func RemoveSet(for index_set: IndexSet)
     {
-        Log.logger.debug("removing sets")
+        print("removing sets")
         self.sets.remove(atOffsets: index_set)
         RecalculateSetNumbers()
     }

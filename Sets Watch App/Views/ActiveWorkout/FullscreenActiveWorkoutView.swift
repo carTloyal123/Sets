@@ -40,13 +40,13 @@ struct FullscreenActiveWorkoutView: View {
             .tabViewStyle(.verticalPage(transitionStyle: .blur))
         }
         .onChange(of: current_workout.active_superset, { oldValue, newValue in
-            Log.logger.debug("Changed active superset")
+            print("Changed active superset")
             guard let _ = oldValue else { return }
             guard let n = newValue else { return }
             selected_ss = n.id
         })
         .onChange(of: selected_ss, { oldValue, newValue in
-            Log.logger.debug("workout superset change \(oldValue.uuidString), \(newValue.uuidString)")
+            print("workout superset change \(oldValue.uuidString), \(newValue.uuidString)")
             current_workout.UpdateSuperSet(for: newValue)
         })
         .sheet(isPresented: $is_showing_timer, content: {
@@ -161,7 +161,7 @@ struct ActiveWorkoutTimelineView: TimelineSchedule {
     
     return NavigationSplitView(sidebar: {
         Button(action: {
-            Log.logger.debug("tapped previews!")
+            print("tapped previews!")
         }, label: {
             Text("Workout!")
         })

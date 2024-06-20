@@ -22,10 +22,10 @@ import SwiftData
         {
             try save_utils.SaveToDevice(data: workout, to: SaveDirectories.History, filename: workout.id.uuidString)
             self.workouts.append(workout)
-            Log.logger.debug("Saved workout to history: \(workout.name)")
+            print("Saved workout to history: \(workout.name)")
         } catch
         {
-            Log.logger.debug("Error saving to history: \(error.localizedDescription)")
+            print("Error saving to history: \(error.localizedDescription)")
         }
     }
     
@@ -36,7 +36,7 @@ import SwiftData
         {
             workouts = try save_utils.LoadDirectory(from: SaveDirectories.History)
         } catch {
-            Log.logger.debug("Error saving to history: \(error.localizedDescription)")
+            print("Error saving to history: \(error.localizedDescription)")
         }
         return workouts
     }
