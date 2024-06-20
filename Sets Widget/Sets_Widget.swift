@@ -26,12 +26,10 @@ struct Provider: TimelineProvider {
             let entry = RestTimerEntry(date: restData.endDate, emoji: "running", timerData: restData)
             entries.append(entry)
         } else {
-            print("REST DATE IS NIL")
             print("Rest date is nil!")
             let single = RestTimerEntry(date: Date.now, emoji: "nil")
             entries.append(single)
         }
-        print("Sending enw timeline with \(entries.count)!")
         print("Sending new timeline with \(entries.count) updates!")
         let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
