@@ -20,6 +20,7 @@ import HealthKit
     
     var showingSummaryView: Bool = false {
         didSet {
+            print("SETTING SUMMARYVIEW TO: \(showingSummaryView)")
             if showingSummaryView == false {
                 resetWorkout()
             }
@@ -116,7 +117,7 @@ import HealthKit
         if running == true {
             self.pause()
         } else {
-            resume()
+            self.resume()
         }
     }
 
@@ -129,8 +130,11 @@ import HealthKit
     }
 
     func endWorkout(and showSummary: Bool = true) {
-        session?.end()
         showingSummaryView = showSummary
+        Task {
+            session?.end()
+            print("Ended workout session!")
+        }
     }
 
     // MARK: - Workout Metrics

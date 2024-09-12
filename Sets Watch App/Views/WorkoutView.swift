@@ -28,7 +28,10 @@ struct WorkoutView: View {
     var body: some View {
         TabView(selection: $selection) {
             ActiveWorkoutControlsView(end_action: {
-                dismiss_workout()
+                print("Ended workout from WorkoutView!!!")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                        dismiss_workout()
+                })
             }, pause_action: {
                 displayMetricsView()
             })
@@ -52,7 +55,7 @@ struct WorkoutView: View {
         .task {
             if current_workout.elapsed_time < 5.0
             {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                     withAnimation {
                         selection = .workout
                     }

@@ -81,7 +81,8 @@ struct EntryLayerView: View {
             SummaryView()
         })
         .onChange(of: session_controller.showingSummaryView) { oldValue, newValue in
-            is_showing_summary = newValue
+            print("ENTRY LAYER SUMMARY HEARD CHANGE: \(oldValue) -> \(newValue)")
+            self.is_showing_summary = newValue
         }
     }
     
